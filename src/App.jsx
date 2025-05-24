@@ -390,7 +390,7 @@ export default function App() {
           )}
           <button
             onClick={handleSuggestDish}
-            className="w-full bg-purple-500/30 hover:bg-purple-700 text-white font-semibold py-3 sm:py-4 px-6 rounded-lg text-lg sm:text-xl shadow-lg transition-all duration-150 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-400 focus:ring-opacity-75"
+            className="w-full bg-purple-500 hover:bg-purple-700 text-white font-semibold py-3 sm:py-4 px-6 rounded-lg text-lg sm:text-xl shadow-lg transition-all duration-150 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-400 focus:ring-opacity-75"
             aria-label={t.suggestDishAria}
           >
             {t.mainButton}
@@ -416,7 +416,7 @@ export default function App() {
             </p>
             <button
               onClick={openModal}
-              className="w-full bg-yellow-400 hover:bg-yellow-500 text-purple-800 font-semibold py-2.5 sm:py-3 px-6 rounded-lg shadow-md transition-all duration-150 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-yellow-300 focus:ring-opacity-100"
+              className="w-full bg-yellow-400 hover:bg-yellow-500 text-purple-800 font-semibold py-2.5 sm:py-3 px-6 rounded-lg shadow-md transition-all duration-150 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-yellow-300 focus:ring-opacity-75"
               aria-label={`${t.checkRecipeAria} ${selectedDish.name[language]}`}
             >
               {t.checkRecipeButton}
