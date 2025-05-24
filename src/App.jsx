@@ -351,13 +351,12 @@ export default function App() {
   const textDirection = language === 'ur' ? 'rtl' : 'ltr';
   // Adjusted heading size for Urdu
   const titleSizeClass =
-    language === 'ur' ? 'text-3xl sm:text-4xl' : 'text-4xl sm:text-5xl';
+    language === 'ur' ? 'text-3xl sm:text-4xl mb-4' : 'text-4xl sm:text-5xl';
   const modalTitleSizeClass =
     language === 'ur' ? 'text-xl sm:text-2xl' : 'text-2xl sm:text-3xl';
 
   return (
     <div
-      dir={textDirection} // text direction
       className={`min-h-screen bg-gradient-to-br from-purple-600 to-indigo-700 flex flex-col items-center justify-center p-4 ${fontClass} selection:bg-purple-300 selection:text-purple-900`}
     >
       <header className="mb-4 sm:mb-6 text-center w-full max-w-md">
@@ -428,10 +427,11 @@ export default function App() {
       {isModalOpen && selectedDish && (
         <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fadeIn">
           <div
-            dir={textDirection} // Apply text direction to modal as well
             className={`bg-white p-5 sm:p-8 rounded-lg shadow-2xl max-w-lg w-full max-h-[90vh] flex flex-col ${fontClass}`}
           >
-            <div className="flex justify-between items-center mb-4">
+            <div
+              dir={textDirection} 
+              className="flex justify-between items-center mb-4">
               {/* Apply conditional title size for Urdu to modal title */}
               <h3
                 className={`${modalTitleSizeClass} font-bold text-purple-700`}
@@ -452,7 +452,7 @@ export default function App() {
                 <h4 className="text-lg sm:text-xl font-semibold text-purple-600 mb-2">
                   {t.modalIngredientsTitle}
                 </h4>
-                <ul className="list-disc list-inside text-gray-700 space-y-1 text-sm sm:text-base">
+                <ul className="list-disc list-inside text-gray-700 space-y-1 text-sm sm:text-base text-left">
                   {selectedDish.ingredients.map((ingredient, index) => (
                     <li key={index}>{ingredient}</li>
                   ))}
@@ -463,7 +463,7 @@ export default function App() {
                 <h4 className="text-lg sm:text-xl font-semibold text-purple-600 mb-2">
                   {t.modalRecipeTitle}
                 </h4>
-                <p className="text-gray-700 whitespace-pre-line leading-relaxed text-sm sm:text-base">
+                <p className="text-gray-700 whitespace-pre-line leading-relaxed text-sm sm:text-base text-left">
                   {selectedDish.recipe}
                 </p>
               </div>
