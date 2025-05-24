@@ -390,7 +390,7 @@ export default function App() {
           )}
           <button
             onClick={handleSuggestDish}
-            className="w-full bg-purple-500 hover:bg-purple-700 text-white font-semibold py-3 sm:py-4 px-6 rounded-lg text-lg sm:text-xl shadow-lg transition-all duration-150 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-400 focus:ring-opacity-75"
+            className="w-full text-white font-semibold py-3 sm:py-4 px-6 rounded-lg text-lg sm:text-xl shadow-lg transition-all duration-150 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-400 focus:ring-opacity-75 bg-purple-500 hover:bg-purple-700"
             aria-label={t.suggestDishAria}
           >
             {t.mainButton}
