@@ -6,6 +6,7 @@ import {
   Carrot,
   Utensils,
   Apple,
+  X,
   Salad,
   Beef,
   Drumstick,
