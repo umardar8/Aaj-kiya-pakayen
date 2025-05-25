@@ -4,5 +4,4 @@ I recently came across a problem which is common to many households in south asi
 
 ## Screenshots of UI
 
-[`home-ui`](./src/assets/home-ui.png)
-[`home-ui`](./src/assets/home-ui-expanded.png)
+![home-ui](./src/assets/home-ui.png) ![home-ui](./src/assets/home-ui-expanded.png)
