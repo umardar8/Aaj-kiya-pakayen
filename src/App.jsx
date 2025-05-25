@@ -6,7 +6,6 @@ import {
   Carrot,
   Utensils,
   Apple,
-  X,
   Salad,
   Beef,
   Drumstick,
@@ -24,8 +23,8 @@ const translations = {
     modalIngredientsTitle: 'Ingredients:',
     modalRecipeTitle: 'Recipe:',
     modalCloseButton: 'Close',
-    footerText:
-      'Lovingly crafted to solve the eternal question. Inspired by South Asian kitchens.',
+    footerText: `Lovingly crafted by MufasaApps to solve the eternal question. 
+    Inspired by South Asian kitchens.`,
     langEnglish: 'English',
     langUrdu: 'اردو',
     langHindi: 'हिन्दी',
@@ -321,7 +320,6 @@ export default function App() {
     Carrot,
     Utensils,
     Apple,
-    X,
     Salad,
     Beef,
     Drumstick,
@@ -351,7 +349,7 @@ export default function App() {
   const textDirection = language === 'ur' ? 'rtl' : 'ltr';
   // Adjusted heading size for Urdu
   const titleSizeClass =
-    language === 'ur' ? 'text-3xl sm:text-4xl mb-4' : 'text-4xl sm:text-5xl';
+    language === 'ur' ? 'text-3xl mb-6' : 'text-4xl sm:text-5xl';
   const modalTitleSizeClass =
     language === 'ur' ? 'text-xl sm:text-2xl' : 'text-2xl sm:text-3xl';
 
@@ -408,7 +406,9 @@ export default function App() {
               <span className="font-semibold">{t.dishTypePrefix}</span>{' '}
               {selectedDish.type[language]}
             </p>
-            <p className="text-sm sm:text-md text-purple-600 font-medium mb-4">
+            <p 
+              dir={textDirection}
+              className="text-sm sm:text-md text-purple-600 font-medium mb-4">
               <span className="font-semibold">{t.keyIngredientsPrefix}</span>{' '}
               {selectedDish.ingredients.slice(0, 3).join(', ')}
               {selectedDish.ingredients.length > 3 ? '...' : ''}
@@ -479,7 +479,7 @@ export default function App() {
         </div>
       )}
       <footer className="text-center mt-8 sm:mt-12 pb-4">
-        <p className="text-purple-200 text-xs sm:text-sm">{t.footerText}</p>
+        <p className="text-purple-200 whitespace-pre-line leading-relaxed text-xs sm:text-sm">{t.footerText}</p>
       </footer>
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&display=swap');
