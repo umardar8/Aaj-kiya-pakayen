@@ -294,6 +294,32 @@ Chawal:
 9. Garnish with fresh coriander leaves.
 10. Serve hot with roti, paratha, or as a side dish with daal and rice.`,
   },
+  {
+    id: 'masar_chawal',
+    name: { en: 'Masar Chawal', ur: 'مسر چاول', hi: 'मसर चावल' },
+    type: { en: 'Lentil / Rice', ur: 'چاول', hi: 'चावल' },
+    ingredients: [
+      'Black Lentil (Masar) (250gm)',
+      'Salt to taste (1 tsp)',
+      'Red Chili Powder (1 tsp)',
+      'Turmeric Power (Haldi) (1/2 tsp)',
+      'Oil for tarka (1/4 cup)',
+      'Ingredients for Tarka',
+      'Zeera (1 tsp)',
+      'Red Chilli (choti) (6)',
+      'Crushed Garlic (1 tbsp)',
+      'Onion Slice (2 tbsp, optional)',
+      'Green Chili (2)',
+      'Corriandar and Mint Leave (1 tbsp, for garnishing)',
+      'Boiled Roce (2 cup)',
+    ],
+    recipe: `1. Soak and wash the masoor daal for 30 minutes then strain it.
+2. Now take a pot add 2 cups of water and daal with spices and cook for 30 minutes on medium low heat.
+3. Now boil the rice.
+4. Next when daal is boiled and water becomes less than make a tarka with ingredients.
+5. Now tarka will pour the daal and cover it for 3 minutes for aroma.
+6. Now delicious daal chawal is ready to serve with achar and salad.`,
+  },
 ];
 
 export default function App() {
@@ -301,8 +327,31 @@ export default function App() {
   const [selectedDish, setSelectedDish] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dishes] = useState(initialDishesData);
+  const [isPageOpen, setIsPageOpen] = useState(false);
+  const [page, setPage] = useState(null);
 
   const t = translations[language];
+  const p = {
+    'about': {
+      'name' : 'About',
+      'content': `This app is designed to help you decide what to cook daily. It features a variety of traditional South Asian dishes, each with its own recipe and ingredients.
+      \nThe dishes are randomly suggested to make your cooking experience exciting and varied. The app supports multiple languages, including English, Urdu, and Hindi, to cater to a diverse audience.
+      Whether you're looking for a comforting bowl of daal chawal or a spicy chicken karahi, this app has got you covered.
+      \nEnjoy exploring the rich culinary heritage of South Asia with just a click!`,
+    },
+    'privacyPolicy': {
+      'name': 'Privacy Policy',
+      'content': `This app does not collect any personal data from users. It is designed to provide a simple and enjoyable experience for users looking for cooking inspiration. The app only uses local storage to save your selected dish for the current session. No data is sent to any external servers or third parties. Your privacy is important to us, and we are committed to ensuring that your personal information is protected.
+      \nBy using this app, you agree to the terms of this privacy policy. If you have questions or concerns, please contact the developer`,
+    },
+    'contact': {
+      'name': 'contact',
+      'content': `Email: umerfarooqdar.official@gmail.com
+      \nLinkedin: in/umarfarooqdar
+      \nFacebook: @umarfarooqdar.official
+      \nCollaborate: github.com/umardar8`
+    },
+  };
 
   const handleSuggestDish = () => {
     if (dishes.length === 0) return;
@@ -313,6 +362,9 @@ export default function App() {
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+  const openPage = () => { setIsPageOpen(true); }
+  const closePage = () => { setIsPageOpen(false); };
 
   const iconComponents = [
     ChefHat,
@@ -479,8 +531,59 @@ export default function App() {
           </div>
         </div>
       )}
+
+      {/* Page content modal */}
+      {isPageOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fadeIn">
+          <div
+            className={`bg-white p-5 sm:p-8 rounded-lg shadow-2xl max-w-lg w-full max-h-[90vh] flex flex-col`}
+          >
+            <div 
+              className="flex justify-between items-center mb-4">
+              <h3
+                className="text-2xl sm:text-3xl font-bold text-purple-700"
+              >
+                {p[page].name}
+              </h3>
+              <button
+                onClick={closePage}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X size={28} />
+              </button>
+            </div>
+
+            <div className="overflow-y-auto flex-grow pr-2 scrollbar-thin scrollbar-thumb-purple-300 scrollbar-track-purple-100">
+
+              <div>
+                <p className="text-gray-700 whitespace-pre-line leading-relaxed text-sm sm:text-base text-left">
+                  {p[page].content}
+                </p>
+              </div>
+            </div>
+
+            <button
+              onClick={closePage}
+              className="mt-6 sm:mt-8 w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all duration-150 ease-in-out focus:outline-none focus:ring-4 focus:ring-purple-400 focus:ring-opacity-75"
+            >
+              {t.modalCloseButton}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Footer */}
       <footer className="text-center mt-8 sm:mt-12 pb-4">
         <p className="text-purple-200 whitespace-pre-line leading-relaxed text-xs sm:text-sm">{t.footerText}</p>
+        <p className="text-purple-300 text-xs sm:text-sm mt-2">
+          <a href='#about-page' onClick={()=>{setIsPageOpen(true); setPage('about')}}>About</a>
+          <span className="mx-1">|</span>
+          <a href='https://play.google.com/store/apps/dev?id=6643840114902370026' target='_blank' >MufasaApps</a>
+          <span className="mx-1">|</span>
+          <a href='#privacy-policy-page' onClick={()=>{setIsPageOpen(true); setPage('privacyPolicy')}}>Privacy Policy</a>  
+          <span className="mx-1">|</span>
+          <a href='#contact-page' onClick={()=>{setIsPageOpen(true); setPage('contact')}}>Contact</a>
+        </p>
       </footer>
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&display=swap');
