@@ -24,8 +24,8 @@ const translations = {
     modalIngredientsTitle: 'Ingredients:',
     modalRecipeTitle: 'Recipe:',
     modalCloseButton: 'Close',
-    footerText: `Lovingly crafted by MufasaApps to solve the eternal question. 
-    Inspired by South Asian kitchens.`,
+    footerText: <div>Lovingly crafted by <a href='https://linkedin.com/in/umarfarooqdar'>@umarfarooqdar</a> to solve the eternal question. 
+    &#10;Inspired by South Asian kitchens.</div>,
     langEnglish: 'English',
     langUrdu: 'اردو',
     langHindi: 'हिन्दी',
@@ -356,7 +356,7 @@ export default function App() {
 
   return (
     <div
-      className={`min-h-screen bg-gradient-to-br from-purple-600 to-indigo-700 flex flex-col items-center justify-center p-4 ${fontClass} selection:bg-purple-300 selection:text-purple-900`}
+      className={`min-h-screen min-w-screen bg-gradient-to-br from-purple-600 to-indigo-700 flex flex-col items-center justify-center p-4 ${fontClass} selection:bg-purple-300 selection:text-purple-900`}
     >
       <header className="mb-4 sm:mb-6 text-center w-full max-w-md">
         <div className="flex justify-center items-center space-x-2 sm:space-x-3 mb-4 bg-purple-500/30 p-2 rounded-lg">
