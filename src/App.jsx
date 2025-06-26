@@ -320,6 +320,218 @@ Chawal:
 5. Now tarka will pour the daal and cover it for 3 minutes for aroma.
 6. Now delicious daal chawal is ready to serve with achar and salad.`,
   },
+  {
+    id: 'chicken_pulao',
+    name: { en: 'Chicken Pulao', ur: 'چکن پلاؤ', hi: 'चिकन पुलाव' },
+    type: { en: 'Rice / Meat', ur: 'چاول / گوشت', hi: 'चावल / गोश्त' },
+    ingredients: [
+      'Basmati Rice (2 cups)',
+      'Chicken (500g, cut into pieces)',
+      'Onion (1 large, sliced)',
+      'Tomato (1 medium, chopped)',
+      'Ginger-Garlic Paste (1 tbsp)',
+      'Green Chilies (2-3, slit)',
+      'Yogurt (1/2 cup)',
+      'Whole Spices (2-3 green cardamoms, 2-3 cloves, 1-inch cinnamon stick)',
+      'Cumin Seeds (1 tsp)',
+      'Turmeric Powder (1/2 tsp)',
+      'Red Chili Powder (1 tsp)',
+      'Garam Masala Powder (1 tsp)',
+      'Oil or Ghee (4 tbsp)',
+      'Salt to taste',
+      'Fresh Coriander and Mint Leaves (for garnish)',
+    ],
+    recipe: `1. Wash and soak basmati rice in water for 30 minutes, then drain.
+2. Heat oil or ghee in a large pot. Add whole spices and cumin seeds, sauté until fragrant.
+3. Add sliced onions and fry until golden brown. Remove half for garnishing.
+4. Add ginger-garlic paste and slit green chilies, sauté for a minute.
+5. Add chopped tomatoes, turmeric powder, red chili powder, and salt. Cook until tomatoes soften.
+6. Add chicken pieces and cook until they are browned and cooked through.
+7. Stir in yogurt and cook until the oil separates from the masala.
+8. Add the soaked and drained rice, mix gently to coat with the masala.
+9. Pour in 4 cups of water, bring to a boil, then reduce heat to low. Cover and cook until rice is tender and water is absorbed (about 20 minutes).
+10. Once done, fluff the rice gently with a fork. Garnish with fried onions, fresh coriander, and mint leaves.
+11. Serve hot with raita or salad.`,
+  },
+  {
+    id: 'chicken_korma',
+    name: { en: 'Chicken Korma', ur: 'چکن کڑاہی', hi: 'चिकन कोरमा' },
+    type: { en: 'Meat', ur: 'گوشت', hi: 'गोश्त' },
+    ingredients: [
+      'Chicken (1 kg, cut into pieces)',
+      'Yogurt (1 cup)',
+      'Onion (2 large, sliced)',
+      'Ginger-Garlic Paste (2 tbsp)',
+      'Green Chilies (4-5, slit)',
+      'Garam Masala Powder (1 tsp)',
+      'Red Chili Powder (1 tsp)',
+      'Turmeric Powder (1/2 tsp)',
+      'Cumin Seeds (1 tsp)',
+      'Coriander Powder (1 tbsp)',
+      'Cashew Nuts (10-12, soaked in water)',
+      'Oil or Ghee (1/2 cup)',
+      'Salt to taste',
+      'Fresh Coriander and Mint Leaves (for garnish)',
+    ],
+    recipe: `1. Marinate chicken with yogurt, ginger-garlic paste, red chili powder, turmeric powder, coriander powder, and salt for at least 1 hour.
+2. Heat oil or ghee in a heavy-bottomed pot. Add cumin seeds and sliced onions, sauté until onions are golden brown.
+3. Remove half of the fried onions for garnishing.
+4. Add the marinated chicken to the pot, cook on high heat until the chicken is browned.
+5. Add slit green chilies and cook for another 5 minutes.
+6. Blend the soaked cashew nuts with a little water to make a smooth paste, then add it to the pot.
+7. Reduce the heat, cover, and cook until the chicken is tender and the oil separates from the gravy (about 20-25 minutes).
+8. Stir in garam masala powder and cook for another 5 minutes.
+9. Garnish with fried onions, fresh coriander, and mint leaves.
+10. Serve hot with naan, roti, or rice.`,
+  },
+  {
+    id: 'chana_daal',
+    name: { en: 'Chana Daal', ur: 'چنا دال', hi: 'चना दाल' },
+    type: { en: 'Lentils', ur: 'دال', hi: 'दाल' },
+    ingredients: [
+      'Chana Daal (Split Bengal Gram) (1 cup)',
+      'Onion (1 medium, finely chopped)',
+      'Tomato (1 medium, chopped)',
+      'Ginger-Garlic Paste (1 tsp)',
+      'Green Chilies (2, slit)',
+      'Turmeric Powder (1/2 tsp)',
+      'Red Chili Powder (1 tsp)',
+      'Cumin Seeds (1 tsp)',
+      'Coriander Powder (1 tsp)',
+      'Garam Masala Powder (1/2 tsp)',
+      'Oil or Ghee (2 tbsp)',
+      'Salt to taste',
+      'Fresh Coriander (for garnish)',
+    ],
+    recipe: `1. Wash and soak chana daal for at least 2 hours. Drain.
+2. In a pot, add soaked daal, 3 cups of water, turmeric powder, and salt. Cook until the daal is soft (about 30-40 minutes). You can use a pressure cooker for faster cooking (2-3 whistles).
+3. In a separate pan, heat oil or ghee. Add cumin seeds and let them splutter.
+4. Add chopped onions and sauté until golden brown.
+5. Add ginger-garlic paste and slit green chilies, sauté for a minute.
+6. Add chopped tomatoes, red chili powder, coriander powder, and cook until the tomatoes are soft and oil starts to separate.
+7. Pour this tempering over the cooked daal. Mix well and simmer for another 5-10 minutes.
+8. Stir in garam masala powder and cook for another minute.
+9. Garnish with fresh coriander leaves.
+10. Serve hot with roti, naan, or rice.`,
+  },
+  {
+    id: 'Karele',
+    name: { en: 'Karele (Bitter Gourd)', ur: 'کریلے', hi: 'करेले' },
+    type: { en: 'Vegetable', ur: 'سبزی', hi: 'सब्जी' },
+    ingredients: [
+      'Bitter Gourd (Karela) (500g, sliced)',
+      'Onion (1 large, sliced)',
+      'Tomato (1 medium, chopped)',
+      'Ginger-Garlic Paste (1 tsp)',
+      'Green Chilies (2, slit)',
+      'Turmeric Powder (1/2 tsp)',
+      'Red Chili Powder (1 tsp)',
+      'Coriander Powder (1 tsp)',
+      'Cumin Seeds (1 tsp)',
+      'Oil (3 tbsp)',
+      'Salt to taste',
+      'Fresh Coriander (for garnish)',
+    ],
+    recipe: `1. Wash and slice the bitter gourd. Sprinkle with salt and let it sit for 15-20 minutes to reduce bitterness. Rinse and drain.
+2. Heat oil in a pan. Add cumin seeds and let them splutter.
+3. Add sliced onions and sauté until golden brown.
+4. Add ginger-garlic paste and slit green chilies, sauté for a minute.
+5. Add chopped tomatoes, turmeric powder, red chili powder, coriander powder, and salt. Cook until tomatoes soften.
+6. Add the sliced bitter gourd and mix well to coat with the masala.
+7. Cook covered on low heat for about 15-20 minutes, stirring occasionally, until the karela is tender.
+8. Garnish with fresh coriander leaves.
+9. Serve hot with roti or paratha.`,
+  },
+  {
+    id: 'Curry',
+    name: { en: 'Curry', ur: 'کری', hi: 'करी' },
+    type: { en: 'Vegetable', ur: 'سبزی', hi: 'सब्जी' },
+    ingredients: [
+      'Mixed Vegetables (carrot, peas, potato, etc.) (2 cups, chopped)',
+      'Onion (1 large, finely chopped)',
+      'Tomato (1 medium, chopped)',
+      'Ginger-Garlic Paste (1 tsp)',
+      'Green Chilies (2, slit)',
+      'Turmeric Powder (1/2 tsp)',
+      'Red Chili Powder (1 tsp)',
+      'Coriander Powder (1 tsp)',
+      'Cumin Seeds (1 tsp)',
+      'Oil (3 tbsp)',
+      'Salt to taste',
+      'Fresh Coriander (for garnish)',
+    ],
+    recipe: `1. Heat oil in a pan. Add cumin seeds and let them splutter.
+2. Add finely chopped onions and sauté until golden brown.
+3. Add ginger-garlic paste and slit green chilies, sauté for a minute.
+4. Add chopped tomatoes, turmeric powder, red chili powder, coriander powder, and salt. Cook until tomatoes soften.
+5. Add the mixed vegetables and stir well to coat with the masala.
+6. Cover and cook on low heat for about 15-20 minutes, or until the vegetables are tender.
+7. Garnish with fresh coriander leaves.
+8. Serve hot with roti, naan, or rice.`,
+  },
+  {
+    id: 'dal_makhani',
+    name: { en: 'Dal Makhani', ur: 'دال مکھنی', hi: 'दाल मखनी' },
+    type: { en: 'Lentils', ur: 'دال', hi: 'दाल' },
+    ingredients: [
+      'Black Lentils (Urad Dal) (1 cup)',
+      'Red Kidney Beans (Rajma) (1/4 cup)',
+      'Onion (1 large, finely chopped)',
+      'Tomato (2 medium, pureed)',
+      'Ginger-Garlic Paste (1 tbsp)',
+      'Green Chilies (2, slit)',
+      'Butter (2 tbsp)',
+      'Cream (1/4 cup, optional)',
+      'Cumin Seeds (1 tsp)',
+      'Turmeric Powder (1/2 tsp)',
+      'Red Chili Powder (1 tsp)',
+      'Garam Masala Powder (1 tsp)',
+      'Salt to taste',
+      'Fresh Coriander (for garnish)',
+    ],
+    recipe: `1. Soak black lentils and red kidney beans overnight. Drain and rinse.
+2. In a pressure cooker, add soaked lentils and beans with 4 cups of water, turmeric powder, and salt. Cook for about 20-25 minutes or until soft (3-4 whistles).
+3. In a separate pan, heat butter. Add cumin seeds and let them splutter.
+4. Add chopped onions and sauté until golden brown.
+5. Add ginger-garlic paste and slit green chilies, sauté for a minute.
+6. Add pureed tomatoes, red chili powder, and cook until the oil separates from the masala.
+7. Add the cooked lentils and beans to the tomato mixture. Mix well and simmer for 10-15 minutes, adding water if needed to adjust consistency.
+8. Stir in garam masala powder and cream (if using). Cook for another 5 minutes.
+9. Garnish with fresh coriander leaves.
+10. Serve hot with naan, roti, or rice.`,
+  },
+  {
+    id: 'Dum Pukh',
+    name: { en: 'Dum Pukh', ur: 'دم پکھ', hi: 'दम पुख' },
+    type: { en: 'Meat', ur: 'گوشت', hi: 'गोश्त' },
+    ingredients: [
+      'Mutton or Chicken (1 kg, bone-in pieces)',
+      'Yogurt (1 cup)',
+      'Onion (2 large, thinly sliced)',
+      'Ginger-Garlic Paste (2 tbsp)',
+      'Green Chilies (4-5, slit)',
+      'Whole Spices (2-3 green cardamoms, 2-3 cloves, 1-inch cinnamon stick)',
+      'Cumin Seeds (1 tsp)',
+      'Turmeric Powder (1/2 tsp)',
+      'Red Chili Powder (1 tsp)',
+      'Garam Masala Powder (1 tsp)',
+      'Basmati Rice (3 cups, soaked for 30 minutes)',
+      'Oil or Ghee (4 tbsp)',
+      'Salt to taste',
+      'Fresh Coriander and Mint Leaves (for garnish)',
+    ],
+    recipe: `1. Marinate the mutton or chicken with yogurt, ginger-garlic paste, red chili powder, turmeric powder, garam masala powder, and salt for at least 2 hours (or overnight for best results).
+2. Heat oil or ghee in a large heavy-bottomed pot. Add whole spices and cumin seeds, sauté until fragrant.
+3. Add sliced onions and fry until golden brown. Remove half for garnishing.
+4. Add the marinated meat to the pot, cook on high heat until the meat is browned.
+5. Add slit green chilies and mix well.
+6. Layer the soaked and drained basmati rice over the meat. Add enough water to cover the rice (about 4-5 cups).
+7. Cover the pot with a tight-fitting lid. You can seal the edges with dough to prevent steam from escaping.
+8. Cook on low heat for about 45 minutes to 1 hour, allowing the flavors to meld and the rice to cook through.
+9. Once done, gently fluff the rice with a fork, mixing the meat and rice together.
+10. Garnish with fried onions, fresh coriander, and mint leaves.
+11. Serve hot with raita or salad.`,
+  },
 ];
 
 export default function App() {
