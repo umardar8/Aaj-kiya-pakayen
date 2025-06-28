@@ -24,8 +24,8 @@ const translations = {
     modalIngredientsTitle: 'Ingredients:',
     modalRecipeTitle: 'Recipe:',
     modalCloseButton: 'Close',
-    footerText: <div>Lovingly crafted by <a href='https://linkedin.com/in/umarfarooqdar'>@umarfarooqdar</a> to solve the eternal question. 
-    &#10;Inspired by South Asian kitchens.</div>,
+    footerText: <span>Lovingly crafted by <a href='https://linkedin.com/in/umarfarooqdar'>@umarfarooqdar</a> to solve the eternal question. 
+    &#10;Inspired by South Asian kitchens.</span>,
     langEnglish: 'English',
     langUrdu: 'اردو',
     langHindi: 'हिन्दी',
@@ -355,7 +355,7 @@ Chawal:
   },
   {
     id: 'chicken_korma',
-    name: { en: 'Chicken Korma', ur: 'چکن کڑاہی', hi: 'चिकन कोरमा' },
+    name: { en: 'Chicken Korma', ur: 'چکن قورمہ', hi: 'चिकन कोरमा' },
     type: { en: 'Meat', ur: 'گوشت', hi: 'गोश्त' },
     ingredients: [
       'Chicken (1 kg, cut into pieces)',
@@ -797,7 +797,7 @@ export default function App() {
           <a href='#contact-page' onClick={()=>{setIsPageOpen(true); setPage('contact')}}>Contact</a>
         </p>
       </footer>
-      <style jsx global>{`
+      <style jsx='true' global='true'>{`
         @import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&display=swap');
         
         .font-urdu {
