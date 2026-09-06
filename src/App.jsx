@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   ChefHat,
   CookingPot,
@@ -11,599 +11,133 @@ import {
   Beef,
   Drumstick,
   Languages,
+  CakeSlice,
+  IceCream,
+  Cookie,
+  Candy,
+  Coffee,
+  Sparkles,
+  Leaf,
 } from 'lucide-react';
-
-const translations = {
-  en: {
-    title: 'Aaj Kya Pakayen?',
-    subtitle: 'Your daily dilemma, solved with a click!',
-    mainButton: 'Aaj Kiya Pakayen?',
-    dishTypePrefix: 'Type:',
-    keyIngredientsPrefix: 'Key Ingredients:',
-    checkRecipeButton: 'Check Recipe',
-    modalIngredientsTitle: 'Ingredients:',
-    modalRecipeTitle: 'Recipe:',
-    modalCloseButton: 'Close',
-    footerText: <span>Lovingly crafted by <a href='https://linkedin.com/in/umarfarooqdar'>@umarfarooqdar</a> to solve the eternal question. 
-    &#10;Inspired by South Asian kitchens.</span>,
-    langEnglish: 'English',
-    langUrdu: 'اردو',
-    langHindi: 'हिन्दी',
-    selectLang: 'Select Language',
-    closeRecipeModalAria: 'Close recipe modal',
-    suggestDishAria: 'Suggest a dish',
-    checkRecipeAria: 'Check recipe for',
-  },
-  ur: {
-    title: 'آج کیا پکائیں؟',
-    subtitle: 'آپ کا روزمرہ کا مسئلہ، ایک کلک میں حل!',
-    mainButton: 'آج کیا پکائیں؟',
-    dishTypePrefix: 'قسم:',
-    keyIngredientsPrefix: 'اہم اجزاء:',
-    checkRecipeButton: 'ترکیب دیکھیں',
-    modalIngredientsTitle: 'اجزاء:',
-    modalRecipeTitle: 'ترکیب:',
-    modalCloseButton: 'بند کریں',
-    footerText:
-      'محبت سے بنایا گیا تاکہ روزمرہ کا سوال حل ہو سکے۔ جنوبی ایشیائی کھانوں سے متاثر۔',
-    langEnglish: 'English',
-    langUrdu: 'اردو',
-    langHindi: 'हिन्दी',
-    selectLang: 'زبان منتخب کریں',
-    closeRecipeModalAria: 'ترکیب کا موڈل بند کریں',
-    suggestDishAria: 'ایک ڈش تجویز کریں',
-    checkRecipeAria: 'کے لیے ترکیب دیکھیں',
-  },
-  hi: {
-    title: 'आज क्या पकाएँ?',
-    subtitle: 'आपकी दैनिक दुविधा, एक क्लिक में हल!',
-    mainButton: 'आज क्या पकाएँ?',
-    dishTypePrefix: ' प्रकार:',
-    keyIngredientsPrefix: 'मुख्य सामग्री:',
-    checkRecipeButton: 'रेसिपी देखें',
-    modalIngredientsTitle: 'सामग्री:',
-    modalRecipeTitle: 'रेसिपी:',
-    modalCloseButton: 'बंद करें',
-    footerText:
-      'प्यार से बनाया गया ताकि रोज़मर्रा का सवाल हल हो सके। दक्षिण एशियाई रसोई से प्रेरित।',
-    langEnglish: 'English',
-    langUrdu: 'اردو',
-    langHindi: 'हिन्दी',
-    selectLang: 'भाषा चुनें',
-    closeRecipeModalAria: 'रेसिपी मॉडल बंद करें',
-    suggestDishAria: 'एक व्यंजन सुझाएं',
-    checkRecipeAria: 'के लिए रेसिपी देखें',
-  },
-};
-
-const initialDishesData = [
-  {
-    id: 'biryani',
-    name: { en: 'Biryani', ur: 'بریانی', hi: 'बिरयानी' },
-    type: { en: 'Rice / Meat', ur: 'چاول / گوشت', hi: 'चावल / गोश्त' },
-    ingredients: [
-      'Basmati Rice',
-      'Chicken or Mutton (1 kg)',
-      'Yogurt (1 cup)',
-      'Onions (3, sliced)',
-      'Tomatoes (2, chopped)',
-      'Ginger-Garlic Paste (2 tbsp)',
-      'Biryani Masala (3 tbsp)',
-      'Oil/Ghee (1/2 cup)',
-      'Fresh Mint (1/2 cup)',
-      'Fresh Coriander (1/2 cup)',
-      'Lemon Juice (2 tbsp)',
-      'Green Chilies (4-5, slit)',
-      'Saffron strands (a pinch, soaked in milk)',
-    ],
-    recipe: `1. Marinate chicken/mutton with yogurt, ginger-garlic paste, biryani masala, turmeric, red chili powder, and salt for at least 1 hour.
-2. Parboil Basmati rice with whole spices (cardamom, cloves, cinnamon) until 70% cooked. Drain.
-3. In a heavy-bottomed pot, heat oil/ghee. Fry sliced onions until golden brown (Beresta). Remove half for garnishing.
-4. To the remaining onions in the pot, add the marinated meat and cook until it's partially tender and oil separates. Add chopped tomatoes and cook until soft.
-5. Layer the cooked meat masala with the parboiled rice. Sprinkle fried onions, mint, coriander, green chilies, lemon juice, and saffron milk.
-6. Cover tightly and cook on 'dum' (low heat) for 20-25 minutes.
-7. Gently fluff the biryani before serving. Serve hot with raita or salad.`,
-  },
-  {
-    id: 'daal_chawal',
-    name: { en: 'Daal Chawal', ur: 'دال چاول', hi: 'दाल चावल' },
-    type: { en: 'Lentils / Rice', ur: 'دال / چاول', hi: 'दाल / चावल' },
-    ingredients: [
-      'Masoor Daal or Moong Daal (1 cup)',
-      'Basmati Rice (1.5 cups)',
-      'Onion (1, finely chopped)',
-      'Tomatoes (1, chopped)',
-      'Ginger-Garlic Paste (1 tbsp)',
-      'Turmeric Powder (1/2 tsp)',
-      'Red Chili Powder (1 tsp)',
-      'Cumin Seeds (1 tsp)',
-      'Mustard Seeds (1/2 tsp)',
-      'Asafoetida (Hing) (a pinch)',
-      'Ghee/Oil (2 tbsp)',
-      'Fresh Coriander (for garnish)',
-      'Green Chilies (2, slit)',
-      'Salt to taste',
-    ],
-    recipe: `Daal:
-1. Wash and soak daal for 30 minutes. Pressure cook with turmeric, salt, and water until soft (3-4 whistles).
-2. For Tadka (tempering): Heat ghee/oil in a small pan. Add cumin seeds, mustard seeds. Once they splutter, add asafoetida, chopped onions, and green chilies. Sauté until onions are golden.
-3. Add ginger-garlic paste and sauté for a minute. Add chopped tomatoes, red chili powder. Cook until tomatoes are mushy and oil separates.
-4. Pour this tadka over the cooked daal. Mix well. Garnish with fresh coriander.
-
-Chawal:
-1. Wash rice thoroughly.
-2. Cook rice with double the amount of water and a pinch of salt until fluffy (either in a pot or rice cooker).
-3. Serve hot daal with steamed chawal.`,
-  },
-  {
-    id: 'bhindi_masala',
-    name: { en: 'Bhindi Masala', ur: 'بھنڈی مصالحہ', hi: 'भिंडी मसाला' },
-    type: { en: 'Vegetable', ur: 'سبزی', hi: 'सब्जी' },
-    ingredients: [
-      'Okra (Bhindi) (500g)',
-      'Onions (2, sliced)',
-      'Tomatoes (2, chopped)',
-      'Green Chilies (2-3, slit)',
-      'Ginger-Garlic Paste (1 tsp)',
-      'Turmeric Powder (1/2 tsp)',
-      'Cumin Powder (1 tsp)',
-      'Coriander Powder (1.5 tsp)',
-      'Amchoor (Dry Mango Powder) (1/2 tsp)',
-      'Garam Masala (1/2 tsp)',
-      'Oil (3 tbsp)',
-      'Cumin Seeds (1 tsp)',
-      'Salt to taste',
-      'Fresh Coriander (for garnish)',
-    ],
-    recipe: `1. Wash okra and pat dry completely. Trim the ends and cut into 1-inch pieces.
-2. Heat oil in a pan or kadai. Add cumin seeds. Once they splutter, add sliced onions and sauté until light golden.
-3. Add ginger-garlic paste and green chilies. Sauté for a minute.
-4. Add chopped tomatoes and cook until they soften.
-5. Add turmeric powder, cumin powder, coriander powder, and salt. Mix well and cook for 2-3 minutes.
-6. Add the cut okra. Mix gently to coat with the masala.
-7. Cook covered on low heat for 10-12 minutes, stirring occasionally, until okra is tender but not mushy. Avoid adding water.
-8. Uncover, add amchoor powder and garam masala. Mix well and cook for another 2 minutes.
-9. Garnish with fresh coriander. Serve hot with roti or paratha.`,
-  },
-  {
-    id: 'aloo_palak',
-    name: { en: 'Aloo Palak', ur: 'آلو پالک', hi: 'आलू पालक' },
-    type: { en: 'Vegetable', ur: 'سبزی', hi: 'सब्जी' },
-    ingredients: [
-      'Spinach (Palak) (1 large bunch, ~500g)',
-      'Potatoes (Aloo) (2 medium, cubed)',
-      'Onion (1, finely chopped)',
-      'Tomato (1, finely chopped)',
-      'Ginger (1 inch, grated)',
-      'Garlic (3-4 cloves, minced)',
-      'Green Chilies (1-2, chopped)',
-      'Cumin Seeds (1 tsp)',
-      'Turmeric Powder (1/2 tsp)',
-      'Red Chili Powder (1/2 tsp, optional)',
-      'Garam Masala (1/2 tsp)',
-      'Oil (2 tbsp)',
-      'Salt to taste',
-    ],
-    recipe: `1. Clean spinach thoroughly. Blanch in hot water for 2 minutes, then immediately transfer to cold water. Drain and chop or puree.
-2. Heat oil in a pan. Add cumin seeds. Once they splutter, add chopped onions and sauté until golden brown.
-3. Add grated ginger, minced garlic, and green chilies. Sauté for a minute.
-4. Add chopped tomatoes and cook until soft and oil starts to separate.
-5. Add turmeric powder, red chili powder (if using), and salt. Mix well.
-6. Add cubed potatoes, mix with the masala, and cook covered for 5-7 minutes until potatoes are partially tender, stirring occasionally.
-7. Add the chopped/pureed spinach. Mix well.
-8. Cover and cook on low heat for another 8-10 minutes, or until potatoes are fully cooked and spinach is well combined.
-9. Stir in garam masala. Cook for another minute.
-10. Serve hot with roti, naan, or rice.`,
-  },
-  {
-    id: 'palak_gosht',
-    name: { en: 'Palak Gosht', ur: 'پالک گوشت', hi: 'पालक गोश्त' },
-    type: { en: 'Vegetable / Meat', ur: 'سبزی / گوشت', hi: 'सब्जी / गोश्त' },
-    ingredients: [
-      'Mutton or Chicken (500g, bone-in)',
-      'Spinach (Palak) (1 large bunch, ~500g)',
-      'Onions (2, sliced)',
-      'Tomatoes (2, chopped)',
-      'Ginger-Garlic Paste (2 tbsp)',
-      'Yogurt (1/2 cup, whisked)',
-      'Turmeric Powder (1/2 tsp)',
-      'Red Chili Powder (1 tsp)',
-      'Coriander Powder (1 tbsp)',
-      'Cumin Powder (1 tsp)',
-      'Garam Masala (1 tsp)',
-      'Whole Spices (2 green cardamoms, 2 cloves, 1-inch cinnamon stick)',
-      'Oil/Ghee (4 tbsp)',
-      'Salt to taste',
-      'Fresh Cream (2 tbsp, optional for finishing)',
-    ],
-    recipe: `1. Clean and blanch spinach as for Aloo Palak. Puree or chop finely.
-2. Heat oil/ghee in a pressure cooker or heavy-bottomed pot. Add whole spices.
-3. Add sliced onions and fry until golden brown.
-4. Add ginger-garlic paste and sauté for a minute.
-5. Add the mutton/chicken pieces and sear on high heat until browned on all sides.
-6. Lower the heat. Add turmeric powder, red chili powder, coriander powder, cumin powder, and salt. Mix well and cook for 2-3 minutes.
-7. Add chopped tomatoes and cook until they soften and oil separates.
-8. Add whisked yogurt and cook, stirring continuously, until the oil separates again.
-9. Add about 1/2 cup of water, mix, and pressure cook until the meat is tender (for mutton, 4-5 whistles; for chicken, 2-3 whistles). If not using a pressure cooker, cover and simmer until meat is cooked.
-10. Once pressure releases, open the cooker. Add the pureed/chopped spinach to the cooked meat.
-11. Mix well and simmer for 10-15 minutes, allowing the flavors to meld. Adjust consistency with water if needed.
-12. Stir in garam masala and fresh cream (if using). Cook for another 2 minutes.
-13. Serve hot with naan, roti, or rice.`,
-  },
-  {
-    id: 'chicken_karahi',
-    name: { en: 'Chicken Karahi', ur: 'چکن کڑاہی', hi: 'चिकन कड़ाही' },
-    type: { en: 'Meat', ur: 'گوشت', hi: 'गोश्त' },
-    ingredients: [
-      'Chicken (1 kg, cut into small pieces)',
-      'Tomatoes (4-5 medium, quartered or roughly chopped)',
-      'Green Chilies (6-8, slit or whole)',
-      'Ginger (2-inch piece, julienned)',
-      'Garlic (6-8 cloves, coarsely crushed)',
-      'Yogurt (1/2 cup, whisked, optional)',
-      'Black Peppercorns (1 tsp, freshly crushed)',
-      'Cumin Seeds (1 tsp, roasted and crushed)',
-      'Coriander Seeds (1 tbsp, roasted and crushed)',
-      'Red Chili Flakes (1 tsp, or to taste)',
-      'Turmeric Powder (1/2 tsp)',
-      'Salt to taste',
-      'Oil or Ghee (1/2 cup)',
-      'Fresh Coriander (for garnish)',
-      'Lemon wedges (for serving)',
-    ],
-    recipe: `1. Heat oil/ghee in a karahi or wok on high heat.
-2. Add chicken pieces and fry until they change color and are lightly golden (about 5-7 minutes).
-3. Add crushed garlic and half of the julienned ginger. Sauté for 1-2 minutes until fragrant.
-4. Add quartered/chopped tomatoes, salt, and turmeric powder. Mix well. Cover and cook on medium heat for 10-15 minutes, or until tomatoes are very soft and broken down. Stir occasionally.
-5. Uncover and increase heat. Mash the tomatoes with a spoon. Cook until the water from tomatoes evaporates and oil starts to separate.
-6. Add crushed coriander seeds, cumin seeds, black peppercorns, and red chili flakes. Mix well and cook for 2-3 minutes.
-7. If using yogurt, whisk it well and add it now, stirring continuously until it's well incorporated.
-8. Add slit green chilies. Stir and cook for another 5-7 minutes, or until chicken is fully cooked and tender, and the gravy has thickened to your desired consistency.
-9. Garnish with remaining julienned ginger and fresh coriander.
-10. Serve hot with naan, roti, or tandoori roti, along with lemon wedges.`,
-  },
-  {
-    id: 'aloo_gobi',
-    name: { en: 'Aloo Gobi', ur: 'آلو گوبی', hi: 'आलू गोभी' },
-    type: { en: 'Vegetable', ur: 'سبزی', hi: 'सब्जी' },
-    ingredients: [
-      'Cauliflower (Gobi) (1 medium head, cut into florets)',
-      'Potatoes (Aloo) (2 medium, peeled and cubed)',
-      'Onion (1 medium, finely chopped)',
-      'Tomatoes (1 large, finely chopped or pureed)',
-      'Ginger-Garlic Paste (1 tbsp)',
-      'Green Chilies (2, slit)',
-      'Cumin Seeds (1 tsp)',
-      'Turmeric Powder (1/2 tsp)',
-      'Coriander Powder (1 tsp)',
-      'Red Chili Powder (1/2 tsp, optional)',
-      'Garam Masala (1/2 tsp)',
-      'Asafoetida (Hing) (a pinch, optional)',
-      'Oil (3 tbsp)',
-      'Salt to taste',
-      'Fresh Coriander (for garnish)',
-    ],
-    recipe: `1. Heat oil in a kadai or heavy-bottomed pan. Add cumin seeds and asafoetida (if using). Let them splutter.
-2. Add chopped onions and sauté until translucent or light golden.
-3. Add ginger-garlic paste and green chilies. Sauté for a minute until the raw smell disappears.
-4. Add chopped tomatoes (or puree) and cook until they soften and oil starts to separate from the masala.
-5. Add turmeric powder, coriander powder, and red chili powder (if using). Mix well and cook for a minute.
-6. Add potato cubes and cauliflower florets. Add salt. Gently toss everything to coat the vegetables with the masala.
-7. Cover the pan and cook on low to medium heat for 15-20 minutes, or until the vegetables are tender. Stir gently a couple of times in between to prevent sticking. Avoid adding water if possible, as the vegetables will cook in their own steam. If it looks too dry, sprinkle a tablespoon or two of water.
-8. Once vegetables are cooked, sprinkle garam masala and mix gently.
-9. Garnish with fresh coriander leaves.
-10. Serve hot with roti, paratha, or as a side dish with daal and rice.`,
-  },
-  {
-    id: 'masar_chawal',
-    name: { en: 'Masar Chawal', ur: 'مسر چاول', hi: 'मसर चावल' },
-    type: { en: 'Lentil / Rice', ur: 'چاول', hi: 'चावल' },
-    ingredients: [
-      'Black Lentil (Masar) (250gm)',
-      'Salt to taste (1 tsp)',
-      'Red Chili Powder (1 tsp)',
-      'Turmeric Power (Haldi) (1/2 tsp)',
-      'Oil for tarka (1/4 cup)',
-      'Ingredients for Tarka',
-      'Zeera (1 tsp)',
-      'Red Chilli (choti) (6)',
-      'Crushed Garlic (1 tbsp)',
-      'Onion Slice (2 tbsp, optional)',
-      'Green Chili (2)',
-      'Corriandar and Mint Leave (1 tbsp, for garnishing)',
-      'Boiled Roce (2 cup)',
-    ],
-    recipe: `1. Soak and wash the masoor daal for 30 minutes then strain it.
-2. Now take a pot add 2 cups of water and daal with spices and cook for 30 minutes on medium low heat.
-3. Now boil the rice.
-4. Next when daal is boiled and water becomes less than make a tarka with ingredients.
-5. Now tarka will pour the daal and cover it for 3 minutes for aroma.
-6. Now delicious daal chawal is ready to serve with achar and salad.`,
-  },
-  {
-    id: 'chicken_pulao',
-    name: { en: 'Chicken Pulao', ur: 'چکن پلاؤ', hi: 'चिकन पुलाव' },
-    type: { en: 'Rice / Meat', ur: 'چاول / گوشت', hi: 'चावल / गोश्त' },
-    ingredients: [
-      'Basmati Rice (2 cups)',
-      'Chicken (500g, cut into pieces)',
-      'Onion (1 large, sliced)',
-      'Tomato (1 medium, chopped)',
-      'Ginger-Garlic Paste (1 tbsp)',
-      'Green Chilies (2-3, slit)',
-      'Yogurt (1/2 cup)',
-      'Whole Spices (2-3 green cardamoms, 2-3 cloves, 1-inch cinnamon stick)',
-      'Cumin Seeds (1 tsp)',
-      'Turmeric Powder (1/2 tsp)',
-      'Red Chili Powder (1 tsp)',
-      'Garam Masala Powder (1 tsp)',
-      'Oil or Ghee (4 tbsp)',
-      'Salt to taste',
-      'Fresh Coriander and Mint Leaves (for garnish)',
-    ],
-    recipe: `1. Wash and soak basmati rice in water for 30 minutes, then drain.
-2. Heat oil or ghee in a large pot. Add whole spices and cumin seeds, sauté until fragrant.
-3. Add sliced onions and fry until golden brown. Remove half for garnishing.
-4. Add ginger-garlic paste and slit green chilies, sauté for a minute.
-5. Add chopped tomatoes, turmeric powder, red chili powder, and salt. Cook until tomatoes soften.
-6. Add chicken pieces and cook until they are browned and cooked through.
-7. Stir in yogurt and cook until the oil separates from the masala.
-8. Add the soaked and drained rice, mix gently to coat with the masala.
-9. Pour in 4 cups of water, bring to a boil, then reduce heat to low. Cover and cook until rice is tender and water is absorbed (about 20 minutes).
-10. Once done, fluff the rice gently with a fork. Garnish with fried onions, fresh coriander, and mint leaves.
-11. Serve hot with raita or salad.`,
-  },
-  {
-    id: 'chicken_korma',
-    name: { en: 'Chicken Korma', ur: 'چکن قورمہ', hi: 'चिकन कोरमा' },
-    type: { en: 'Meat', ur: 'گوشت', hi: 'गोश्त' },
-    ingredients: [
-      'Chicken (1 kg, cut into pieces)',
-      'Yogurt (1 cup)',
-      'Onion (2 large, sliced)',
-      'Ginger-Garlic Paste (2 tbsp)',
-      'Green Chilies (4-5, slit)',
-      'Garam Masala Powder (1 tsp)',
-      'Red Chili Powder (1 tsp)',
-      'Turmeric Powder (1/2 tsp)',
-      'Cumin Seeds (1 tsp)',
-      'Coriander Powder (1 tbsp)',
-      'Cashew Nuts (10-12, soaked in water)',
-      'Oil or Ghee (1/2 cup)',
-      'Salt to taste',
-      'Fresh Coriander and Mint Leaves (for garnish)',
-    ],
-    recipe: `1. Marinate chicken with yogurt, ginger-garlic paste, red chili powder, turmeric powder, coriander powder, and salt for at least 1 hour.
-2. Heat oil or ghee in a heavy-bottomed pot. Add cumin seeds and sliced onions, sauté until onions are golden brown.
-3. Remove half of the fried onions for garnishing.
-4. Add the marinated chicken to the pot, cook on high heat until the chicken is browned.
-5. Add slit green chilies and cook for another 5 minutes.
-6. Blend the soaked cashew nuts with a little water to make a smooth paste, then add it to the pot.
-7. Reduce the heat, cover, and cook until the chicken is tender and the oil separates from the gravy (about 20-25 minutes).
-8. Stir in garam masala powder and cook for another 5 minutes.
-9. Garnish with fried onions, fresh coriander, and mint leaves.
-10. Serve hot with naan, roti, or rice.`,
-  },
-  {
-    id: 'chana_daal',
-    name: { en: 'Chana Daal', ur: 'چنا دال', hi: 'चना दाल' },
-    type: { en: 'Lentils', ur: 'دال', hi: 'दाल' },
-    ingredients: [
-      'Chana Daal (Split Bengal Gram) (1 cup)',
-      'Onion (1 medium, finely chopped)',
-      'Tomato (1 medium, chopped)',
-      'Ginger-Garlic Paste (1 tsp)',
-      'Green Chilies (2, slit)',
-      'Turmeric Powder (1/2 tsp)',
-      'Red Chili Powder (1 tsp)',
-      'Cumin Seeds (1 tsp)',
-      'Coriander Powder (1 tsp)',
-      'Garam Masala Powder (1/2 tsp)',
-      'Oil or Ghee (2 tbsp)',
-      'Salt to taste',
-      'Fresh Coriander (for garnish)',
-    ],
-    recipe: `1. Wash and soak chana daal for at least 2 hours. Drain.
-2. In a pot, add soaked daal, 3 cups of water, turmeric powder, and salt. Cook until the daal is soft (about 30-40 minutes). You can use a pressure cooker for faster cooking (2-3 whistles).
-3. In a separate pan, heat oil or ghee. Add cumin seeds and let them splutter.
-4. Add chopped onions and sauté until golden brown.
-5. Add ginger-garlic paste and slit green chilies, sauté for a minute.
-6. Add chopped tomatoes, red chili powder, coriander powder, and cook until the tomatoes are soft and oil starts to separate.
-7. Pour this tempering over the cooked daal. Mix well and simmer for another 5-10 minutes.
-8. Stir in garam masala powder and cook for another minute.
-9. Garnish with fresh coriander leaves.
-10. Serve hot with roti, naan, or rice.`,
-  },
-  {
-    id: 'Karele',
-    name: { en: 'Karele (Bitter Gourd)', ur: 'کریلے', hi: 'करेले' },
-    type: { en: 'Vegetable', ur: 'سبزی', hi: 'सब्जी' },
-    ingredients: [
-      'Bitter Gourd (Karela) (500g, sliced)',
-      'Onion (1 large, sliced)',
-      'Tomato (1 medium, chopped)',
-      'Ginger-Garlic Paste (1 tsp)',
-      'Green Chilies (2, slit)',
-      'Turmeric Powder (1/2 tsp)',
-      'Red Chili Powder (1 tsp)',
-      'Coriander Powder (1 tsp)',
-      'Cumin Seeds (1 tsp)',
-      'Oil (3 tbsp)',
-      'Salt to taste',
-      'Fresh Coriander (for garnish)',
-    ],
-    recipe: `1. Wash and slice the bitter gourd. Sprinkle with salt and let it sit for 15-20 minutes to reduce bitterness. Rinse and drain.
-2. Heat oil in a pan. Add cumin seeds and let them splutter.
-3. Add sliced onions and sauté until golden brown.
-4. Add ginger-garlic paste and slit green chilies, sauté for a minute.
-5. Add chopped tomatoes, turmeric powder, red chili powder, coriander powder, and salt. Cook until tomatoes soften.
-6. Add the sliced bitter gourd and mix well to coat with the masala.
-7. Cook covered on low heat for about 15-20 minutes, stirring occasionally, until the karela is tender.
-8. Garnish with fresh coriander leaves.
-9. Serve hot with roti or paratha.`,
-  },
-  {
-    id: 'Curry',
-    name: { en: 'Curry', ur: 'کری', hi: 'करी' },
-    type: { en: 'Vegetable', ur: 'سبزی', hi: 'सब्जी' },
-    ingredients: [
-      'Mixed Vegetables (carrot, peas, potato, etc.) (2 cups, chopped)',
-      'Onion (1 large, finely chopped)',
-      'Tomato (1 medium, chopped)',
-      'Ginger-Garlic Paste (1 tsp)',
-      'Green Chilies (2, slit)',
-      'Turmeric Powder (1/2 tsp)',
-      'Red Chili Powder (1 tsp)',
-      'Coriander Powder (1 tsp)',
-      'Cumin Seeds (1 tsp)',
-      'Oil (3 tbsp)',
-      'Salt to taste',
-      'Fresh Coriander (for garnish)',
-    ],
-    recipe: `1. Heat oil in a pan. Add cumin seeds and let them splutter.
-2. Add finely chopped onions and sauté until golden brown.
-3. Add ginger-garlic paste and slit green chilies, sauté for a minute.
-4. Add chopped tomatoes, turmeric powder, red chili powder, coriander powder, and salt. Cook until tomatoes soften.
-5. Add the mixed vegetables and stir well to coat with the masala.
-6. Cover and cook on low heat for about 15-20 minutes, or until the vegetables are tender.
-7. Garnish with fresh coriander leaves.
-8. Serve hot with roti, naan, or rice.`,
-  },
-  {
-    id: 'dal_makhani',
-    name: { en: 'Dal Makhani', ur: 'دال مکھنی', hi: 'दाल मखनी' },
-    type: { en: 'Lentils', ur: 'دال', hi: 'दाल' },
-    ingredients: [
-      'Black Lentils (Urad Dal) (1 cup)',
-      'Red Kidney Beans (Rajma) (1/4 cup)',
-      'Onion (1 large, finely chopped)',
-      'Tomato (2 medium, pureed)',
-      'Ginger-Garlic Paste (1 tbsp)',
-      'Green Chilies (2, slit)',
-      'Butter (2 tbsp)',
-      'Cream (1/4 cup, optional)',
-      'Cumin Seeds (1 tsp)',
-      'Turmeric Powder (1/2 tsp)',
-      'Red Chili Powder (1 tsp)',
-      'Garam Masala Powder (1 tsp)',
-      'Salt to taste',
-      'Fresh Coriander (for garnish)',
-    ],
-    recipe: `1. Soak black lentils and red kidney beans overnight. Drain and rinse.
-2. In a pressure cooker, add soaked lentils and beans with 4 cups of water, turmeric powder, and salt. Cook for about 20-25 minutes or until soft (3-4 whistles).
-3. In a separate pan, heat butter. Add cumin seeds and let them splutter.
-4. Add chopped onions and sauté until golden brown.
-5. Add ginger-garlic paste and slit green chilies, sauté for a minute.
-6. Add pureed tomatoes, red chili powder, and cook until the oil separates from the masala.
-7. Add the cooked lentils and beans to the tomato mixture. Mix well and simmer for 10-15 minutes, adding water if needed to adjust consistency.
-8. Stir in garam masala powder and cream (if using). Cook for another 5 minutes.
-9. Garnish with fresh coriander leaves.
-10. Serve hot with naan, roti, or rice.`,
-  },
-  {
-    id: 'Dum Pukh',
-    name: { en: 'Dum Pukh', ur: 'دم پکھ', hi: 'दम पुख' },
-    type: { en: 'Meat', ur: 'گوشت', hi: 'गोश्त' },
-    ingredients: [
-      'Mutton or Chicken (1 kg, bone-in pieces)',
-      'Yogurt (1 cup)',
-      'Onion (2 large, thinly sliced)',
-      'Ginger-Garlic Paste (2 tbsp)',
-      'Green Chilies (4-5, slit)',
-      'Whole Spices (2-3 green cardamoms, 2-3 cloves, 1-inch cinnamon stick)',
-      'Cumin Seeds (1 tsp)',
-      'Turmeric Powder (1/2 tsp)',
-      'Red Chili Powder (1 tsp)',
-      'Garam Masala Powder (1 tsp)',
-      'Basmati Rice (3 cups, soaked for 30 minutes)',
-      'Oil or Ghee (4 tbsp)',
-      'Salt to taste',
-      'Fresh Coriander and Mint Leaves (for garnish)',
-    ],
-    recipe: `1. Marinate the mutton or chicken with yogurt, ginger-garlic paste, red chili powder, turmeric powder, garam masala powder, and salt for at least 2 hours (or overnight for best results).
-2. Heat oil or ghee in a large heavy-bottomed pot. Add whole spices and cumin seeds, sauté until fragrant.
-3. Add sliced onions and fry until golden brown. Remove half for garnishing.
-4. Add the marinated meat to the pot, cook on high heat until the meat is browned.
-5. Add slit green chilies and mix well.
-6. Layer the soaked and drained basmati rice over the meat. Add enough water to cover the rice (about 4-5 cups).
-7. Cover the pot with a tight-fitting lid. You can seal the edges with dough to prevent steam from escaping.
-8. Cook on low heat for about 45 minutes to 1 hour, allowing the flavors to meld and the rice to cook through.
-9. Once done, gently fluff the rice with a fork, mixing the meat and rice together.
-10. Garnish with fried onions, fresh coriander, and mint leaves.
-11. Serve hot with raita or salad.`,
-  },
-];
+import { translations } from './data/translations.jsx';
+import { initialDishesData } from './data/dishes.js';
 
 export default function App() {
   const [language, setLanguage] = useState('en');
+  const [category, setCategory] = useState('daily'); // 'daily' | 'dessert'
+  const [vegOnly, setVegOnly] = useState(false);
   const [selectedDish, setSelectedDish] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [dishes] = useState(initialDishesData);
   const [isPageOpen, setIsPageOpen] = useState(false);
   const [page, setPage] = useState(null);
 
   const t = translations[language];
+
   const p = {
-    'about': {
-      'name' : 'About',
-      'content': `This app is designed to help you decide what to cook daily. It features a variety of traditional South Asian dishes, each with its own recipe and ingredients.
-      \nThe dishes are randomly suggested to make your cooking experience exciting and varied. The app supports multiple languages, including English, Urdu, and Hindi, to cater to a diverse audience.
-      Whether you're looking for a comforting bowl of daal chawal or a spicy chicken karahi, this app has got you covered.
-      \nEnjoy exploring the rich culinary heritage of South Asia with just a click!`,
+    about: {
+      name: language === 'ur' ? 'معلومات' : language === 'hi' ? 'परिचय' : 'About',
+      content:
+        language === 'ur'
+          ? `یہ ایپ آپ کو روزمرہ کے کھانے اور مزیدار میٹھے پکوان منتخب کرنے میں مدد دیتی ہے۔ اس میں روایتی جنوبی ایشیائی پکوان شامل ہیں جن کی مکمل ترکیب اور اجزاء دستیاب ہیں۔\n\nآپ روزمرہ کے کھانے (Daily Meals) اور میٹھے (Desserts) میں سے انتخاب کر سکتے ہیں، اور روزمرہ کے کھانوں میں صرف سبزی (Veg Only) کا فلٹر بھی آن کر سکتے ہیں۔`
+          : language === 'hi'
+          ? `यह ऐप आपको रोज़मर्रा का खाना और स्वादिष्ट मिठाइयाँ चुनने में मदद करता है। इसमें पारंपरिक दक्षिण एशियाई व्यंजन और उनकी पूरी रेसिपी और सामग्री शामिल हैं।\n\nआप दैनिक भोजन (Daily Meals) और मिठाइयों (Desserts) में से चुन सकते हैं, और दैनिक भोजन के लिए केवल शाकाहारी (Veg Only) फ़िल्टर भी लगा सकते हैं।`
+          : `This app is designed to help you decide what to cook daily, whether it's hearty Daily Meals or delectable Desserts.\n\nExplore a variety of traditional South Asian recipes with complete step-by-step instructions and ingredients. You can also filter for Vegetarian Only meals with the built-in slider. The app supports English, Urdu, and Hindi.`,
     },
-    'privacyPolicy': {
-      'name': 'Privacy Policy',
-      'content': `This app does not collect any personal data from users. It is designed to provide a simple and enjoyable experience for users looking for cooking inspiration. The app only uses local storage to save your selected dish for the current session. No data is sent to any external servers or third parties. Your privacy is important to us, and we are committed to ensuring that your personal information is protected.
-      \nBy using this app, you agree to the terms of this privacy policy. If you have questions or concerns, please contact the developer`,
+    privacyPolicy: {
+      name:
+        language === 'ur'
+          ? 'پرائیویسی پالیسی'
+          : language === 'hi'
+          ? 'गोपनीयता नीति'
+          : 'Privacy Policy',
+      content: `This app does not collect any personal data from users. It is designed to provide a simple and enjoyable experience for users looking for cooking inspiration. The app runs locally in your browser. No personal data is sent to any external servers or third parties.
+      \nBy using this app, you agree to the terms of this privacy policy. If you have questions or concerns, please contact the developer.`,
     },
-    'contact': {
-      'name': 'contact',
-      'content': `Email: umerfarooqdar.official@gmail.com
-      \nLinkedin: in/umarfarooqdar
-      \nFacebook: @umarfarooqdar.official
-      \nCollaborate: github.com/umardar8`
+    contact: {
+      name:
+        language === 'ur'
+          ? 'رابطہ'
+          : language === 'hi'
+          ? 'संपर्क'
+          : 'Contact',
+      content: `Email: umerfarooqdar.official@gmail.com\nLinkedin: in/umarfarooqdar\nFacebook: @umarfarooqdar.official\nCollaborate: github.com/umardar8`,
     },
   };
 
+  // Filtered dishes according to active category and vegOnly setting
+  const filteredDishes = useMemo(() => {
+    return initialDishesData.filter((dish) => {
+      if (dish.category !== category) return false;
+      if (category === 'daily' && vegOnly && !dish.isVeg) return false;
+      return true;
+    });
+  }, [category, vegOnly]);
+
+  // Handle category change
+  const handleCategoryChange = (newCategory) => {
+    setCategory(newCategory);
+    if (selectedDish && selectedDish.category !== newCategory) {
+      setSelectedDish(null);
+    }
+  };
+
+  // Handle veg toggle change
+  const handleVegToggle = () => {
+    const nextVegOnly = !vegOnly;
+    setVegOnly(nextVegOnly);
+    if (selectedDish && nextVegOnly && !selectedDish.isVeg) {
+      setSelectedDish(null);
+    }
+  };
+
+  // Suggest a random dish from filtered list
   const handleSuggestDish = () => {
-    if (dishes.length === 0) return;
-    const randomIndex = Math.floor(Math.random() * dishes.length);
-    setSelectedDish(dishes[randomIndex]);
+    if (filteredDishes.length === 0) return;
+    const randomIndex = Math.floor(Math.random() * filteredDishes.length);
+    setSelectedDish(filteredDishes[randomIndex]);
     setIsModalOpen(false);
   };
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  const closePage = () => setIsPageOpen(false);
 
-  const openPage = () => { setIsPageOpen(true); }
-  const closePage = () => { setIsPageOpen(false); };
+  // Dynamic icon pool based on category
+  const iconComponents = useMemo(() => {
+    if (category === 'dessert') {
+      return [CakeSlice, IceCream, Cookie, Candy, Coffee, Sparkles, Apple];
+    }
+    if (vegOnly) {
+      return [ChefHat, CookingPot, Flame, Carrot, Utensils, Salad, Leaf, Apple];
+    }
+    return [
+      ChefHat,
+      CookingPot,
+      Flame,
+      Carrot,
+      Utensils,
+      Apple,
+      Salad,
+      Beef,
+      Drumstick,
+    ];
+  }, [category, vegOnly]);
 
-  const iconComponents = [
-    ChefHat,
-    CookingPot,
-    Flame,
-    Carrot,
-    Utensils,
-    Apple,
-    Salad,
-    Beef,
-    Drumstick,
-  ];
   const [displayIcons, setDisplayIcons] = useState([]);
 
   useEffect(() => {
     const shuffledIcons = [...iconComponents].sort(() => 0.5 - Math.random());
     setDisplayIcons(shuffledIcons.slice(0, 6));
-  }, [selectedDish, language]);
+  }, [selectedDish, language, category, vegOnly, iconComponents]);
 
   const LanguageButton = ({ langCode, langName }) => (
     <button
       onClick={() => setLanguage(langCode)}
-      className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base transition-colors duration-150
+      className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base font-medium transition-all duration-150 cursor-pointer
         ${
           language === langCode
             ? 'bg-purple-700 text-white shadow-md'
-            : 'bg-purple-200 text-purple-700 hover:bg-purple-300'
+            : 'bg-purple-200/90 text-purple-900 hover:bg-purple-300'
         }`}
     >
       {langName}
@@ -612,75 +146,200 @@ export default function App() {
 
   const fontClass = language === 'ur' ? 'font-urdu' : 'font-sans';
   const textDirection = language === 'ur' ? 'rtl' : 'ltr';
-  // Adjusted heading size for Urdu
   const titleSizeClass =
-    language === 'ur' ? 'text-3xl mb-6' : 'text-4xl sm:text-5xl';
+    language === 'ur' ? 'text-3xl mb-4' : 'text-4xl sm:text-5xl';
   const modalTitleSizeClass =
     language === 'ur' ? 'text-xl sm:text-2xl' : 'text-2xl sm:text-3xl';
 
   return (
     <div
-      className={`min-h-screen min-w-screen bg-gradient-to-br from-purple-600 to-indigo-700 flex flex-col items-center justify-center p-4 ${fontClass} selection:bg-purple-300 selection:text-purple-900`}
+      className={`min-h-screen min-w-screen bg-gradient-to-br from-purple-700 via-indigo-700 to-purple-900 flex flex-col items-center justify-center p-4 ${fontClass} selection:bg-purple-300 selection:text-purple-900`}
     >
+      {/* Header & Language Bar */}
       <header className="mb-4 sm:mb-6 text-center w-full max-w-md">
-        <div className="flex justify-center items-center space-x-2 sm:space-x-3 mb-4 bg-purple-500/30 p-2 rounded-lg">
-          <Languages size={20} className="text-purple-100" />
+        <div className="flex justify-center items-center space-x-2 sm:space-x-3 mb-4 bg-purple-500/30 backdrop-blur-md p-2 rounded-xl border border-purple-400/20 shadow-inner">
+          <Languages size={20} className="text-purple-100 shrink-0" />
           <LanguageButton langCode="en" langName={t.langEnglish} />
           <LanguageButton langCode="ur" langName={t.langUrdu} />
           <LanguageButton langCode="hi" langName={t.langHindi} />
         </div>
-        {/* conditional title size for Urdu */}
-        <h1 className={`${titleSizeClass} font-bold text-white tracking-tight`}>
+        <h1 className={`${titleSizeClass} font-bold text-white tracking-tight drop-shadow-md`}>
           {t.title}
         </h1>
-        <p className="text-purple-200 text-md sm:text-lg mt-2">{t.subtitle}</p>
+        <p className="text-purple-200 text-sm sm:text-base mt-1 drop-shadow-sm">
+          {t.subtitle}
+        </p>
       </header>
 
-      <main className="w-full max-w-md space-y-6">
-        <div className="bg-purple-50 p-6 sm:p-8 rounded-xl shadow-2xl">
-          {displayIcons.length > 0 && (
-            <div className="grid grid-cols-3 gap-4 mb-6 text-center">
-              {displayIcons.map((IconComponent, index) => (
-                <IconComponent
-                  key={index}
-                  size={40}
-                  className="text-purple-600 mx-auto"
-                  strokeWidth={1.5}
-                />
-              ))}
-            </div>
-          )}
+      {/* Main Interactive Controls & Suggestion */}
+      <main className="w-full max-w-md space-y-4 sm:space-y-5">
+        {/* Category Pill Switcher */}
+        <div className="bg-white/15 backdrop-blur-md p-1.5 rounded-2xl flex border border-white/20 shadow-lg">
           <button
-            onClick={handleSuggestDish}
-            className="w-full text-white font-semibold py-3 sm:py-4 px-6 rounded-lg text-lg sm:text-xl shadow-lg transition-all duration-150 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-400 focus:ring-opacity-75 bg-purple-500 hover:bg-purple-700"
-            aria-label={t.suggestDishAria}
+            type="button"
+            onClick={() => handleCategoryChange('daily')}
+            className={`flex-1 py-2.5 px-3 rounded-xl text-sm sm:text-base font-semibold transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer ${
+              category === 'daily'
+                ? 'bg-white text-purple-900 shadow-md scale-[1.01]'
+                : 'text-purple-100 hover:text-white hover:bg-white/10'
+            }`}
           >
-            {t.mainButton}
+            <CookingPot size={18} />
+            <span>{t.categoryDaily}</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => handleCategoryChange('dessert')}
+            className={`flex-1 py-2.5 px-3 rounded-xl text-sm sm:text-base font-semibold transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer ${
+              category === 'dessert'
+                ? 'bg-white text-purple-900 shadow-md scale-[1.01]'
+                : 'text-purple-100 hover:text-white hover:bg-white/10'
+            }`}
+          >
+            <CakeSlice size={18} />
+            <span>{t.categoryDessert}</span>
           </button>
         </div>
 
-        {selectedDish && (
-          <div className="bg-amber-50 border-2 border-amber-400 p-6 rounded-lg shadow-xl text-gray-800 animate-fadeIn">
-            {/* Apply conditional title size for Urdu to dish name in card */}
-            <h2
-              className={`${modalTitleSizeClass} font-bold text-purple-700 mb-2`}
+        {/* Veg Only Switch (Daily Meals Only) */}
+        {category === 'daily' && (
+          <div
+            role="button"
+            tabIndex={0}
+            onClick={handleVegToggle}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleVegToggle();
+              }
+            }}
+            className="animate-fadeIn bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/20 px-4 py-3 rounded-2xl shadow-md flex items-center justify-between cursor-pointer select-none transition-all duration-200"
+          >
+            <div className="flex items-center gap-3">
+              <div
+                className={`p-2 rounded-xl transition-colors duration-200 flex items-center justify-center ${
+                  vegOnly
+                    ? 'bg-emerald-500/25 text-emerald-300 border border-emerald-400/40 shadow-sm'
+                    : 'bg-white/10 text-purple-200 border border-white/10'
+                }`}
+              >
+                <Leaf size={18} className={vegOnly ? 'text-emerald-300' : 'text-purple-200'} />
+              </div>
+              <div className="text-left rtl:text-right">
+                <div className="flex items-center gap-2">
+                  <span className="text-white text-sm sm:text-base font-semibold leading-tight">
+                    {t.vegOnly}
+                  </span>
+                  {vegOnly && (
+                    <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/30 text-emerald-200 border border-emerald-400/40">
+                      ON
+                    </span>
+                  )}
+                </div>
+                <span className="block text-xs text-purple-200/90 mt-0.5 leading-tight">
+                  {vegOnly
+                    ? language === 'ur'
+                      ? 'صرف سبزیاں اور دالیں'
+                      : language === 'hi'
+                      ? 'केवल शाकाहारी व्यंजन'
+                      : 'Vegetables & lentils only'
+                    : language === 'ur'
+                    ? 'گوشت، مرغی اور سبزیاں'
+                    : language === 'hi'
+                    ? 'मांसाहारी एवं शाकाहारी'
+                    : 'All meat & vegetarian dishes'}
+                </span>
+              </div>
+            </div>
+
+            {/* iOS-Style Standard Switch */}
+            <div
+              role="switch"
+              aria-checked={vegOnly}
+              aria-label={t.vegOnly}
+              className={`relative inline-flex h-6 w-11 shrink-0 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out ${
+                vegOnly
+                  ? 'bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]'
+                  : 'bg-white/25'
+              }`}
             >
-              {selectedDish.name[language]}
+              <span
+                className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-md ring-0 transition-transform duration-200 ease-in-out ${
+                  vegOnly ? 'translate-x-5' : 'translate-x-0'
+                }`}
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Generator Card */}
+        <div className="bg-purple-50/95 backdrop-blur-md p-6 sm:p-7 rounded-2xl shadow-2xl border border-white/40">
+          {displayIcons.length > 0 && (
+            <div className="grid grid-cols-3 gap-4 mb-6 text-center">
+              {displayIcons.map((IconComponent, index) => (
+                <div
+                  key={index}
+                  className="p-2.5 rounded-xl bg-purple-100/70 border border-purple-200/50 shadow-sm flex items-center justify-center transform transition-transform hover:scale-110"
+                >
+                  <IconComponent
+                    size={32}
+                    className="text-purple-600"
+                    strokeWidth={1.8}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+
+          <button
+            onClick={handleSuggestDish}
+            className="w-full text-white font-bold py-3.5 sm:py-4 px-6 rounded-xl text-lg sm:text-xl shadow-xl transition-all duration-150 ease-in-out transform hover:scale-[1.02] active:scale-[0.99] focus:outline-none focus:ring-4 focus:ring-purple-400/50 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 cursor-pointer"
+            aria-label={t.suggestDishAria}
+          >
+            {category === 'dessert' ? t.mainButtonDessert : t.mainButton}
+          </button>
+        </div>
+
+        {/* Suggested Dish Result Card */}
+        {selectedDish && (
+          <div className="bg-amber-50/95 border-2 border-amber-400/90 p-5 sm:p-6 rounded-2xl shadow-2xl text-gray-800 animate-fadeIn">
+            {/* Dish Category & Veg Tags */}
+            <div className="flex items-center gap-2 mb-2.5 flex-wrap">
+              <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-100 text-purple-800 border border-purple-200">
+                {selectedDish.category === 'dessert' ? t.sweetBadge : t.categoryDaily}
+              </span>
+              <span
+                className={`text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1 border ${
+                  selectedDish.isVeg
+                    ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                    : 'bg-rose-100 text-rose-800 border-rose-300'
+                }`}
+              >
+                {selectedDish.isVeg ? '🌱 ' + t.vegBadge : '🍖 ' + t.nonVegBadge}
+              </span>
+            </div>
+
+            <h2 className={`${modalTitleSizeClass} font-extrabold text-purple-900 mb-2`}>
+              {selectedDish.name[language] || selectedDish.name.en}
             </h2>
-            <p className="text-sm sm:text-md text-purple-600 font-medium mb-1">
-              <span className="font-semibold">{t.dishTypePrefix}</span>{' '}
-              {selectedDish.type[language]}
+
+            <p className="text-sm sm:text-base text-purple-700 font-medium mb-1">
+              <span className="font-bold text-gray-700">{t.dishTypePrefix}</span>{' '}
+              {selectedDish.type[language] || selectedDish.type.en}
             </p>
-            <p 
+
+            <p
               dir={textDirection}
-              className="text-sm sm:text-md text-purple-600 font-medium mb-4">
-              <span className="font-semibold">{t.keyIngredientsPrefix}</span>{' '}
-              {selectedDish.ingredients.slice(0, 3).join(', ')}
-              {selectedDish.ingredients.length > 3 ? '...' : ''}
+              className="text-sm sm:text-base text-purple-800 font-medium mb-4"
+            >
+              <span className="font-bold text-gray-700">{t.keyIngredientsPrefix}</span>{' '}
+              {selectedDish.ingredients.slice(0, 4).join(', ')}
+              {selectedDish.ingredients.length > 4 ? '...' : ''}
             </p>
+
             <button
               onClick={openModal}
-              className="w-full bg-yellow-400 hover:bg-yellow-500 text-purple-800 font-semibold py-2.5 sm:py-3 px-6 rounded-lg shadow-md transition-all duration-150 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-yellow-300 focus:ring-opacity-75"
+              className="w-full bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-500 hover:to-yellow-500 text-purple-950 font-bold py-3 px-6 rounded-xl shadow-md transition-all duration-150 ease-in-out transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-yellow-300 cursor-pointer"
               aria-label={`${t.checkRecipeAria} ${selectedDish.name[language]}`}
             >
               {t.checkRecipeButton}
@@ -689,46 +348,63 @@ export default function App() {
         )}
       </main>
 
+      {/* Recipe Modal */}
       {isModalOpen && selectedDish && (
-        <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fadeIn">
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fadeIn">
           <div
-            className={`bg-white p-5 sm:p-8 rounded-lg shadow-2xl max-w-lg w-full max-h-[90vh] flex flex-col ${fontClass}`}
+            className={`bg-white p-5 sm:p-7 rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] flex flex-col ${fontClass} border border-purple-100`}
           >
             <div
-              dir={textDirection} 
-              className="flex justify-between items-center mb-4">
-              {/* Apply conditional title size for Urdu to modal title */}
-              <h3
-                className={`${modalTitleSizeClass} font-bold text-purple-700`}
-              >
-                {selectedDish.name[language]}
-              </h3>
+              dir={textDirection}
+              className="flex justify-between items-start mb-4 pb-3 border-b border-gray-100"
+            >
+              <div>
+                <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                  <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-purple-100 text-purple-800">
+                    {selectedDish.category === 'dessert' ? t.sweetBadge : t.categoryDaily}
+                  </span>
+                  <span
+                    className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${
+                      selectedDish.isVeg
+                        ? 'bg-emerald-100 text-emerald-800'
+                        : 'bg-rose-100 text-rose-800'
+                    }`}
+                  >
+                    {selectedDish.isVeg ? '🌱 ' + t.vegBadge : '🍖 ' + t.nonVegBadge}
+                  </span>
+                </div>
+                <h3 className={`${modalTitleSizeClass} font-bold text-purple-900`}>
+                  {selectedDish.name[language] || selectedDish.name.en}
+                </h3>
+              </div>
               <button
                 onClick={closeModal}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
+                className="text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-lg hover:bg-gray-100"
                 aria-label={t.closeRecipeModalAria}
               >
-                <X size={28} />
+                <X size={26} />
               </button>
             </div>
 
             <div className="overflow-y-auto flex-grow pr-2 scrollbar-thin scrollbar-thumb-purple-300 scrollbar-track-purple-100">
-              <div className="mb-5 sm:mb-6">
-                <h4 className="text-lg sm:text-xl font-semibold text-purple-600 mb-2">
-                  {t.modalIngredientsTitle}
+              <div className="mb-5">
+                <h4 className="text-lg font-bold text-purple-700 mb-2.5 flex items-center gap-2">
+                  <span>{t.modalIngredientsTitle}</span>
                 </h4>
-                <ul className="list-disc list-inside text-gray-700 space-y-1 text-sm sm:text-base text-left">
+                <ul className="list-disc list-inside text-gray-700 space-y-1.5 text-sm sm:text-base text-left">
                   {selectedDish.ingredients.map((ingredient, index) => (
-                    <li key={index}>{ingredient}</li>
+                    <li key={index} className="leading-snug">
+                      {ingredient}
+                    </li>
                   ))}
                 </ul>
               </div>
 
               <div>
-                <h4 className="text-lg sm:text-xl font-semibold text-purple-600 mb-2">
+                <h4 className="text-lg font-bold text-purple-700 mb-2.5">
                   {t.modalRecipeTitle}
                 </h4>
-                <p className="text-gray-700 whitespace-pre-line leading-relaxed text-sm sm:text-base text-left">
+                <p className="text-gray-700 whitespace-pre-line leading-relaxed text-sm sm:text-base text-left bg-purple-50/50 p-3.5 rounded-xl border border-purple-100">
                   {selectedDish.recipe}
                 </p>
               </div>
@@ -736,7 +412,7 @@ export default function App() {
 
             <button
               onClick={closeModal}
-              className="mt-6 sm:mt-8 w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all duration-150 ease-in-out focus:outline-none focus:ring-4 focus:ring-purple-400 focus:ring-opacity-75"
+              className="mt-5 w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-xl shadow-md transition-all duration-150 ease-in-out focus:outline-none focus:ring-4 focus:ring-purple-400"
             >
               {t.modalCloseButton}
             </button>
@@ -744,39 +420,31 @@ export default function App() {
         </div>
       )}
 
-      {/* Page content modal */}
-      {isPageOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fadeIn">
-          <div
-            className={`bg-white p-5 sm:p-8 rounded-lg shadow-2xl max-w-lg w-full max-h-[90vh] flex flex-col`}
-          >
-            <div 
-              className="flex justify-between items-center mb-4">
-              <h3
-                className="text-2xl sm:text-3xl font-bold text-purple-700"
-              >
+      {/* Info Page Modal (About / Privacy / Contact) */}
+      {isPageOpen && page && p[page] && (
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fadeIn">
+          <div className="bg-white p-6 sm:p-7 rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] flex flex-col">
+            <div className="flex justify-between items-center mb-4 pb-3 border-b border-gray-100">
+              <h3 className="text-2xl font-bold text-purple-900">
                 {p[page].name}
               </h3>
               <button
                 onClick={closePage}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
+                className="text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-lg hover:bg-gray-100"
               >
-                <X size={28} />
+                <X size={26} />
               </button>
             </div>
 
             <div className="overflow-y-auto flex-grow pr-2 scrollbar-thin scrollbar-thumb-purple-300 scrollbar-track-purple-100">
-
-              <div>
-                <p className="text-gray-700 whitespace-pre-line leading-relaxed text-sm sm:text-base text-left">
-                  {p[page].content}
-                </p>
-              </div>
+              <p className="text-gray-700 whitespace-pre-line leading-relaxed text-sm sm:text-base text-left">
+                {p[page].content}
+              </p>
             </div>
 
             <button
               onClick={closePage}
-              className="mt-6 sm:mt-8 w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all duration-150 ease-in-out focus:outline-none focus:ring-4 focus:ring-purple-400 focus:ring-opacity-75"
+              className="mt-6 w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-xl shadow-md transition-all duration-150 ease-in-out focus:outline-none focus:ring-4 focus:ring-purple-400"
             >
               {t.modalCloseButton}
             </button>
@@ -785,50 +453,92 @@ export default function App() {
       )}
 
       {/* Footer */}
-      <footer className="text-center mt-8 sm:mt-12 pb-4">
-        <p className="text-purple-200 whitespace-pre-line leading-relaxed text-xs sm:text-sm">{t.footerText}</p>
-        <p className="text-purple-300 text-xs sm:text-sm mt-2">
-          <a href='#about-page' onClick={()=>{setIsPageOpen(true); setPage('about')}}>About</a>
-          <span className="mx-1">|</span>
-          <a href='https://play.google.com/store/apps/dev?id=6643840114902370026' target='_blank' >MufasaApps</a>
-          <span className="mx-1">|</span>
-          <a href='#privacy-policy-page' onClick={()=>{setIsPageOpen(true); setPage('privacyPolicy')}}>Privacy Policy</a>  
-          <span className="mx-1">|</span>
-          <a href='#contact-page' onClick={()=>{setIsPageOpen(true); setPage('contact')}}>Contact</a>
+      <footer className="text-center mt-6 sm:mt-10 pb-4">
+        <p className="text-purple-200 whitespace-pre-line leading-relaxed text-xs sm:text-sm">
+          {t.footerText}
+        </p>
+        <p className="text-purple-300 text-xs sm:text-sm mt-2 flex items-center justify-center gap-2 flex-wrap">
+          <button
+            onClick={() => {
+              setIsPageOpen(true);
+              setPage('about');
+            }}
+            className="hover:text-white transition-colors underline cursor-pointer"
+          >
+            About
+          </button>
+          <span>|</span>
+          <a
+            href="https://play.google.com/store/apps/dev?id=6643840114902370026"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-white transition-colors underline"
+          >
+            MufasaApps
+          </a>
+          <span>|</span>
+          <button
+            onClick={() => {
+              setIsPageOpen(true);
+              setPage('privacyPolicy');
+            }}
+            className="hover:text-white transition-colors underline cursor-pointer"
+          >
+            Privacy Policy
+          </button>
+          <span>|</span>
+          <button
+            onClick={() => {
+              setIsPageOpen(true);
+              setPage('contact');
+            }}
+            className="hover:text-white transition-colors underline cursor-pointer"
+          >
+            Contact
+          </button>
         </p>
       </footer>
-      <style jsx='true' global='true'>{`
+
+      <style jsx="true" global="true">{`
         @import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&display=swap');
-        
+
         .font-urdu {
-          font-family: 'Noto Nastaliq Urdu', 'Arial', sans-serif; /* Added Arial as fallback */
+          font-family: 'Noto Nastaliq Urdu', 'Arial', sans-serif;
         }
-        .font-sans { /* Default font, also good for Hindi with Noto Sans Devanagari */
-           font-family: 'Noto Sans Devanagari', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        .font-sans {
+          font-family: 'Noto Sans Devanagari', ui-sans-serif, system-ui,
+            -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+            'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
         }
 
         .animate-fadeIn {
-          animation: fadeIn 0.5s ease-out;
+          animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
+          from {
+            opacity: 0;
+            transform: translateY(8px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
         .scrollbar-thin {
           scrollbar-width: thin;
-          scrollbar-color: #C084FC #EDE9FE; /* thumb track for purple */
+          scrollbar-color: #c084fc #ede9fe;
         }
         .scrollbar-thin::-webkit-scrollbar {
-          width: 8px;
+          width: 7px;
         }
         .scrollbar-thin::-webkit-scrollbar-track {
-          background: #EDE9FE; /* purple-100 */
+          background: #ede9fe;
           border-radius: 10px;
         }
         .scrollbar-thin::-webkit-scrollbar-thumb {
-          background-color: #C084FC; /* purple-400 */
+          background-color: #c084fc;
           border-radius: 10px;
-          border: 2px solid #EDE9FE; /* purple-100 */
+          border: 2px solid #ede9fe;
         }
       `}</style>
     </div>
