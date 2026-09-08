@@ -72,29 +72,39 @@ export default function FeedbackModal({
     onClose();
   };
 
-  // Handle Browser Feedback / Dish Submission
-  const handleSubmitFeedback = (e) => {
+  // Handle Browser Feedback / Dish Submission via FormSubmit.co
+  const handleSubmitFeedback = async (e) => {
     if (e) e.preventDefault();
     setIsSubmitting(true);
 
-    let subject = '';
-    let body = '';
-
+    let payload = {};
     if (mode === 'suggest') {
-      subject = `[Aaj Kiya Pakayen] New Dish Suggestion: ${dishName || 'Untitled'}`;
-      body = `Hi Umar,\n\nI would love to suggest a new dish for Aaj Kiya Pakayen:\n\n- Dish Name: ${dishName}\n- Category: ${
-        dishCategory === 'dessert' ? 'Dessert' : 'Daily Meal'
-      }\n- Diet: ${isVeg ? 'Vegetarian' : 'Non-Vegetarian'}\n- Details/Ingredients:\n${
-        dishIngredients || 'N/A'
-      }\n\nLanguage: ${language}\nPlatform: ${isMobileApp ? 'Mobile App' : 'Web Browser'}`;
+      payload = {
+        _subject: `[Aaj Kiya Pakayen] New Dish Suggestion: ${dishName || 'Untitled'}`,
+        _captcha: 'false',
+        _template: 'table',
+        'Submission Type': 'Dish Suggestion',
+        'Dish Name': dishName,
+        Category: dishCategory === 'dessert' ? 'Dessert' : 'Daily Meal',
+        Diet: isVeg ? 'Vegetarian' : 'Non-Vegetarian',
+        'Ingredients / Recipe Notes': dishIngredients || 'N/A',
+        Language: language,
+        Platform: isMobileApp ? 'Mobile App' : 'Web Browser',
+      };
     } else {
-      subject = `[Aaj Kiya Pakayen] User Feedback (${rating} Stars)`;
-      body = `Hi Umar,\n\nHere is my feedback for Aaj Kiya Pakayen:\n\n- Rating: ${rating} / 5 Stars\n- Feedback/Thoughts:\n${
-        feedbackText || 'N/A'
-      }\n\nLanguage: ${language}\nPlatform: ${isMobileApp ? 'Mobile App' : 'Web Browser'}`;
+      payload = {
+        _subject: `[Aaj Kiya Pakayen] User Feedback (${rating} Stars)`,
+        _captcha: 'false',
+        _template: 'table',
+        'Submission Type': 'Feedback Rating',
+        Rating: `${rating} / 5 Stars`,
+        Comments: feedbackText || 'N/A',
+        Language: language,
+        Platform: isMobileApp ? 'Mobile App' : 'Web Browser',
+      };
     }
 
-    // Save locally
+    // Save locally as backup
     try {
       const existing = JSON.parse(localStorage.getItem('akp_user_feedback_submissions') || '[]');
       existing.push({
@@ -112,21 +122,23 @@ export default function FeedbackModal({
       // ignore
     }
 
-    // Launch mailto link to facilitate direct sending
-    const mailtoUrl = `mailto:${FEEDBACK_EMAIL}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
-
-    const mailWindow = window.open(mailtoUrl, '_blank');
-    if (!mailWindow) {
-      window.location.href = mailtoUrl;
-    }
-
-    setTimeout(() => {
+    // Send directly to FormSubmit.co endpoint
+    try {
+      await fetch(`https://formsubmit.co/ajax/${FEEDBACK_EMAIL}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+    } catch (err) {
+      console.warn('FormSubmit delivery error, saved locally:', err);
+    } finally {
       setIsSubmitting(false);
       setIsSubmitted(true);
       onComplete('submitted');
-    }, 400);
+    }
   };
 
   return (
