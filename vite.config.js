@@ -31,13 +31,25 @@ export default defineConfig({
         ]
       },
       workbox: {
+        navigateFallbackDenylist: [
+          /^\/app-ads\.txt$/,
+          /^\/robots\.txt$/,
+          /^\/sitemap\.xml$/,
+          /\.(?:txt|xml)$/
+        ],
         runtimeCaching: [
           {
-            urlPattern: ({ request }) => request.destination === 'document',
+            urlPattern: ({ url, request }) =>
+              request.destination === 'document' &&
+              !/\.(?:txt|xml)$/.test(url.pathname),
             handler: 'NetworkFirst',
             options: {
               cacheName: 'html-cache'
             }
+          },
+          {
+            urlPattern: ({ url }) => /\.(?:txt|xml)$/.test(url.pathname),
+            handler: 'NetworkOnly'
           },
           {
             urlPattern: ({ request }) =>
