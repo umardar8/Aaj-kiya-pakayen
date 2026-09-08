@@ -21,6 +21,8 @@ import {
 } from 'lucide-react';
 import { translations } from './data/translations.jsx';
 import { initialDishesData } from './data/dishes.js';
+import FeedbackModal from './components/FeedbackModal.jsx';
+import { useFeedbackPrompt } from './hooks/useFeedbackPrompt.js';
 
 export default function App() {
   const [language, setLanguage] = useState('en');
@@ -30,6 +32,16 @@ export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPageOpen, setIsPageOpen] = useState(false);
   const [page, setPage] = useState(null);
+
+  const {
+    isOpen: isFeedbackOpen,
+    isMobileApp,
+    openFeedback,
+    closeFeedback,
+    dismissFeedback,
+    completeFeedback,
+    recordDishGenerated,
+  } = useFeedbackPrompt();
 
   const t = translations[language];
 
@@ -96,6 +108,7 @@ export default function App() {
     const randomIndex = Math.floor(Math.random() * filteredDishes.length);
     setSelectedDish(filteredDishes[randomIndex]);
     setIsModalOpen(false);
+    recordDishGenerated();
   };
 
   const openModal = () => setIsModalOpen(true);
@@ -496,8 +509,26 @@ export default function App() {
           >
             Contact
           </button>
+          <span>|</span>
+          <button
+            onClick={openFeedback}
+            className="hover:text-white transition-colors underline cursor-pointer font-medium"
+          >
+            {t.feedbackLink}
+          </button>
         </p>
       </footer>
+
+      {/* Feedback & Play Store Rating Modal */}
+      <FeedbackModal
+        isOpen={isFeedbackOpen}
+        isMobileApp={isMobileApp}
+        language={language}
+        translations={t}
+        onClose={closeFeedback}
+        onDismiss={dismissFeedback}
+        onComplete={completeFeedback}
+      />
 
       <style jsx="true" global="true">{`
         @import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&display=swap');
