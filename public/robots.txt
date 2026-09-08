@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aaj-kiya-pakayen.vercel.app/sitemap.xml
