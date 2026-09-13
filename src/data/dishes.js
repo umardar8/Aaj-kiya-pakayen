@@ -4,6 +4,8 @@ export const initialDishesData = [
   // ==========================================
   {
     id: 'biryani',
+    image: '/images/dishes/biryani.jpg',
+    meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: false,
     name: { en: 'Biryani', ur: 'بریانی', hi: 'बिरयानी' },
@@ -33,6 +35,8 @@ export const initialDishesData = [
   },
   {
     id: 'daal_chawal',
+    image: '/images/dishes/daal_chawal.jpg',
+    meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: true,
     name: { en: 'Daal Chawal', ur: 'دال چاول', hi: 'दाल चावल' },
@@ -66,6 +70,7 @@ Chawal:
   },
   {
     id: 'bhindi_masala',
+    meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: true,
     name: { en: 'Bhindi Masala', ur: 'بھنڈی مصالحہ', hi: 'भिंडी मसाला' },
@@ -98,6 +103,7 @@ Chawal:
   },
   {
     id: 'aloo_palak',
+    meals: ["breakfast","lunch","dinner"],
     category: 'daily',
     isVeg: true,
     name: { en: 'Aloo Palak', ur: 'آلو پالک', hi: 'आलू पालक' },
@@ -130,6 +136,7 @@ Chawal:
   },
   {
     id: 'palak_gosht',
+    meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: false,
     name: { en: 'Palak Gosht', ur: 'پالک گوشت', hi: 'पालक गोश्त' },
@@ -167,6 +174,8 @@ Chawal:
   },
   {
     id: 'chicken_karahi',
+    image: '/images/dishes/chicken_karahi.jpg',
+    meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: false,
     name: { en: 'Chicken Karahi', ur: 'چکن کڑاہی', hi: 'चिकन कड़ाही' },
@@ -201,6 +210,7 @@ Chawal:
   },
   {
     id: 'aloo_gobi',
+    meals: ["breakfast","lunch","dinner"],
     category: 'daily',
     isVeg: true,
     name: { en: 'Aloo Gobi', ur: 'آلو گوبی', hi: 'आलू गोभी' },
@@ -235,6 +245,7 @@ Chawal:
   },
   {
     id: 'masar_chawal',
+    meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: true,
     name: { en: 'Masar Chawal', ur: 'مسر چاول', hi: 'मसर चावल' },
@@ -262,6 +273,8 @@ Chawal:
   },
   {
     id: 'chicken_pulao',
+    image: '/images/dishes/chicken_pulao.jpg',
+    meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: false,
     name: { en: 'Chicken Pulao', ur: 'چکن پلاؤ', hi: 'चिकन पुलाव' },
@@ -297,6 +310,8 @@ Chawal:
   },
   {
     id: 'chicken_korma',
+    image: '/images/dishes/chicken_korma.jpg',
+    meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: false,
     name: { en: 'Chicken Korma', ur: 'چکن قورمہ', hi: 'चिकन कोरमा' },
@@ -330,6 +345,7 @@ Chawal:
   },
   {
     id: 'chana_daal',
+    meals: ["breakfast","lunch","dinner"],
     category: 'daily',
     isVeg: true,
     name: { en: 'Chana Daal', ur: 'چنا دال', hi: 'चना दाल' },
@@ -362,6 +378,7 @@ Chawal:
   },
   {
     id: 'Karele',
+    meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: true,
     name: { en: 'Karele (Bitter Gourd)', ur: 'کریلے', hi: 'करेले' },
@@ -392,6 +409,7 @@ Chawal:
   },
   {
     id: 'Curry',
+    meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: true,
     name: { en: 'Curry (Kadhi Pakora)', ur: 'کری', hi: 'करी' },
@@ -419,6 +437,7 @@ Chawal:
   },
   {
     id: 'dal_makhani',
+    meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: true,
     name: { en: 'Dal Makhani', ur: 'دال مکھنی', hi: 'दाल मखनी' },
@@ -452,6 +471,7 @@ Chawal:
   },
   {
     id: 'Dum Pukh',
+    meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: false,
     name: { en: 'Dum Pukht', ur: 'دم پکھت', hi: 'दम पुख्त' },
@@ -490,6 +510,8 @@ Chawal:
   // ==========================================
   {
     id: 'kofta',
+    image: '/images/dishes/kofta.jpg',
+    meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: false,
     name: { en: 'Kofta (Chicken/Beef)', ur: 'کوفتہ (چکن / بیف)', hi: 'कोफ्ता (चिकन / बीफ)' },
@@ -522,6 +544,8 @@ Chawal:
   },
   {
     id: 'shami_kabab',
+    image: '/images/dishes/shami_kabab.jpg',
+    meals: ["breakfast","lunch","dinner"],
     category: 'daily',
     isVeg: false,
     name: { en: 'Shami Kabab', ur: 'شامی کباب', hi: 'शामी कबाब' },
@@ -549,6 +573,8 @@ Chawal:
   },
   {
     id: 'yakhni_pulao',
+    image: '/images/dishes/yakhni_pulao.jpg',
+    meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: false,
     name: { en: 'Yakhni Pulao', ur: 'یخنی پلاؤ', hi: 'यखनी पुलाव' },
@@ -575,6 +601,7 @@ Chawal:
   },
   {
     id: 'curry_chawal',
+    meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: true,
     name: { en: 'Curry Chawal', ur: 'کڑھی چاول', hi: 'कढ़ी चावल' },
@@ -605,6 +632,7 @@ Chawal:
   },
   {
     id: 'tori_ki_sabzi',
+    meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: true,
     name: { en: 'Tori ki Sabzi (Ridge Gourd)', ur: 'توری کی سبزی', hi: 'तोरी की सब्जी' },
@@ -633,6 +661,7 @@ Chawal:
   },
   {
     id: 'saag',
+    meals: ["breakfast","lunch","dinner"],
     category: 'daily',
     isVeg: true,
     name: { en: 'Sarson ka Saag', ur: 'سرسوں کا ساگ', hi: 'सरसों का साग' },
@@ -658,6 +687,7 @@ Chawal:
   },
   {
     id: 'aaloo_baingan',
+    meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: true,
     name: { en: 'Aaloo Baingan', ur: 'آلو بینگن', hi: 'आलू बैंगन' },
@@ -690,6 +720,7 @@ Chawal:
   },
   {
     id: 'aaloo_katli',
+    meals: ["breakfast","lunch","dinner"],
     category: 'daily',
     isVeg: true,
     name: { en: 'Aaloo Katli', ur: 'آلو قتلی', hi: 'आलू कतली' },
@@ -718,6 +749,7 @@ Chawal:
   },
   {
     id: 'aaloo_cutlets',
+    meals: ["breakfast","lunch","dinner"],
     category: 'daily',
     isVeg: true,
     name: { en: 'Aaloo Cutlets', ur: 'آلو کٹلس', hi: 'आलू कटलेट' },
@@ -941,5 +973,230 @@ Chawal:
 5. Add sugar and cardamom powder. Cook on medium heat until the moisture released by sugar dries up completely.
 6. Stir in crumbled khoya (or milk powder) and sliced nuts. Stir well on low heat for 3-4 minutes until halwa leaves the sides of the pan.
 7. Serve warm, garnished with slivered almonds and pistachios.`,
+  },
+  {
+    id: 'anda_paratha',
+    image: '/images/dishes/anda_paratha.jpg',
+    meals: ["breakfast"],
+    category: 'daily',
+    isVeg: false,
+    name: {"en":"Anda Paratha","ur":"انڈا پراٹھا","hi":"अंडा पराठा"},
+    type: {"en":"Egg & Crispy Flatbread","ur":"انڈا اور کرسپی پراٹھا","hi":"अंडा और खस्ता पराठा"},
+    ingredients: [
+      'Whole Wheat Flour (Atta) (2 cups)',
+      'Eggs (2-3, beaten)',
+      'Onion (1 small, finely chopped)',
+      'Green Chilies (2, finely minced)',
+      'Fresh Coriander (2 tbsp, chopped)',
+      'Red Chili Flakes / Powder (1/2 tsp)',
+      'Desi Ghee or Oil (3-4 tbsp)',
+      'Black Pepper (1/4 tsp)',
+      'Salt to taste',
+    ],
+    recipe: `1. Knead whole wheat flour with a pinch of salt and water into a smooth, pliable dough. Rest for 15 minutes.
+2. In a small bowl, whisk eggs with finely chopped onions, green chilies, coriander, red chili flakes, black pepper, and salt.
+3. Roll out a dough ball into a round roti. Brush with ghee, fold into layers (square or triangle), and roll out into a layered paratha.
+4. Place paratha on a hot tawa. Cook for 1 minute on each side, applying ghee until golden spots appear.
+5. Either pour the whisked spiced egg mixture directly over the paratha on the tawa and flip gently to cook through, or roll it into an egg roll.
+6. Serve piping hot with a cup of hot Karak Chai and mint chutney or ketchup.`,
+  },
+  {
+    id: 'halwa_poori',
+    image: '/images/dishes/halwa_poori.jpg',
+    meals: ["breakfast"],
+    category: 'daily',
+    isVeg: true,
+    name: {"en":"Halwa Poori & Channay","ur":"حلوہ پوری اور چنے","hi":"हलवा पूरी और चने"},
+    type: {"en":"Traditional Breakfast Platter","ur":"روایتی حلوہ پوری ناشتہ","hi":"पारंपरिक हलवा पूरी"},
+    ingredients: [
+      'All-Purpose Flour (Maida) (2 cups, for Pooris)',
+      'Semolina (Suji) (1 cup, for Halwa)',
+      'Sugar (1 cup)',
+      'Desi Ghee / Oil (1/2 cup for halwa, plus deep frying oil)',
+      'Boiled White Chickpeas (Kabuli Chana) (2 cups)',
+      'Kalonji (Nigella seeds) & Cumin seeds (1 tsp each)',
+      'Fenugreek Seeds (Methi Dana) (1/2 tsp)',
+      'Achar (Mango/Mixed Pickle) & Green Chilies',
+      'Cardamom Pods (4) & Yellow/Orange food color (a pinch)',
+    ],
+    recipe: `1. Channay: Heat 3 tbsp oil. Add kalonji, cumin seeds, and a pinch of methi dana. Add ginger-garlic, turmeric, red chili, and coriander powder. Add boiled chickpeas with some cooking water. Simmer until thick and aromatic.
+2. Suji Halwa: In a pan, roast 1 cup suji in desi ghee until aromatic and light golden. In a separate pot, boil 3 cups water with 1 cup sugar, cardamoms, and orange color. Pour hot sugar syrup into roasted suji, stirring continuously on low heat until glossy and ghee separates.
+3. Pooris: Knead maida with 2 tbsp oil, pinch of salt, and water into a stiff dough. Roll out small, thin discs. Deep-fry in smoking hot oil, pressing lightly so they puff up like balloons. Fry 20-30 seconds each side.
+4. Serve hot puffy pooris immediately with sweet suji halwa, spicy tarkari channay, and mixed pickle.`,
+  },
+  {
+    id: 'meetha_paratha',
+    image: '/images/dishes/meetha_paratha.jpg',
+    meals: ["breakfast"],
+    category: 'daily',
+    isVeg: true,
+    name: {"en":"Meetha Paratha (Shakkar / Sugar)","ur":"میٹھا پراٹھا (شکر / چینی)","hi":"मीठा पराठा (शक्कर वाला)"},
+    type: {"en":"Sweet Layered Flatbread","ur":"میٹھا خستہ پراٹھا","hi":"मीठा खस्ता पराठा"},
+    ingredients: [
+      'Whole Wheat Flour (Atta) (2 cups)',
+      'Brown Sugar (Shakkar) or White Sugar (1/2 cup)',
+      'Desi Ghee (4-5 tbsp)',
+      'Green Cardamom Powder (1/2 tsp)',
+      'Fennel Seeds (Saunf) (optional, 1/2 tsp)',
+      'Warm Water for kneading',
+    ],
+    recipe: `1. Knead wheat flour with a spoonful of ghee and water into a smooth dough.
+2. Divide dough into balls. Roll one ball out into a 6-inch circle.
+3. Spread 1 teaspoon desi ghee evenly over the surface, then sprinkle 2 tablespoons of sugar/shakkar and a pinch of cardamom powder.
+4. Fold from the sides or roll into a spiral cone, press down, and gently roll out into a paratha, taking care that the sugar does not pierce through the edges.
+5. Place on a medium-hot tawa. Flip once, apply generous desi ghee, and roast on low-medium flame until crisp, caramelized, and golden-brown.
+6. Serve warm with butter or a steaming cup of tea.`,
+  },
+  {
+    id: 'aloo_paratha',
+    image: '/images/dishes/aloo_paratha.jpg',
+    meals: ["breakfast"],
+    category: 'daily',
+    isVeg: true,
+    name: {"en":"Aloo Paratha with Makhan & Dahi","ur":"آلو پراٹھا مع مکھن اور دہی","hi":"आलू पराठा मक्खन और दही"},
+    type: {"en":"Spiced Potato Stuffed Flatbread","ur":"آلو بھرا خستہ پراٹھا","hi":"आलू भरवां पराठा"},
+    ingredients: [
+      'Boiled Potatoes (3 medium, peeled and mashed)',
+      'Whole Wheat Flour (Atta) (2 cups)',
+      'Green Chilies (2, finely chopped)',
+      'Fresh Coriander (3 tbsp, finely chopped)',
+      'Cumin Seeds (1 tsp, roasted & crushed)',
+      'Coriander Seeds (1 tsp, crushed)',
+      'Chaat Masala & Amchoor (1 tsp)',
+      'Red Chili Powder (1/2 tsp)',
+      'Desi Ghee or Butter for frying',
+      'Salt to taste',
+    ],
+    recipe: `1. Stuffing: In a bowl, mash boiled potatoes thoroughly. Add green chilies, coriander, crushed cumin, coriander seeds, chaat masala, amchoor, red chili, and salt. Mix well.
+2. Roll a dough ball into a 5-inch circle. Place a generous ball of potato stuffing in the center.
+3. Bring the edges together, seal tightly at the top, and flatten gently with your palms. Dust with flour.
+4. Roll out gently with light hands to avoid stuffing spilling out.
+5. Cook on a hot tawa on medium heat. Flip, apply desi ghee on both sides, and roast pressing gently until crisp and golden brown on both sides.
+6. Serve hot topped with a dollop of white butter (makhan), cold yogurt (dahi), and spicy mango achar.`,
+  },
+  {
+    id: 'nihari',
+    image: '/images/dishes/nihari.jpg',
+    meals: ["breakfast","dinner"],
+    category: 'daily',
+    isVeg: false,
+    name: {"en":"Mutton / Beef Nihari","ur":"نہاری (مٹن / بیف)","hi":"मटन / बीफ निहारी"},
+    type: {"en":"Slow-Cooked Meat Stew","ur":"روایتی مسالے دار نہاری","hi":"पारंपरिक निहारी"},
+    ingredients: [
+      'Beef or Mutton Shank / Bong (1 kg, cut into large pieces)',
+      'Nalli / Bone Marrow Bones (optional, 500g)',
+      'Whole Wheat Flour (Atta) (1/3 cup, dissolved in 1 cup water)',
+      'Onions (2 medium, sliced)',
+      'Ginger-Garlic Paste (3 tbsp)',
+      'Nihari Masala (Fennel, Dry Ginger/Sonth, Cardamom, Mace, Nutmeg, Cloves, Star Anise) (3 tbsp)',
+      'Desi Ghee or Mustard Oil (3/4 cup)',
+      'Kashmiri Red Chili & Turmeric Powder',
+      'Fresh Ginger Juliennes, Green Chilies, Lemon Wedges, and Fresh Coriander for garnish',
+    ],
+    recipe: `1. Heat ghee in a large heavy pot. Fry sliced onions until golden. Add ginger-garlic paste and meat pieces. Sauté on high heat until meat changes color.
+2. Add Nihari masala, turmeric, Kashmiri chili powder, and salt. Fry for 4-5 minutes until oil separates.
+3. Pour in 5-6 cups of warm water. Bring to a boil, cover tightly, and simmer on very low flame for 3-4 hours (or pressure cook for 45 minutes) until meat is melt-in-the-mouth tender.
+4. Skim off excess red oil (tari) from the surface into a separate bowl and reserve for serving.
+5. Slowly whisk the dissolved wheat flour slurry into the simmering stew to thicken to a velvety gravy. Cook on low for another 15 minutes.
+6. Serve steaming hot in a bowl, drizzle with the reserved tari, and garnish generously with sliced ginger, green chilies, coriander, and fresh lemon juice with hot tandoori naan.`,
+  },
+  {
+    id: 'murgh_channay',
+    meals: ["breakfast","lunch"],
+    category: 'daily',
+    isVeg: false,
+    name: {"en":"Lahori Murgh Channay","ur":"لاہوری مرغ چنے","hi":"लाहोरी मुर्ग चने"},
+    type: {"en":"Chicken & Chickpeas Breakfast Curry","ur":"مرغ چنے کا سالن","hi":"चिकन छोले करी"},
+    ingredients: [
+      'Chicken (750g, bone-in curry cut)',
+      'White Chickpeas (Kabuli Chana) (2 cups, soaked overnight and boiled tender)',
+      'Boiled Chana / Yellow Lentil Paste (1/2 cup, for thick authentic gravy)',
+      'Onions (2, pureed or finely chopped)',
+      'Ginger-Garlic Paste (2 tbsp)',
+      'Black Pepper Powder (1 tsp)',
+      'Cumin & Coriander Powder (1 tsp each)',
+      'Whole Spices (Cinnamon, Bay leaf, Black Cardamom)',
+      'Ghee or Cooking Oil (1/2 cup)',
+      'Garam Masala (1 tsp)',
+    ],
+    recipe: `1. Heat oil/ghee in a pot. Add whole spices and sauté pureed onions until golden.
+2. Add ginger-garlic paste and chicken pieces. Cook on high heat for 6-8 minutes until chicken is seared.
+3. Add cumin, coriander powder, black pepper, turmeric, and salt. Fry well.
+4. Add the boiled chickpeas along with chickpea stock and the mashed chana paste.
+5. Cover and simmer on low heat for 20-25 minutes until chicken is tender and the gravy achieves its signature velvety consistency.
+6. Sprinkle freshly ground black pepper and garam masala on top. Serve with fresh naan or kulcha for breakfast.`,
+  },
+  {
+    id: 'khagina',
+    meals: ["breakfast"],
+    category: 'daily',
+    isVeg: false,
+    name: {"en":"Khagina (Spiced Scrambled Eggs)","ur":"خاگینہ (مسالہ انڈے)","hi":"खागीना (मसाला अंडा भुर्जी)"},
+    type: {"en":"Quick Spiced Egg Breakfast","ur":"جھٹ پٹ انڈے کا سالن","hi":"अंडा भुर्जी"},
+    ingredients: [
+      'Eggs (4, whisked with 2 tbsp milk)',
+      'Onions (2 medium, finely chopped)',
+      'Tomatoes (2 medium, finely chopped)',
+      'Green Chilies (2-3, chopped)',
+      'Fresh Coriander (3 tbsp, chopped)',
+      'Ginger (1 tsp, finely grated)',
+      'Turmeric Powder (1/3 tsp)',
+      'Red Chili Powder (1/2 tsp)',
+      'Cumin Seeds (1/2 tsp)',
+      'Butter or Oil (2 tbsp)',
+      'Salt to taste',
+    ],
+    recipe: `1. Heat butter/oil in a skillet. Add cumin seeds and let them crackle.
+2. Add finely chopped onions and grated ginger. Sauté until onions are translucent and light golden.
+3. Add green chilies and chopped tomatoes. Cook with turmeric, red chili powder, and salt until tomatoes are soft and oil shines.
+4. Lower the flame and pour in the whisked eggs.
+5. Let eggs set slightly for 15-20 seconds, then gently scramble with a spatula until soft curds form. Do not overcook.
+6. Garnish with abundant fresh coriander. Serve immediately with warm parathas or toasted bread slices.`,
+  },
+  {
+    id: 'keema_paratha',
+    meals: ["breakfast","dinner"],
+    category: 'daily',
+    isVeg: false,
+    name: {"en":"Keema Paratha","ur":"قیمہ پراٹھا","hi":"कीमा पराठा"},
+    type: {"en":"Minced Meat Stuffed Flatbread","ur":"قیمہ بھرا خستہ پراٹھا","hi":"कीमा भरवां पराठा"},
+    ingredients: [
+      'Minced Beef or Mutton (Keema) (350g, cooked dry with spices)',
+      'Whole Wheat Dough (Atta) (as needed for 4 parathas)',
+      'Green Chilies (2, finely minced)',
+      'Fresh Mint & Coriander (2 tbsp each, chopped)',
+      'Garam Masala & Roasted Cumin (1 tsp each)',
+      'Desi Ghee for roasting',
+    ],
+    recipe: `1. Prepare cooked keema: sauté minced meat with ginger-garlic, onion, red chili, cumin, and salt until completely dry without moisture. Fold in mint, coriander, and garam masala. Cool completely.
+2. Roll two small dough discs. Place a generous portion of cooked keema on one disc. Cover with the second disc and press the edges firmly to seal.
+3. Roll out gently with a rolling pin into a neat round paratha.
+4. Cook on a hot tawa. Apply desi ghee on both sides and fry until crispy, golden, and flaky.
+5. Serve with cold raita, mint chutney, and a hot cup of tea.`,
+  },
+  {
+    id: 'besan_roti',
+    meals: ["breakfast","lunch"],
+    category: 'daily',
+    isVeg: true,
+    name: {"en":"Besan ki Roti with Podina Chutney","ur":"بیسن کی روٹی اور پودینہ چٹنی","hi":"बेसन की रोटी एवं पुदीना चटनी"},
+    type: {"en":"Gram Flour Spiced Flatbread","ur":"مسالے دار بیسن کی روٹی","hi":"बेसन की पौष्टिक रोटी"},
+    ingredients: [
+      'Gram Flour (Besan) (1.5 cups)',
+      'Whole Wheat Flour (Atta) (1/2 cup)',
+      'Onion (1 medium, finely chopped)',
+      'Green Chilies (2, minced)',
+      'Dry Pomegranate Seeds (Anardana) (1 tsp, crushed)',
+      'Coriander Seeds (1 tbsp, coarsely crushed)',
+      'Ajwain (Carom seeds) (1/2 tsp)',
+      'Desi Ghee or Butter for topping',
+      'Fresh Mint, Yogurt, and Green Chilies for chutney',
+    ],
+    recipe: `1. In a large bowl, mix besan, wheat flour, chopped onions, green chilies, crushed anardana, coriander seeds, ajwain, turmeric, and salt.
+2. Gradually add water and knead into a medium-soft dough. Rest for 10 minutes.
+3. Roll out into medium-thickness rotis (dust with dry flour as besan can be sticky).
+4. Cook on a hot tawa on medium heat until golden brown spots appear on both sides. Cook directly on flame for 10 seconds for a smoky tandoori aroma.
+5. Smear generously with homemade white butter or desi ghee.
+6. Serve with fresh mint-coriander yogurt chutney and sliced red onions.`,
   },
 ];

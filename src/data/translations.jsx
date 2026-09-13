@@ -18,6 +18,11 @@ export const translations = {
     vegBadge: 'Vegetarian',
     nonVegBadge: 'Non-Veg',
     sweetBadge: 'Dessert',
+    mealTypeTitle: 'Meal Time',
+    allMeals: 'All Meals',
+    mealBreakfast: 'Breakfast',
+    mealLunch: 'Lunch',
+    mealDinner: 'Dinner',
     noDishesFound: 'No dishes found for the selected filter.',
     footerText: (
       <span>
@@ -70,6 +75,22 @@ export const translations = {
     rateOnPlayStoreButton: 'Rate on Play Store ⭐',
     maybeLaterButton: 'Maybe Later',
     alreadyRatedButton: 'Already Rated',
+
+    // App Install Prompts
+    desktopAppInstallTitle: 'Get our Mobile App',
+    desktopAppInstallSubtitle: 'Available on Google Play',
+    desktopAppInstallTooltip: 'Install Aaj Kiya Pakayen on your phone for quick daily cooking inspiration!',
+    desktopAppScanQr: 'Scan with phone or click below to install:',
+    desktopAppOpenPlayStore: 'View on Google Play',
+    desktopAppCloseAria: 'Close app prompt',
+
+    mobileAppModalTitle: 'Get the Aaj Kiya Pakayen App',
+    mobileAppModalSubtitle: 'Download our free mobile app for a faster, smoother cooking experience!',
+    mobileAppFeature1: 'Lightning fast & works offline',
+    mobileAppFeature2: 'Instant meal & dessert suggestions',
+    mobileAppFeature3: 'Step-by-step recipes in 3 languages',
+    mobileAppDownloadButton: 'Download on Google Play',
+    mobileAppContinueBrowser: 'Continue in Browser',
   },
   ur: {
     title: 'آج کیا پکائیں؟',
@@ -88,6 +109,11 @@ export const translations = {
     vegBadge: 'سبزی',
     nonVegBadge: 'گوشت / مرغی',
     sweetBadge: 'میٹھا',
+    mealTypeTitle: 'کھانے کا وقت',
+    allMeals: 'تمام کھانے',
+    mealBreakfast: 'ناشتہ',
+    mealLunch: 'دوپہر کا کھانا',
+    mealDinner: 'رات کا کھانا',
     noDishesFound: 'منتخب کردہ فلٹر میں کوئی ڈش دستیاب نہیں ہے۔',
     footerText:
       'محبت سے بنایا گیا تاکہ روزمرہ کا سوال حل ہو سکے۔ جنوبی ایشیائی کھانوں سے متاثر۔',
@@ -127,6 +153,22 @@ export const translations = {
     rateOnPlayStoreButton: 'پلے اسٹور پر ریٹنگ دیں ⭐',
     maybeLaterButton: 'شاید بعد میں',
     alreadyRatedButton: 'پہلے ہی ریٹ کر چکے ہیں',
+
+    // App Install Prompts
+    desktopAppInstallTitle: 'ہماری موبائل ایپ حاصل کریں',
+    desktopAppInstallSubtitle: 'گوگل پلے اسٹور پر دستیاب',
+    desktopAppInstallTooltip: 'روزمرہ کھانوں کی فوری تجاویز کے لیے اپنے موبائل میں انسٹال کریں!',
+    desktopAppScanQr: 'موبائل سے QR کوڈ اسکین کریں یا نیچے کلک کریں:',
+    desktopAppOpenPlayStore: 'گوگل پلے پر دیکھیں',
+    desktopAppCloseAria: 'ایپ پرامپٹ بند کریں',
+
+    mobileAppModalTitle: 'بہتر تجربے کے لیے موبائل ایپ ڈاؤن لوڈ کریں',
+    mobileAppModalSubtitle: 'تیز رفتار اور بہترین تجربے کے لیے ہماری مفت اینڈرائیڈ ایپ حاصل کریں!',
+    mobileAppFeature1: 'انتہائی تیز رفتار اور آف لائن دستیابی',
+    mobileAppFeature2: 'کھانے اور میٹھے کی فوری تجاویز',
+    mobileAppFeature3: 'تین زبانوں میں آسان اور مکمل تراکیب',
+    mobileAppDownloadButton: 'گوگل پلے سے ڈاؤن لوڈ کریں',
+    mobileAppContinueBrowser: 'براؤزر میں جاری رکھیں',
   },
   hi: {
     title: 'आज क्या पकाएँ?',
@@ -145,6 +187,11 @@ export const translations = {
     vegBadge: 'शाकाहारी',
     nonVegBadge: 'मांसाहारी',
     sweetBadge: 'मीठा',
+    mealTypeTitle: 'भोजन का समय',
+    allMeals: 'सभी भोजन',
+    mealBreakfast: 'नाश्ता',
+    mealLunch: 'दोपहर का भोजन',
+    mealDinner: 'रात का खाना',
     noDishesFound: 'चयनित फ़िल्टर के लिए कोई व्यंजन नहीं मिला।',
     footerText:
       'प्यार से बनाया गया ताकि रोज़मर्रा का सवाल हल हो सके। दक्षिण एशियाई रसोई से प्रेरित।',
@@ -184,5 +231,21 @@ export const translations = {
     rateOnPlayStoreButton: 'प्ले स्टोर पर रेट करें ⭐',
     maybeLaterButton: 'बाद में',
     alreadyRatedButton: 'पहले ही रेट कर चुके हैं',
+
+    // App Install Prompts
+    desktopAppInstallTitle: 'हमारा मोबाइल ऐप डाउनलोड करें',
+    desktopAppInstallSubtitle: 'गूगल प्ले स्टोर पर उपलब्ध',
+    desktopAppInstallTooltip: 'दैनिक भोजन के त्वरित सुझावों के लिए अपने फोन में इंस्टॉल करें!',
+    desktopAppScanQr: 'फोन से QR कोड स्कैन करें या नीचे क्लिक करें:',
+    desktopAppOpenPlayStore: 'गूगल प्ले पर देखें',
+    desktopAppCloseAria: 'ऐप प्रॉम्प्ट बंद करें',
+
+    mobileAppModalTitle: 'बेहतर अनुभव के लिए मोबाइल ऐप डाउनलोड करें',
+    mobileAppModalSubtitle: 'तेज़ और सहज कुकिंग अनुभव के लिए हमारा फ्री एंड्रॉयड ऐप पाएं!',
+    mobileAppFeature1: 'सुपर फास्ट और ऑफलाइन सुविधा',
+    mobileAppFeature2: 'दैनिक भोजन और मिठाइयों के आसान सुझाव',
+    mobileAppFeature3: 'तीन भाषाओं में पूरी रेसिपी और सामग्री',
+    mobileAppDownloadButton: 'गूगल प्ले से डाउनलोड करें',
+    mobileAppContinueBrowser: 'ब्राउज़र में जारी रखें',
   },
 };

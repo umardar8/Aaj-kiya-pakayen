@@ -18,16 +18,24 @@ import {
   Coffee,
   Sparkles,
   Leaf,
+  Sunrise,
+  Sun,
+  MoonStar,
+  Clock,
 } from 'lucide-react';
 import { translations } from './data/translations.jsx';
 import { initialDishesData } from './data/dishes.js';
 import FeedbackModal from './components/FeedbackModal.jsx';
+import DesktopAppBanner from './components/DesktopAppBanner.jsx';
+import MobileAppInstallModal from './components/MobileAppInstallModal.jsx';
 import { useFeedbackPrompt } from './hooks/useFeedbackPrompt.js';
+import { useDeviceContext } from './hooks/useDeviceContext.js';
 
 export default function App() {
   const [language, setLanguage] = useState('en');
   const [category, setCategory] = useState('daily'); // 'daily' | 'dessert'
   const [vegOnly, setVegOnly] = useState(false);
+  const [mealType, setMealType] = useState('all'); // 'all' | 'breakfast' | 'lunch' | 'dinner'
   const [selectedDish, setSelectedDish] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPageOpen, setIsPageOpen] = useState(false);
@@ -42,6 +50,8 @@ export default function App() {
     completeFeedback,
     recordDishGenerated,
   } = useFeedbackPrompt();
+
+  const { isMobileBrowser, isDesktopBrowser } = useDeviceContext();
 
   const t = translations[language];
 
@@ -76,14 +86,19 @@ export default function App() {
     },
   };
 
-  // Filtered dishes according to active category and vegOnly setting
+  // Filtered dishes according to active category, vegOnly setting, and mealType
   const filteredDishes = useMemo(() => {
     return initialDishesData.filter((dish) => {
       if (dish.category !== category) return false;
-      if (category === 'daily' && vegOnly && !dish.isVeg) return false;
+      if (category === 'daily') {
+        if (vegOnly && !dish.isVeg) return false;
+        if (mealType !== 'all') {
+          if (!dish.meals || !dish.meals.includes(mealType)) return false;
+        }
+      }
       return true;
     });
-  }, [category, vegOnly]);
+  }, [category, vegOnly, mealType]);
 
   // Handle category change
   const handleCategoryChange = (newCategory) => {
@@ -99,6 +114,17 @@ export default function App() {
     setVegOnly(nextVegOnly);
     if (selectedDish && nextVegOnly && !selectedDish.isVeg) {
       setSelectedDish(null);
+    }
+  };
+
+  // Handle meal time change (toggles to 'all' if active meal clicked again)
+  const handleMealChange = (newMeal) => {
+    const nextMeal = mealType === newMeal ? 'all' : newMeal;
+    setMealType(nextMeal);
+    if (selectedDish && nextMeal !== 'all') {
+      if (!selectedDish.meals || !selectedDish.meals.includes(nextMeal)) {
+        setSelectedDish(null);
+      }
     }
   };
 
@@ -214,81 +240,242 @@ export default function App() {
           </button>
         </div>
 
-        {/* Veg Only Switch (Daily Meals Only) */}
+        {/* Daily Filters: Veg Only + Meal Time (Breakfast / Lunch / Dinner) */}
         {category === 'daily' && (
-          <div
-            role="button"
-            tabIndex={0}
-            onClick={handleVegToggle}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                handleVegToggle();
-              }
-            }}
-            className="animate-fadeIn bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/20 px-4 py-3 rounded-2xl shadow-md flex items-center justify-between cursor-pointer select-none transition-all duration-200"
-          >
-            <div className="flex items-center gap-3">
+          <div className="space-y-3 animate-fadeIn">
+            {/* Veg Only Switch */}
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={handleVegToggle}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleVegToggle();
+                }
+              }}
+              className="bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/20 px-4 py-3 rounded-2xl shadow-md flex items-center justify-between cursor-pointer select-none transition-all duration-200"
+            >
+              <div className="flex items-center gap-3">
+                <div
+                  className={`p-2 rounded-xl transition-colors duration-200 flex items-center justify-center ${
+                    vegOnly
+                      ? 'bg-emerald-500/25 text-emerald-300 border border-emerald-400/40 shadow-sm'
+                      : 'bg-white/10 text-purple-200 border border-white/10'
+                  }`}
+                >
+                  <Leaf size={18} className={vegOnly ? 'text-emerald-300' : 'text-purple-200'} />
+                </div>
+                <div className="text-left rtl:text-right">
+                  <div className="flex items-center gap-2">
+                    <span className="text-white text-sm sm:text-base font-semibold leading-tight">
+                      {t.vegOnly}
+                    </span>
+                    {vegOnly && (
+                      <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/30 text-emerald-200 border border-emerald-400/40">
+                        ON
+                      </span>
+                    )}
+                  </div>
+                  <span className="block text-xs text-purple-200/90 mt-0.5 leading-tight">
+                    {vegOnly
+                      ? language === 'ur'
+                        ? 'صرف سبزیاں اور دالیں'
+                        : language === 'hi'
+                        ? 'केवल शाकाहारी व्यंजन'
+                        : 'Vegetables & lentils only'
+                      : language === 'ur'
+                      ? 'گوشت، مرغی اور سبزیاں'
+                      : language === 'hi'
+                      ? 'मांसाहारी एवं शाकाहारी'
+                      : 'All meat & vegetarian dishes'}
+                  </span>
+                </div>
+              </div>
+
+              {/* iOS-Style Standard Switch */}
               <div
-                className={`p-2 rounded-xl transition-colors duration-200 flex items-center justify-center ${
+                role="switch"
+                aria-checked={vegOnly}
+                aria-label={t.vegOnly}
+                className={`relative inline-flex h-6 w-11 shrink-0 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out ${
                   vegOnly
-                    ? 'bg-emerald-500/25 text-emerald-300 border border-emerald-400/40 shadow-sm'
-                    : 'bg-white/10 text-purple-200 border border-white/10'
+                    ? 'bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]'
+                    : 'bg-white/25'
                 }`}
               >
-                <Leaf size={18} className={vegOnly ? 'text-emerald-300' : 'text-purple-200'} />
-              </div>
-              <div className="text-left rtl:text-right">
-                <div className="flex items-center gap-2">
-                  <span className="text-white text-sm sm:text-base font-semibold leading-tight">
-                    {t.vegOnly}
-                  </span>
-                  {vegOnly && (
-                    <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/30 text-emerald-200 border border-emerald-400/40">
-                      ON
-                    </span>
-                  )}
-                </div>
-                <span className="block text-xs text-purple-200/90 mt-0.5 leading-tight">
-                  {vegOnly
-                    ? language === 'ur'
-                      ? 'صرف سبزیاں اور دالیں'
-                      : language === 'hi'
-                      ? 'केवल शाकाहारी व्यंजन'
-                      : 'Vegetables & lentils only'
-                    : language === 'ur'
-                    ? 'گوشت، مرغی اور سبزیاں'
-                    : language === 'hi'
-                    ? 'मांसाहारी एवं शाकाहारी'
-                    : 'All meat & vegetarian dishes'}
-                </span>
+                <span
+                  className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-md ring-0 transition-transform duration-200 ease-in-out ${
+                    vegOnly ? 'translate-x-5' : 'translate-x-0'
+                  }`}
+                />
               </div>
             </div>
 
-            {/* iOS-Style Standard Switch */}
-            <div
-              role="switch"
-              aria-checked={vegOnly}
-              aria-label={t.vegOnly}
-              className={`relative inline-flex h-6 w-11 shrink-0 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out ${
-                vegOnly
-                  ? 'bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]'
-                  : 'bg-white/25'
-              }`}
-            >
-              <span
-                className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-md ring-0 transition-transform duration-200 ease-in-out ${
-                  vegOnly ? 'translate-x-5' : 'translate-x-0'
-                }`}
-              />
+            {/* Breakfast / Lunch / Dinner Meal Filter */}
+            <div className="bg-white/10 backdrop-blur-md border border-white/20 p-3 sm:p-3.5 rounded-2xl shadow-md">
+              <div className="flex items-center justify-between mb-2.5 px-1">
+                <span className="text-white text-xs sm:text-sm font-semibold flex items-center gap-1.5">
+                  <Clock size={15} className="text-purple-200 shrink-0" />
+                  <span>{t.mealTypeTitle || 'Meal Time'}</span>
+                </span>
+                {mealType !== 'all' ? (
+                  <button
+                    type="button"
+                    onClick={() => handleMealChange('all')}
+                    className="text-xs text-purple-200 hover:text-white underline cursor-pointer transition-colors"
+                  >
+                    {t.allMeals || 'Show All'}
+                  </button>
+                ) : (
+                  <span className="text-[11px] font-medium text-purple-200/80">
+                    {t.allMeals || 'All Meals'}
+                  </span>
+                )}
+              </div>
+
+              {/* 3 Buttons Grid: Breakfast | Lunch | Dinner */}
+              <div className="grid grid-cols-3 gap-2 sm:gap-2.5">
+                {/* Breakfast Button */}
+                <button
+                  type="button"
+                  onClick={() => handleMealChange('breakfast')}
+                  className={`py-2 px-1 rounded-xl transition-all duration-200 flex flex-col items-center justify-center text-center cursor-pointer border min-h-[58px] ${
+                    mealType === 'breakfast'
+                      ? 'bg-white text-purple-950 border-white shadow-md scale-[1.02] font-bold'
+                      : 'bg-white/10 hover:bg-white/20 text-purple-100 hover:text-white border-white/15'
+                  }`}
+                >
+                  <Sunrise
+                    size={18}
+                    className={`mb-1 shrink-0 ${
+                      mealType === 'breakfast' ? 'text-amber-500' : 'text-amber-300/80'
+                    }`}
+                  />
+                  <span className="text-xs sm:text-sm font-semibold leading-tight break-words px-0.5">
+                    {t.mealBreakfast}
+                  </span>
+                </button>
+
+                {/* Lunch Button */}
+                <button
+                  type="button"
+                  onClick={() => handleMealChange('lunch')}
+                  className={`py-2 px-1 rounded-xl transition-all duration-200 flex flex-col items-center justify-center text-center cursor-pointer border min-h-[58px] ${
+                    mealType === 'lunch'
+                      ? 'bg-white text-purple-950 border-white shadow-md scale-[1.02] font-bold'
+                      : 'bg-white/10 hover:bg-white/20 text-purple-100 hover:text-white border-white/15'
+                  }`}
+                >
+                  <Sun
+                    size={18}
+                    className={`mb-1 shrink-0 ${
+                      mealType === 'lunch' ? 'text-amber-500' : 'text-amber-300/80'
+                    }`}
+                  />
+                  <span className="text-xs sm:text-sm font-semibold leading-tight break-words px-0.5">
+                    {t.mealLunch}
+                  </span>
+                </button>
+
+                {/* Dinner Button */}
+                <button
+                  type="button"
+                  onClick={() => handleMealChange('dinner')}
+                  className={`py-2 px-1 rounded-xl transition-all duration-200 flex flex-col items-center justify-center text-center cursor-pointer border min-h-[58px] ${
+                    mealType === 'dinner'
+                      ? 'bg-white text-purple-950 border-white shadow-md scale-[1.02] font-bold'
+                      : 'bg-white/10 hover:bg-white/20 text-purple-100 hover:text-white border-white/15'
+                  }`}
+                >
+                  <MoonStar
+                    size={18}
+                    className={`mb-1 shrink-0 ${
+                      mealType === 'dinner' ? 'text-indigo-600' : 'text-purple-300/80'
+                    }`}
+                  />
+                  <span className="text-xs sm:text-sm font-semibold leading-tight break-words px-0.5">
+                    {t.mealDinner}
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
         )}
 
-        {/* Generator Card */}
-        <div className="bg-purple-50/95 backdrop-blur-md p-6 sm:p-7 rounded-2xl shadow-2xl border border-white/40">
-          {displayIcons.length > 0 && (
-            <div className="grid grid-cols-3 gap-4 mb-6 text-center">
+        {/* Suggested Dish Result Card (Shows in center spotlight above the button) */}
+        {selectedDish && (
+          <div className="bg-amber-50/95 border-2 border-amber-400/90 p-5 sm:p-6 rounded-2xl shadow-2xl text-gray-800 animate-fadeIn">
+            {/* Dish Category & Veg Tags */}
+            <div className="flex items-center gap-2 mb-2.5 flex-wrap">
+              <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-100 text-purple-800 border border-purple-200">
+                {selectedDish.category === 'dessert' ? t.sweetBadge : t.categoryDaily}
+              </span>
+              <span
+                className={`text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1 border ${
+                  selectedDish.isVeg
+                    ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                    : 'bg-rose-100 text-rose-800 border-rose-300'
+                }`}
+              >
+                {selectedDish.isVeg ? '🌱 ' + t.vegBadge : '🍖 ' + t.nonVegBadge}
+              </span>
+              {selectedDish.meals && selectedDish.meals.length > 0 && selectedDish.category === 'daily' && (
+                <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 border border-amber-300 flex items-center gap-1">
+                  {selectedDish.meals.includes('breakfast') && selectedDish.meals.includes('lunch') && selectedDish.meals.includes('dinner')
+                    ? '☀️ ' + t.allMeals
+                    : selectedDish.meals
+                        .map((m) =>
+                          m === 'breakfast'
+                            ? t.mealBreakfast
+                            : m === 'lunch'
+                            ? t.mealLunch
+                            : t.mealDinner
+                        )
+                        .join(' • ')}
+                </span>
+              )}
+            </div>
+
+            <h2 className={`${modalTitleSizeClass} font-extrabold text-purple-900 mb-2`}>
+              {selectedDish.name[language] || selectedDish.name.en}
+            </h2>
+
+            <p
+              dir={textDirection}
+              className="text-sm sm:text-base text-purple-800 font-medium mb-4"
+            >
+              <span className="font-bold text-gray-700">{t.keyIngredientsPrefix}</span>{' '}
+              {selectedDish.ingredients
+                .slice(0, 3)
+                .map((ing) =>
+                  ing
+                    .replace(/\s*\(\d+[^)]*\)/g, '')
+                    .replace(/\s*\([^)]*tsp[^)]*\)/gi, '')
+                    .replace(/\s*\([^)]*tbsp[^)]*\)/gi, '')
+                    .trim()
+                )
+                .join(', ')}
+            </p>
+
+            <button
+              onClick={openModal}
+              className="w-full bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-500 hover:to-yellow-500 text-purple-950 font-bold py-3 px-6 rounded-xl shadow-md transition-all duration-150 ease-in-out transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-yellow-300 cursor-pointer"
+              aria-label={`${t.checkRecipeAria} ${selectedDish.name[language]}`}
+            >
+              {t.checkRecipeButton}
+            </button>
+          </div>
+        )}
+
+        {/* Generator Card (Icons hide after dish generation so only the button remains) */}
+        <div
+          className={`bg-purple-50/95 backdrop-blur-md rounded-2xl shadow-2xl border border-white/40 transition-all duration-300 ${
+            selectedDish ? 'p-4 sm:p-5' : 'p-6 sm:p-7'
+          }`}
+        >
+          {!selectedDish && displayIcons.length > 0 && (
+            <div className="grid grid-cols-3 gap-4 mb-6 text-center animate-fadeIn">
               {displayIcons.map((IconComponent, index) => (
                 <div
                   key={index}
@@ -312,53 +499,6 @@ export default function App() {
             {category === 'dessert' ? t.mainButtonDessert : t.mainButton}
           </button>
         </div>
-
-        {/* Suggested Dish Result Card */}
-        {selectedDish && (
-          <div className="bg-amber-50/95 border-2 border-amber-400/90 p-5 sm:p-6 rounded-2xl shadow-2xl text-gray-800 animate-fadeIn">
-            {/* Dish Category & Veg Tags */}
-            <div className="flex items-center gap-2 mb-2.5 flex-wrap">
-              <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-100 text-purple-800 border border-purple-200">
-                {selectedDish.category === 'dessert' ? t.sweetBadge : t.categoryDaily}
-              </span>
-              <span
-                className={`text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1 border ${
-                  selectedDish.isVeg
-                    ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
-                    : 'bg-rose-100 text-rose-800 border-rose-300'
-                }`}
-              >
-                {selectedDish.isVeg ? '🌱 ' + t.vegBadge : '🍖 ' + t.nonVegBadge}
-              </span>
-            </div>
-
-            <h2 className={`${modalTitleSizeClass} font-extrabold text-purple-900 mb-2`}>
-              {selectedDish.name[language] || selectedDish.name.en}
-            </h2>
-
-            <p className="text-sm sm:text-base text-purple-700 font-medium mb-1">
-              <span className="font-bold text-gray-700">{t.dishTypePrefix}</span>{' '}
-              {selectedDish.type[language] || selectedDish.type.en}
-            </p>
-
-            <p
-              dir={textDirection}
-              className="text-sm sm:text-base text-purple-800 font-medium mb-4"
-            >
-              <span className="font-bold text-gray-700">{t.keyIngredientsPrefix}</span>{' '}
-              {selectedDish.ingredients.slice(0, 4).join(', ')}
-              {selectedDish.ingredients.length > 4 ? '...' : ''}
-            </p>
-
-            <button
-              onClick={openModal}
-              className="w-full bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-500 hover:to-yellow-500 text-purple-950 font-bold py-3 px-6 rounded-xl shadow-md transition-all duration-150 ease-in-out transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-yellow-300 cursor-pointer"
-              aria-label={`${t.checkRecipeAria} ${selectedDish.name[language]}`}
-            >
-              {t.checkRecipeButton}
-            </button>
-          </div>
-        )}
       </main>
 
       {/* Recipe Modal */}
@@ -400,6 +540,17 @@ export default function App() {
             </div>
 
             <div className="overflow-y-auto flex-grow pr-2 scrollbar-thin scrollbar-thumb-purple-300 scrollbar-track-purple-100">
+              {selectedDish.image && (
+                <div className="relative w-full h-44 sm:h-52 rounded-2xl overflow-hidden mb-4 shadow-md shrink-0 border border-purple-100 bg-purple-50">
+                  <img
+                    src={selectedDish.image}
+                    alt={selectedDish.name[language] || selectedDish.name.en}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              )}
+
               <div className="mb-5">
                 <h4 className="text-lg font-bold text-purple-700 mb-2.5 flex items-center gap-2">
                   <span>{t.modalIngredientsTitle}</span>
@@ -528,6 +679,22 @@ export default function App() {
         onClose={closeFeedback}
         onDismiss={dismissFeedback}
         onComplete={completeFeedback}
+      />
+
+      {/* Desktop Bottom-Left Mobile App Install Floating Icon */}
+      <DesktopAppBanner
+        isDesktopBrowser={isDesktopBrowser}
+        isMobileApp={isMobileApp}
+        language={language}
+        translations={t}
+      />
+
+      {/* Mobile Browser Download App Modal */}
+      <MobileAppInstallModal
+        isMobileBrowser={isMobileBrowser}
+        isMobileApp={isMobileApp}
+        language={language}
+        translations={t}
       />
 
       <style jsx="true" global="true">{`
