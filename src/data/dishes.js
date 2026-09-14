@@ -70,6 +70,7 @@ Chawal:
   },
   {
     id: 'bhindi_masala',
+    image: '/images/dishes/bhindi_masala.jpg',
     meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: true,
@@ -103,6 +104,7 @@ Chawal:
   },
   {
     id: 'aloo_palak',
+    image: '/images/dishes/aloo_palak.jpg',
     meals: ["breakfast","lunch","dinner"],
     category: 'daily',
     isVeg: true,
@@ -136,6 +138,7 @@ Chawal:
   },
   {
     id: 'palak_gosht',
+    image: '/images/dishes/palak_gosht.jpg',
     meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: false,
@@ -210,6 +213,7 @@ Chawal:
   },
   {
     id: 'aloo_gobi',
+    image: '/images/dishes/aloo_gobi.jpg',
     meals: ["breakfast","lunch","dinner"],
     category: 'daily',
     isVeg: true,
@@ -245,6 +249,7 @@ Chawal:
   },
   {
     id: 'masar_chawal',
+    image: '/images/dishes/masar_chawal.jpg',
     meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: true,
@@ -345,6 +350,7 @@ Chawal:
   },
   {
     id: 'chana_daal',
+    image: '/images/dishes/chana_daal.jpg',
     meals: ["breakfast","lunch","dinner"],
     category: 'daily',
     isVeg: true,
@@ -409,6 +415,7 @@ Chawal:
   },
   {
     id: 'Curry',
+    image: '/images/dishes/curry.jpg',
     meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: true,
@@ -661,6 +668,7 @@ Chawal:
   },
   {
     id: 'saag',
+    image: '/images/dishes/saag.jpg',
     meals: ["breakfast","lunch","dinner"],
     category: 'daily',
     isVeg: true,
