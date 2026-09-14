@@ -1102,6 +1102,7 @@ Chawal:
   },
   {
     id: 'murgh_channay',
+    image: '/images/dishes/murgh_channay.jpg',
     meals: ["breakfast","lunch"],
     category: 'daily',
     isVeg: false,
@@ -1128,6 +1129,7 @@ Chawal:
   },
   {
     id: 'khagina',
+    image: '/images/dishes/khagina.jpg',
     meals: ["breakfast"],
     category: 'daily',
     isVeg: false,
@@ -1155,6 +1157,7 @@ Chawal:
   },
   {
     id: 'keema_paratha',
+    image: '/images/dishes/keema_paratha.jpg',
     meals: ["breakfast","dinner"],
     category: 'daily',
     isVeg: false,
