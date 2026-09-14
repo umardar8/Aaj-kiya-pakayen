@@ -49,6 +49,7 @@ export const translations = {
 
     // Feedback & Rating
     feedbackLink: 'Feedback',
+    cookieSettings: 'Cookie Settings',
     feedbackBrowserTitle: 'We Value Your Feedback!',
     feedbackBrowserSubtitle: 'Help us improve or suggest your favorite dish to add.',
     tabSuggestDish: 'Suggest a Dish',
@@ -127,6 +128,7 @@ export const translations = {
 
     // Feedback & Rating
     feedbackLink: 'رائے / تجاویز',
+    cookieSettings: 'کوکیز کی ترتیبات',
     feedbackBrowserTitle: 'ہمیں آپ کی رائے درکار ہے!',
     feedbackBrowserSubtitle: 'ایپ کو بہتر بنانے یا اپنی پسندیدہ ڈش شامل کروانے کے لیے رہنمائی فرمائیں۔',
     tabSuggestDish: 'نئی ڈش تجویز کریں',
@@ -205,6 +207,7 @@ export const translations = {
 
     // Feedback & Rating
     feedbackLink: 'प्रतिक्रिया',
+    cookieSettings: 'कुकी सेटिंग्स',
     feedbackBrowserTitle: 'आपकी राय हमारे लिए महत्वपूर्ण है!',
     feedbackBrowserSubtitle: 'ऐप को बेहतर बनाने या अपने पसंदीदा व्यंजन का सुझाव देने में मदद करें।',
     tabSuggestDish: 'व्यंजन का सुझाव दें',

@@ -68,3 +68,8 @@ Desserts:
 ## Other Completed Work
 - Google AdSense script integration into `index.html` head (`ca-pub-5838182687945471`).
 - `public/ads.txt` added to verify domain monetization.
+- **Google Certified CMP (Consent Management Platform) Integration**:
+  - Configured site for Google's certified built-in CMP (AdSense Privacy & Messaging / Funding Choices, IAB TCF v2.2 compliant).
+  - Added mandatory EU User Consent Policy revocation trigger (`googlefc.showRevocationMessage()` with `.googlefc-revocation-link` class) in the site footer.
+  - Multilingual "Cookie Settings" translation in English, Urdu (`کوکیز کی ترتیبات`), and Hindi (`कुकी सेटिंग्स`).
+  - Updated Privacy Policy with AdSense cookie disclosures, ad personalization policies, and user consent management instructions.

@@ -72,8 +72,12 @@ export default function App() {
           : language === 'hi'
           ? 'गोपनीयता नीति'
           : 'Privacy Policy',
-      content: `This app does not collect any personal data from users. It is designed to provide a simple and enjoyable experience for users looking for cooking inspiration. The app runs locally in your browser. No personal data is sent to any external servers or third parties.
-      \nBy using this app, you agree to the terms of this privacy policy. If you have questions or concerns, please contact the developer.`,
+      content:
+        language === 'ur'
+          ? `یہ ایپ صارفین کا کوئی ذاتی ڈیٹا اکٹھا نہیں کرتی ہے۔\n\nاشتہارات اور کوکیز (Google AdSense):\nہم اس ویب سائٹ پر اشتہارات دکھانے کے لیے گوگل ایڈسینس (Google AdSense) کا استعمال کرتے ہیں۔ گوگل اور اس کے پارٹنرز صارفین کی سابقہ وزٹس کی بنیاد پر اشتہارات دکھانے کے لیے کوکیز کا استعمال کر سکتے ہیں۔\n\nرضامندی اور کوکی ترتیبات (GDPR / Google CMP):\nیورپی یونین (EEA) اور برطانیہ کے صارفین کے لیے گوگل سرٹیفائیڈ کنسنٹ پلیٹ فارم کے تحت رضامندی کی سہولت میسر ہے۔ آپ کسی بھی وقت نیچے فوٹر میں "کوکیز کی ترتیبات" کے ذریعے اپنی رضامندی تبدیل یا منسوخ کر سکتے ہیں۔`
+          : language === 'hi'
+          ? `यह ऐप उपयोगकर्ताओं का कोई व्यक्तिगत डेटा एकत्र नहीं करता है।\n\nविज्ञापन और कुकीज़ (Google AdSense):\nहम इस वेबसाइट पर विज्ञापन दिखाने के लिए Google AdSense का उपयोग करते हैं। Google और इसके भागीदार पिछली विज़िट के आधार पर विज्ञापन दिखाने के लिए कुकीज़ का उपयोग करते हैं।\n\nसहमति और कुकी सेटिंग्स (GDPR / Google CMP):\nयूरोपीय संघ (EEA) और यूके के उपयोगकर्ताओं के लिए Google प्रमाणित सहमति प्रबंधन प्रणाली उपलब्ध है। आप फ़ुटर में दिए गए "कुकी सेटिंग्स" लिंक पर क्लिक करके किसी भी समय अपनी प्राथमिकताएं बदल सकते हैं।`
+          : `This app does not collect personal data from users.\n\nAdvertising & Cookies (Google AdSense):\nWe use Google AdSense to serve advertisements on this website. Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other sites on the internet. Google's use of advertising cookies enables it and its partners to serve ads based on your visits across the web.\n\nConsent & Cookie Preferences (GDPR / Google Certified CMP):\nFor visitors in the European Economic Area (EEA) and the UK, ad personalization and cookie preferences are managed through Google's certified Consent Management Platform (CMP). You can review, modify, or revoke your cookie choices at any time by clicking "Cookie Settings" in the footer below or visiting Google Ads Settings.`,
     },
     contact: {
       name:
@@ -140,6 +144,20 @@ export default function App() {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
   const closePage = () => setIsPageOpen(false);
+
+  // Trigger Google CMP Cookie / Consent settings revocation modal
+  const handleOpenCookieSettings = () => {
+    if (
+      typeof window !== 'undefined' &&
+      window.googlefc &&
+      typeof window.googlefc.showRevocationMessage === 'function'
+    ) {
+      window.googlefc.showRevocationMessage();
+    } else {
+      setIsPageOpen(true);
+      setPage('privacyPolicy');
+    }
+  };
 
   // Dynamic icon pool based on category
   const iconComponents = useMemo(() => {
@@ -648,7 +666,7 @@ export default function App() {
             }}
             className="hover:text-white transition-colors underline cursor-pointer"
           >
-            Privacy Policy
+            {p.privacyPolicy.name}
           </button>
           <span>|</span>
           <button
@@ -658,7 +676,14 @@ export default function App() {
             }}
             className="hover:text-white transition-colors underline cursor-pointer"
           >
-            Contact
+            {p.contact.name}
+          </button>
+          <span>|</span>
+          <button
+            onClick={handleOpenCookieSettings}
+            className="hover:text-white transition-colors underline cursor-pointer font-medium googlefc-revocation-link"
+          >
+            {t.cookieSettings || 'Cookie Settings'}
           </button>
           <span>|</span>
           <button
