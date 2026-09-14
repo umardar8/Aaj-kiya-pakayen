@@ -47,21 +47,22 @@ Added high-definition food photographs to 8 popular staple daily dishes:
 8. `saag` - Sarson ka Saag (Classic Punjabi mustard greens topped with white butter) -> `/images/dishes/saag.jpg`
 *(Total with images after Slice 3: 24 of 41 dishes)*
 
-### ⏳ Slice 4 (Upcoming)
-Remaining savory daily dishes:
-- `Karele` (Bitter gourd with onions)
-- `dal_makhani` (Creamy black lentils)
-- `Dum Pukh` (Slow-cooked Peshawari meat)
-- `curry_chawal` (Kadhi pakora served with rice)
-- `tori_ki_sabzi` (Ridge gourd sabzi)
-- `aaloo_baingan` (Potato and eggplant curry)
-- `aaloo_katli` (Crisp spiced potato slices)
-- `aaloo_cutlets` (Crispy potato patties)
-- `besan_roti` (Gram flour flatbread with mint chutney)
+### ✅ Slice 4 (Completed)
+Added high-definition food photographs to 8 savory staple daily dishes:
+1. `Karele` - Karele Pyaz (Crispy bitter gourd with caramelized onions) -> `/images/dishes/karele.jpg`
+2. `dal_makhani` - Dal Makhani (Creamy, buttery slow-cooked black lentils) -> `/images/dishes/dal_makhani.jpg`
+3. `Dum Pukh` - Dum Pukht (Peshawari slow-cooked tender meat & potatoes) -> `/images/dishes/dum_pukht.jpg`
+4. `curry_chawal` - Curry Chawal (Tangy Kadhi Pakora served over basmati rice) -> `/images/dishes/curry_chawal.jpg`
+5. `tori_ki_sabzi` - Tori ki Sabzi (Tender ridge gourd cooked in mild cumin masala) -> `/images/dishes/tori_ki_sabzi.jpg`
+6. `aaloo_baingan` - Aaloo Baingan (Spiced potato and eggplant curry) -> `/images/dishes/aaloo_baingan.jpg`
+7. `aaloo_katli` - Aaloo Katli (Crispy spiced circular potato discs) -> `/images/dishes/aaloo_katli.jpg`
+8. `aaloo_cutlets` - Aaloo Cutlets (Golden pan-fried spiced potato patties) -> `/images/dishes/aaloo_cutlets.jpg`
+*(Total with images after Slice 4: 32 of 41 dishes)*
 
-### ⏳ Slice 5 (Upcoming)
-Desserts:
-- `kheer`, `gajar_ka_halwa`, `sheer_khurma`, `suji_ka_halwa`, `custurd`, `seviyan`, `kaddu_ka_halwa`, `cup_cakes`
+### ⏳ Slice 5 (Upcoming - Final Slice)
+Remaining daily bread and desserts (9 dishes):
+- `besan_roti` (Gram flour flatbread with mint chutney)
+- Desserts: `kheer`, `gajar_ka_halwa`, `sheer_khurma`, `suji_ka_halwa`, `custurd`, `seviyan`, `kaddu_ka_halwa`, `cup_cakes`
 
 ---
 

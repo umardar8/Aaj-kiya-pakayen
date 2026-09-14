@@ -384,6 +384,7 @@ Chawal:
   },
   {
     id: 'Karele',
+    image: '/images/dishes/karele.jpg',
     meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: true,
@@ -444,6 +445,7 @@ Chawal:
   },
   {
     id: 'dal_makhani',
+    image: '/images/dishes/dal_makhani.jpg',
     meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: true,
@@ -478,6 +480,7 @@ Chawal:
   },
   {
     id: 'Dum Pukh',
+    image: '/images/dishes/dum_pukht.jpg',
     meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: false,
@@ -608,6 +611,7 @@ Chawal:
   },
   {
     id: 'curry_chawal',
+    image: '/images/dishes/curry_chawal.jpg',
     meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: true,
@@ -639,6 +643,7 @@ Chawal:
   },
   {
     id: 'tori_ki_sabzi',
+    image: '/images/dishes/tori_ki_sabzi.jpg',
     meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: true,
@@ -695,6 +700,7 @@ Chawal:
   },
   {
     id: 'aaloo_baingan',
+    image: '/images/dishes/aaloo_baingan.jpg',
     meals: ["lunch","dinner"],
     category: 'daily',
     isVeg: true,
@@ -728,6 +734,7 @@ Chawal:
   },
   {
     id: 'aaloo_katli',
+    image: '/images/dishes/aaloo_katli.jpg',
     meals: ["breakfast","lunch","dinner"],
     category: 'daily',
     isVeg: true,
@@ -757,6 +764,7 @@ Chawal:
   },
   {
     id: 'aaloo_cutlets',
+    image: '/images/dishes/aaloo_cutlets.jpg',
     meals: ["breakfast","lunch","dinner"],
     category: 'daily',
     isVeg: true,
