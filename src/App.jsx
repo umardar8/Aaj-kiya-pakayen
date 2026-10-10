@@ -68,30 +68,30 @@ export default function App() {
         language === 'ur'
           ? `یہ ایپ آپ کو روزمرہ کے کھانے اور مزیدار میٹھے پکوان منتخب کرنے میں مدد دیتی ہے۔ اس میں روایتی جنوبی ایشیائی پکوان شامل ہیں جن کی مکمل ترکیب اور اجزاء دستیاب ہیں۔\n\nآپ روزمرہ کے کھانے (Daily Meals) اور میٹھے (Desserts) میں سے انتخاب کر سکتے ہیں، اور روزمرہ کے کھانوں میں صرف سبزی (Veg Only) کا فلٹر بھی آن کر سکتے ہیں۔`
           : language === 'hi'
-          ? `यह ऐप आपको रोज़मर्रा का खाना और स्वादिष्ट मिठाइयाँ चुनने में मदद करता है। इसमें पारंपरिक दक्षिण एशियाई व्यंजन और उनकी पूरी रेसिपी और सामग्री शामिल हैं।\n\nआप दैनिक भोजन (Daily Meals) और मिठाइयों (Desserts) में से चुन सकते हैं, और दैनिक भोजन के लिए केवल शाकाहारी (Veg Only) फ़िल्टर भी लगा सकते हैं।`
-          : `This app is designed to help you decide what to cook daily, whether it's hearty Daily Meals or delectable Desserts.\n\nExplore a variety of traditional South Asian recipes with complete step-by-step instructions and ingredients. You can also filter for Vegetarian Only meals with the built-in slider. The app supports English, Urdu, and Hindi.`,
+            ? `यह ऐप आपको रोज़मर्रा का खाना और स्वादिष्ट मिठाइयाँ चुनने में मदद करता है। इसमें पारंपरिक दक्षिण एशियाई व्यंजन और उनकी पूरी रेसिपी और सामग्री शामिल हैं।\n\nआप दैनिक भोजन (Daily Meals) और मिठाइयों (Desserts) में से चुन सकते हैं, और दैनिक भोजन के लिए केवल शाकाहारी (Veg Only) फ़िल्टर भी लगा सकते हैं।`
+            : `This app is designed to help you decide what to cook daily, whether it's hearty Daily Meals or delectable Desserts.\n\nExplore a variety of traditional South Asian recipes with complete step-by-step instructions and ingredients. You can also filter for Vegetarian Only meals with the built-in slider. The app supports English, Urdu, and Hindi.`,
     },
     privacyPolicy: {
       name:
         language === 'ur'
           ? 'پرائیویسی پالیسی'
           : language === 'hi'
-          ? 'गोपनीयता नीति'
-          : 'Privacy Policy',
+            ? 'गोपनीयता नीति'
+            : 'Privacy Policy',
       content:
         language === 'ur'
           ? `یہ ایپ صارفین کا کوئی ذاتی ڈیٹا اکٹھا نہیں کرتی ہے۔\n\nاشتہارات اور کوکیز (Google AdSense):\nہم اس ویب سائٹ پر اشتہارات دکھانے کے لیے گوگل ایڈسینس (Google AdSense) کا استعمال کرتے ہیں۔ گوگل اور اس کے پارٹنرز صارفین کی سابقہ وزٹس کی بنیاد پر اشتہارات دکھانے کے لیے کوکیز کا استعمال کر سکتے ہیں۔\n\nرضامندی اور کوکی ترتیبات (GDPR / Google CMP):\nیورپی یونین (EEA) اور برطانیہ کے صارفین کے لیے گوگل سرٹیفائیڈ کنسنٹ پلیٹ فارم کے تحت رضامندی کی سہولت میسر ہے۔ آپ کسی بھی وقت نیچے فوٹر میں "کوکیز کی ترتیبات" کے ذریعے اپنی رضامندی تبدیل یا منسوخ کر سکتے ہیں۔`
           : language === 'hi'
-          ? `यह ऐप उपयोगकर्ताओं का कोई व्यक्तिगत डेटा एकत्र नहीं करता है।\n\nविज्ञापन और कुकीज़ (Google AdSense):\nहम इस वेबसाइट पर विज्ञापन दिखाने के लिए Google AdSense का उपयोग करते हैं। Google और इसके भागीदार पिछली विज़िट के आधार पर विज्ञापन दिखाने के लिए कुकीज़ का उपयोग करते हैं।\n\nसहमति और कुकी सेटिंग्स (GDPR / Google CMP):\nयूरोपीय संघ (EEA) और यूके के उपयोगकर्ताओं के लिए Google प्रमाणित सहमति प्रबंधन प्रणाली उपलब्ध है। आप फ़ुटर में दिए गए "कुकी सेटिंग्स" लिंक पर क्लिक करके किसी भी समय अपनी प्राथमिकताएं बदल सकते हैं।`
-          : `This app does not collect personal data from users.\n\nAdvertising & Cookies (Google AdSense):\nWe use Google AdSense to serve advertisements on this website. Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other sites on the internet. Google's use of advertising cookies enables it and its partners to serve ads based on your visits across the web.\n\nConsent & Cookie Preferences (GDPR / Google Certified CMP):\nFor visitors in the European Economic Area (EEA) and the UK, ad personalization and cookie preferences are managed through Google's certified Consent Management Platform (CMP). You can review, modify, or revoke your cookie choices at any time by clicking "Cookie Settings" in the footer below or visiting Google Ads Settings.`,
+            ? `यह ऐप उपयोगकर्ताओं का कोई व्यक्तिगत डेटा एकत्र नहीं करता है।\n\nविज्ञापन और कुकीज़ (Google AdSense):\nहम इस वेबसाइट पर विज्ञापन दिखाने के लिए Google AdSense का उपयोग करते हैं। Google और इसके भागीदार पिछली विज़िट के आधार पर विज्ञापन दिखाने के लिए कुकीज़ का उपयोग करते हैं।\n\nसहमति और कुकी सेटिंग्स (GDPR / Google CMP):\nयूरोपीय संघ (EEA) और यूके के उपयोगकर्ताओं के लिए Google प्रमाणित सहमति प्रबंधन प्रणाली उपलब्ध है। आप फ़ुटर में दिए गए "कुकी सेटिंग्स" लिंक पर क्लिक करके किसी भी समय अपनी प्राथमिकताएं बदल सकते हैं।`
+            : `This app does not collect personal data from users.\n\nAdvertising & Cookies (Google AdSense):\nWe use Google AdSense to serve advertisements on this website. Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other sites on the internet. Google's use of advertising cookies enables it and its partners to serve ads based on your visits across the web.\n\nConsent & Cookie Preferences (GDPR / Google Certified CMP):\nFor visitors in the European Economic Area (EEA) and the UK, ad personalization and cookie preferences are managed through Google's certified Consent Management Platform (CMP). You can review, modify, or revoke your cookie choices at any time by clicking "Cookie Settings" in the footer below or visiting Google Ads Settings.`,
     },
     contact: {
       name:
         language === 'ur'
           ? 'رابطہ'
           : language === 'hi'
-          ? 'संपर्क'
-          : 'Contact',
+            ? 'संपर्क'
+            : 'Contact',
       content: `Email: umerfarooqdar.official@gmail.com\nLinkedin: in/umarfarooqdar\nFacebook: @umarfarooqdar.official\nCollaborate: github.com/umardar8`,
     },
   };
@@ -197,10 +197,9 @@ export default function App() {
     <button
       onClick={() => setLanguage(langCode)}
       className={`px-2.5 py-1 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-base font-medium transition-all duration-150 cursor-pointer
-        ${
-          language === langCode
-            ? 'bg-purple-700 text-white shadow-md'
-            : 'bg-purple-200/90 text-purple-900 hover:bg-purple-300'
+        ${language === langCode
+          ? 'bg-purple-700 text-white shadow-md'
+          : 'bg-purple-200/90 text-purple-900 hover:bg-purple-300'
         }`}
     >
       {langName}
@@ -260,8 +259,8 @@ export default function App() {
                 {mealType === 'breakfast'
                   ? t.mealBreakfast
                   : mealType === 'lunch'
-                  ? t.mealLunch
-                  : t.mealDinner}
+                    ? t.mealLunch
+                    : t.mealDinner}
               </span>
             </span>
           )}
@@ -283,9 +282,8 @@ export default function App() {
 
       {/* Main Interactive Controls & Suggestion */}
       <main
-        className={`w-full max-w-full min-w-0 ${
-          appMode === 'ingredients' ? 'sm:max-w-xl' : 'sm:max-w-md'
-        } space-y-4 sm:space-y-5 transition-all`}
+        className={`w-full max-w-full min-w-0 ${appMode === 'ingredients' ? 'sm:max-w-xl' : 'sm:max-w-md'
+          } space-y-4 sm:space-y-5 transition-all`}
       >
         {appMode === 'ingredients' ? (
           <IngredientCookSection
@@ -312,11 +310,10 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => handleCategoryChange('daily')}
-                className={`flex-1 py-2.5 px-3 rounded-xl text-sm sm:text-base font-semibold transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer ${
-                  category === 'daily'
+                className={`flex-1 py-2.5 px-3 rounded-xl text-sm sm:text-base font-semibold transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer ${category === 'daily'
                     ? 'bg-white text-purple-900 shadow-md scale-[1.01]'
                     : 'text-purple-100 hover:text-white hover:bg-white/10'
-                }`}
+                  }`}
               >
                 <CookingPot size={18} />
                 <span>{t.categoryDaily}</span>
@@ -324,11 +321,10 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => handleCategoryChange('dessert')}
-                className={`flex-1 py-2.5 px-3 rounded-xl text-sm sm:text-base font-semibold transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer ${
-                  category === 'dessert'
+                className={`flex-1 py-2.5 px-3 rounded-xl text-sm sm:text-base font-semibold transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer ${category === 'dessert'
                     ? 'bg-white text-purple-900 shadow-md scale-[1.01]'
                     : 'text-purple-100 hover:text-white hover:bg-white/10'
-                }`}
+                  }`}
               >
                 <CakeSlice size={18} />
                 <span>{t.categoryDessert}</span>
@@ -344,11 +340,10 @@ export default function App() {
                     {selectedDish.category === 'dessert' ? t.sweetBadge : t.categoryDaily}
                   </span>
                   <span
-                    className={`text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1 border ${
-                      selectedDish.isVeg
+                    className={`text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1 border ${selectedDish.isVeg
                         ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
                         : 'bg-rose-100 text-rose-800 border-rose-300'
-                    }`}
+                      }`}
                   >
                     {selectedDish.isVeg ? '🌱 ' + t.vegBadge : '🍖 ' + t.nonVegBadge}
                   </span>
@@ -357,14 +352,14 @@ export default function App() {
                       {selectedDish.meals.includes('breakfast') && selectedDish.meals.includes('lunch') && selectedDish.meals.includes('dinner')
                         ? '☀️ ' + t.allMeals
                         : selectedDish.meals
-                            .map((m) =>
-                              m === 'breakfast'
-                                ? t.mealBreakfast
-                                : m === 'lunch'
+                          .map((m) =>
+                            m === 'breakfast'
+                              ? t.mealBreakfast
+                              : m === 'lunch'
                                 ? t.mealLunch
                                 : t.mealDinner
-                            )
-                            .join(' • ')}
+                          )
+                          .join(' • ')}
                     </span>
                   )}
                 </div>
@@ -402,9 +397,8 @@ export default function App() {
 
             {/* Generator Card (Icons hide after dish generation so only the button remains) */}
             <div
-              className={`bg-purple-50/95 backdrop-blur-md rounded-2xl shadow-2xl border border-white/40 transition-all duration-300 ${
-                selectedDish ? 'p-4 sm:p-5' : 'p-5 sm:p-6'
-              }`}
+              className={`bg-purple-50/95 backdrop-blur-md rounded-2xl shadow-2xl border border-white/40 transition-all duration-300 ${selectedDish ? 'p-4 sm:p-5' : 'p-5 sm:p-6'
+                }`}
             >
               {/* Veg Only Filter Switch at Top Right Corner */}
               {category === 'daily' && (
@@ -419,11 +413,10 @@ export default function App() {
                         handleVegToggle();
                       }
                     }}
-                    className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs sm:text-sm font-semibold transition-all cursor-pointer select-none shadow-sm ${
-                      vegOnly
+                    className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs sm:text-sm font-semibold transition-all cursor-pointer select-none shadow-sm ${vegOnly
                         ? 'bg-emerald-500 text-white border-emerald-400 shadow-emerald-500/20'
                         : 'bg-white/90 text-purple-900 border-purple-200 hover:bg-white hover:text-purple-950'
-                    }`}
+                      }`}
                   >
                     <Leaf size={14} className={vegOnly ? 'text-white' : 'text-emerald-600'} />
                     <span>{t.vegOnly}</span>
@@ -431,14 +424,12 @@ export default function App() {
                       dir="ltr"
                       role="switch"
                       aria-checked={vegOnly}
-                      className={`relative inline-flex h-4 w-7 shrink-0 rounded-full border border-transparent transition-colors duration-200 ease-in-out ${
-                        vegOnly ? 'bg-emerald-700' : 'bg-gray-300'
-                      }`}
+                      className={`relative inline-flex h-4 w-7 shrink-0 rounded-full border border-transparent transition-colors duration-200 ease-in-out ${vegOnly ? 'bg-emerald-700' : 'bg-gray-300'
+                        }`}
                     >
                       <span
-                        className={`pointer-events-none inline-block h-3.5 w-3.5 transform rounded-full bg-white shadow-sm ring-0 transition-transform duration-200 ease-in-out ${
-                          vegOnly ? 'translate-x-3' : 'translate-x-0'
-                        }`}
+                        className={`pointer-events-none inline-block h-3.5 w-3.5 transform rounded-full bg-white shadow-sm ring-0 transition-transform duration-200 ease-in-out ${vegOnly ? 'translate-x-3' : 'translate-x-0'
+                          }`}
                       />
                     </span>
                   </div>
@@ -484,10 +475,10 @@ export default function App() {
                 <UtensilsCrossed size={14} className="text-amber-300" />
                 <span>
                   {language === 'ur'
-                    ? 'باورچی خانے کے اجزاء سے کھانا چنیں؟ یہاں کلک کریں ✨'
+                    ? 'باورچی خانے کے اجزاء سے کھانا چنیں؟ یہاں کلک کریں'
                     : language === 'hi'
-                    ? 'रसोई में उपलब्ध सामग्री से व्यंजन चुनें? यहाँ क्लिक करें ✨'
-                    : 'Have ingredients at home? Cook by Ingredients ✨'}
+                      ? 'रसोई में उपलब्ध सामग्री से व्यंजन चुनें? यहाँ क्लिक करें'
+                      : 'Have ingredients at home? Cook by Ingredients'}
                 </span>
               </button>
             </div>
@@ -511,11 +502,10 @@ export default function App() {
                     {selectedDish.category === 'dessert' ? t.sweetBadge : t.categoryDaily}
                   </span>
                   <span
-                    className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${
-                      selectedDish.isVeg
+                    className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${selectedDish.isVeg
                         ? 'bg-emerald-100 text-emerald-800'
                         : 'bg-rose-100 text-rose-800'
-                    }`}
+                      }`}
                   >
                     {selectedDish.isVeg ? '🌱 ' + t.vegBadge : '🍖 ' + t.nonVegBadge}
                   </span>
