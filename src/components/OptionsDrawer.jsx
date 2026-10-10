@@ -218,9 +218,6 @@ export default function OptionsDrawer({
                       <div className="text-xs sm:text-sm leading-tight">
                         {t.allMeals}
                       </div>
-                      <div className="text-[10px] text-purple-400 mt-0.5">
-                        {t.allMealsDesc}
-                      </div>
                     </div>
                   </button>
 

@@ -197,12 +197,13 @@ export default function App() {
     <button
       onClick={() => setLanguage(langCode)}
       className={`px-2.5 py-1 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-base font-medium transition-all duration-150 cursor-pointer
+        ${langCode === 'ur' ? 'pb-1.5' : ''}
         ${language === langCode
           ? 'bg-purple-700 text-white shadow-md'
           : 'bg-purple-200/90 text-purple-900 hover:bg-purple-300'
         }`}
     >
-      {langName}
+      <span>{langName}</span>
     </button>
   );
 
@@ -310,7 +311,9 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => handleCategoryChange('daily')}
-                className={`flex-1 py-2.5 px-3 rounded-xl text-sm sm:text-base font-semibold transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer ${category === 'daily'
+                className={`flex-1 py-2.5 px-3 rounded-xl text-sm sm:text-base font-semibold transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer ${
+                  language === 'ur' ? 'pt-2 pb-3.5' : ''
+                } ${category === 'daily'
                     ? 'bg-white text-purple-900 shadow-md scale-[1.01]'
                     : 'text-purple-100 hover:text-white hover:bg-white/10'
                   }`}
@@ -321,7 +324,9 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => handleCategoryChange('dessert')}
-                className={`flex-1 py-2.5 px-3 rounded-xl text-sm sm:text-base font-semibold transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer ${category === 'dessert'
+                className={`flex-1 py-2.5 px-3 rounded-xl text-sm sm:text-base font-semibold transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer ${
+                  language === 'ur' ? 'pt-2 pb-3.5' : ''
+                } ${category === 'dessert'
                     ? 'bg-white text-purple-900 shadow-md scale-[1.01]'
                     : 'text-purple-100 hover:text-white hover:bg-white/10'
                   }`}
@@ -334,11 +339,8 @@ export default function App() {
             {/* Suggested Dish Result Card (Shows in center spotlight above the button) */}
             {selectedDish && (
               <div className="bg-amber-50/95 border-2 border-amber-400/90 p-5 sm:p-6 rounded-2xl shadow-2xl text-gray-800 animate-fadeIn">
-                {/* Dish Category & Veg Tags */}
-                <div className="flex items-center gap-2 mb-2.5 flex-wrap">
-                  <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-100 text-purple-800 border border-purple-200">
-                    {selectedDish.category === 'dessert' ? t.sweetBadge : t.categoryDaily}
-                  </span>
+                {/* Dish Tags (Veg/Non-Veg & Meals) */}
+                <div className="flex items-center justify-center gap-2 mb-2.5 flex-wrap">
                   <span
                     className={`text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1 border ${selectedDish.isVeg
                         ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
@@ -364,7 +366,7 @@ export default function App() {
                   )}
                 </div>
 
-                <h2 className={`${modalTitleSizeClass} font-extrabold text-purple-900 mb-2`}>
+                <h2 className={`${modalTitleSizeClass} font-extrabold text-purple-900 mb-2 ${language === 'ur' ? 'pb-1' : ''}`}>
                   {selectedDish.name[language] || selectedDish.name.en}
                 </h2>
 
@@ -387,10 +389,12 @@ export default function App() {
 
                 <button
                   onClick={openModal}
-                  className="w-full bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-500 hover:to-yellow-500 text-purple-950 font-bold py-3 px-6 rounded-xl shadow-md transition-all duration-150 ease-in-out transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-yellow-300 cursor-pointer"
+                  className={`w-full bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-500 hover:to-yellow-500 text-purple-950 font-bold py-3 px-6 rounded-xl shadow-md transition-all duration-150 ease-in-out transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-yellow-300 cursor-pointer ${
+                    language === 'ur' ? 'pt-2.5 pb-3.5' : ''
+                  }`}
                   aria-label={`${t.checkRecipeAria} ${selectedDish.name[language]}`}
                 >
-                  {t.checkRecipeButton}
+                  <span>{t.checkRecipeButton}</span>
                 </button>
               </div>
             )}
@@ -455,10 +459,12 @@ export default function App() {
 
               <button
                 onClick={handleSuggestDish}
-                className="w-full text-white font-bold py-3.5 sm:py-4 px-6 rounded-xl text-lg sm:text-xl shadow-xl transition-all duration-150 ease-in-out transform hover:scale-[1.02] active:scale-[0.99] focus:outline-none focus:ring-4 focus:ring-purple-400/50 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 cursor-pointer"
+                className={`w-full text-white font-bold py-3.5 sm:py-4 px-6 rounded-xl text-lg sm:text-xl shadow-xl transition-all duration-150 ease-in-out transform hover:scale-[1.02] active:scale-[0.99] focus:outline-none focus:ring-4 focus:ring-purple-400/50 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 cursor-pointer ${
+                  language === 'ur' ? 'pt-3 pb-4.5 sm:pt-3.5 sm:pb-5 leading-normal' : ''
+                }`}
                 aria-label={t.suggestDishAria}
               >
-                {category === 'dessert' ? t.mainButtonDessert : t.mainButton}
+                <span>{category === 'dessert' ? t.mainButtonDessert : t.mainButton}</span>
               </button>
             </div>
           </>

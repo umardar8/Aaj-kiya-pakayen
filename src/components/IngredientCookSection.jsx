@@ -193,6 +193,8 @@ export default function IngredientCookSection({
                 type="button"
                 onClick={() => setActiveCategoryTab(cat.id)}
                 className={`py-2 px-1 sm:px-2 rounded-xl text-[11px] sm:text-xs font-semibold transition-all cursor-pointer flex items-center justify-center gap-1 border w-full text-center ${
+                  language === 'ur' ? 'pt-1.5 pb-2.5' : ''
+                } ${
                   isTabActive
                     ? 'bg-white text-purple-950 border-white shadow-md'
                     : 'bg-purple-900/40 text-purple-200 hover:text-white border-purple-400/20 hover:bg-purple-800/40'
@@ -276,6 +278,8 @@ export default function IngredientCookSection({
           onClick={handlePickRandomDish}
           disabled={readyDishes.length === 0 && almostDishes.length === 0}
           className={`w-full font-bold py-3.5 px-5 rounded-xl text-base sm:text-lg shadow-xl transition-all duration-150 flex items-center justify-center gap-2 cursor-pointer ${
+            language === 'ur' ? 'pt-3 pb-4.5' : ''
+          } ${
             readyDishes.length > 0 || almostDishes.length > 0
               ? 'bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-400 hover:from-amber-500 hover:to-yellow-500 text-purple-950 transform hover:scale-[1.01] active:scale-[0.99] focus:ring-4 focus:ring-yellow-300'
               : 'bg-white/10 text-purple-300/60 border border-white/10 cursor-not-allowed opacity-60'

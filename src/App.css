@@ -8,3 +8,46 @@
   overflow-x: hidden;
   text-align: center;
 }
+
+/* Urdu Typography & Descender Protection */
+.font-urdu {
+  font-family: 'Segoe UI', Tahoma, 'Noto Sans Arabic', system-ui, sans-serif;
+  line-height: 1.65;
+}
+
+/* Headings in Urdu need room below for tall ascenders and deep descenders */
+.font-urdu h1,
+.font-urdu h2,
+.font-urdu h3,
+.font-urdu h4,
+.font-urdu h5 {
+  line-height: 1.55;
+  padding-bottom: 0.25rem;
+}
+
+/* Paragraphs, descriptions, and labels in Urdu */
+.font-urdu p,
+.font-urdu label {
+  line-height: 1.7;
+  padding-bottom: 0.2rem;
+}
+
+/* Ensure Urdu text inside buttons has dedicated bottom breathing room */
+.font-urdu button,
+button.font-urdu,
+.font-urdu [role="button"],
+.font-urdu [role="switch"] {
+  line-height: 1.45;
+}
+
+.font-urdu button span,
+.font-urdu a span {
+  display: inline-block;
+  padding-bottom: 3px;
+}
+
+/* Small badges and chips in Urdu */
+.font-urdu .rounded-full span,
+.font-urdu span.rounded-full {
+  padding-bottom: 2px;
+}
