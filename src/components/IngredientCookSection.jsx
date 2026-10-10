@@ -131,9 +131,9 @@ export default function IngredientCookSection({
   };
 
   return (
-    <div className={`w-full max-w-xl space-y-4 sm:space-y-5 ${fontClass} animate-fadeIn`}>
+    <div className={`w-full max-w-full min-w-0 space-y-4 sm:space-y-5 ${fontClass} animate-fadeIn`}>
       {/* Main Ingredient Selection Card */}
-      <div className="bg-purple-950/40 backdrop-blur-md rounded-2xl p-4 sm:p-5 border border-purple-300/25 shadow-2xl space-y-4">
+      <div className="bg-purple-950/40 backdrop-blur-md rounded-2xl p-3 sm:p-5 border border-purple-300/25 shadow-2xl space-y-4 max-w-full min-w-0 overflow-hidden">
         {/* Section Heading */}
         <div>
           <div className="flex items-center justify-between flex-wrap gap-2">
@@ -183,7 +183,7 @@ export default function IngredientCookSection({
         </div>
 
         {/* Category Filter Tabs */}
-        <div className="flex overflow-x-auto gap-1.5 pb-1.5 scrollbar-thin touch-pan-x">
+        <div className="flex overflow-x-auto gap-1.5 pb-1.5 scrollbar-thin touch-pan-x max-w-full">
           {INGREDIENT_CATEGORIES.map((cat) => {
             const isTabActive = activeCategoryTab === cat.id;
             const count = PREDEFINED_INGREDIENTS.filter(

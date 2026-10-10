@@ -216,11 +216,11 @@ export default function App() {
 
   return (
     <div
-      className={`min-h-screen min-w-screen bg-gradient-to-br from-purple-700 via-indigo-700 to-purple-900 flex flex-col items-center justify-center p-3 sm:p-4 ${fontClass} selection:bg-purple-300 selection:text-purple-900`}
+      className={`min-h-screen min-h-[100dvh] w-full max-w-full overflow-x-hidden bg-gradient-to-br from-purple-700 via-indigo-700 to-purple-900 flex flex-col items-center justify-start sm:justify-center p-3 sm:p-4 ${fontClass} selection:bg-purple-300 selection:text-purple-900`}
     >
       {/* Header & Language Bar */}
       <header className="mb-4 sm:mb-6 text-center w-full max-w-md">
-        <div className="flex justify-center items-center gap-1.5 sm:gap-2.5 mb-4 bg-purple-500/30 backdrop-blur-md p-1.5 sm:p-2 rounded-xl border border-purple-400/20 shadow-inner">
+        <div className="flex justify-center items-center gap-1.5 sm:gap-2.5 mb-4 bg-purple-500/30 backdrop-blur-md p-1.5 sm:p-2 rounded-xl border border-purple-400/20 shadow-inner w-full max-w-full mx-auto">
           <Languages size={18} className="text-purple-100 shrink-0" />
           <LanguageButton langCode="en" langName={t.langEnglish} />
           <LanguageButton langCode="ur" langName={t.langUrdu} />
@@ -283,8 +283,8 @@ export default function App() {
 
       {/* Main Interactive Controls & Suggestion */}
       <main
-        className={`w-full ${
-          appMode === 'ingredients' ? 'max-w-xl' : 'max-w-md'
+        className={`w-full max-w-full min-w-0 ${
+          appMode === 'ingredients' ? 'sm:max-w-xl' : 'sm:max-w-md'
         } space-y-4 sm:space-y-5 transition-all`}
       >
         {appMode === 'ingredients' ? (
@@ -497,9 +497,9 @@ export default function App() {
 
       {/* Recipe Modal */}
       {isModalOpen && selectedDish && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fadeIn">
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 z-50 animate-fadeIn overflow-y-auto">
           <div
-            className={`bg-white p-5 sm:p-7 rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] flex flex-col ${fontClass} border border-purple-100`}
+            className={`bg-white p-4 sm:p-7 rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] flex flex-col ${fontClass} border border-purple-100 min-w-0 overflow-hidden`}
           >
             <div
               dir={textDirection}
@@ -580,8 +580,8 @@ export default function App() {
 
       {/* Info Page Modal (About / Privacy / Contact) */}
       {isPageOpen && page && p[page] && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fadeIn">
-          <div className="bg-white p-6 sm:p-7 rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] flex flex-col">
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 z-50 animate-fadeIn overflow-y-auto">
+          <div className="bg-white p-4 sm:p-7 rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] flex flex-col min-w-0 overflow-hidden">
             <div className="flex justify-between items-center mb-4 pb-3 border-b border-gray-100">
               <h3 className="text-2xl font-bold text-purple-900">
                 {p[page].name}

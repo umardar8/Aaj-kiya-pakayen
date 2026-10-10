@@ -70,7 +70,7 @@ Remaining daily bread and desserts (9 dishes):
 
 ## Other Completed Work
 - **UI Uncluttering & Side Options Drawer (`src/components/OptionsDrawer.jsx`)**:
-  - Moved **Cooking Mode selector** (Random Dish Suggest vs Cook by Ingredients) and **Meal Time filters** (Breakfast, Lunch, Dinner, All Meals) into an accessible, slide-over side drawer with backdrop blur and escape key handling.
+  - Moved **Cooking Mode selector** (Random Dish Suggest vs Cook by Ingredients, with redundant subtitle descriptions removed for sleek and compact cards) and **Meal Time filters** (Breakfast, Lunch, Dinner, All Meals) into an accessible, slide-over side drawer with backdrop blur and escape key handling.
   - Cleared main screen to be spacious and focused, containing only the Category switcher (Daily Meals vs Desserts), the Veg Only toggle, and the primary action area.
   - Main screen includes a minimalist status trigger bar (`[ 🎲 Random Dish Suggest / 🥫 Cook by Ingredients ] [ ⚙️ More Options ]`) showing active filter indicators with mobile-first truncation and no-wrap protection.
   - Replaced bulky standalone horizontal 'Veg Only' filter box with a sleek, pill-style toggle switch neatly embedded at the top-right corner inside the 'Aaj Kiya Pakayen?' action button container.
@@ -81,8 +81,7 @@ Remaining daily bread and desserts (9 dishes):
   - Matches 41 catalog dishes into "Ready to Cook! (100% core ingredients matched)" and "Almost Ready (Missing only 1 ingredient with clear notice)".
   - Includes instant multilingual search across all ingredients in a dedicated full-width search bar, category tabs, and "Aaj Kiya Pakayen? (From My Ingredients)" random recommendation picker (with separate Select Staples and Clear All buttons removed from the search row for maximum cleanliness and focus).
   - Seamlessly respects Veg Only, category (Daily Meals vs Desserts), and Meal Time (Breakfast / Lunch / Dinner) filters.
-  - Fully translated in English, Urdu (RTL), and Hindi.
-  - Mobile-first responsiveness optimized across small viewports (320px–420px), including touch-friendly buttons, responsive headers, and bottom sheet sheets for install prompts.
+  - Mobile-first responsiveness optimized across small viewports (320px–420px), including touch-friendly buttons, responsive headers, bottom sheet install prompts, and complete elimination of horizontal scrolling/leakage (removed `min-w-screen` and Vite starter `body min-width: 320px`/`place-items: center` in favor of strict `w-full max-w-full overflow-x-hidden`).
 - Google AdSense script integration into `index.html` head (`ca-pub-5838182687945471`).
 - `public/ads.txt` added to verify domain monetization.
 - **Google Certified CMP (Consent Management Platform) Integration**:

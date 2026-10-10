@@ -142,10 +142,10 @@ export default function FeedbackModal({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/75 backdrop-blur-md flex items-center justify-center p-4 z-50 animate-fadeIn">
+    <div className="fixed inset-0 bg-black/75 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 z-50 animate-fadeIn overflow-y-auto">
       <div
         dir={textDirection}
-        className={`bg-white rounded-3xl shadow-2xl max-w-lg w-full max-h-[92vh] flex flex-col ${fontClass} border border-purple-200/60 overflow-hidden relative`}
+        className={`bg-white rounded-3xl shadow-2xl max-w-lg w-full max-h-[92vh] flex flex-col ${fontClass} border border-purple-200/60 overflow-hidden relative min-w-0`}
       >
         {/* Decorative Top Accent Gradient */}
         <div className="h-2.5 w-full bg-gradient-to-r from-purple-600 via-indigo-600 to-amber-500" />
@@ -153,7 +153,7 @@ export default function FeedbackModal({
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 ltr:right-4 rtl:left-4 p-1.5 rounded-full text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors z-10 cursor-pointer"
+          className="absolute top-4 right-4 rtl:right-auto rtl:left-4 p-1.5 rounded-full text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors z-10 cursor-pointer"
           aria-label="Close"
         >
           <X size={22} />

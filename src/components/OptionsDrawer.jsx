@@ -65,12 +65,12 @@ export default function OptionsDrawer({
       {/* Drawer Container (RTL from left, LTR from right) */}
       <div
         className={`fixed inset-y-0 max-w-full flex ${
-          language === 'ur' ? 'left-0' : 'right-0'
+          language === 'ur' ? 'left-0 justify-start' : 'right-0 justify-end'
         }`}
       >
         <div
           dir={textDirection}
-          className="w-screen max-w-md bg-gradient-to-b from-purple-900 via-indigo-950 to-purple-950 text-white shadow-2xl border-l rtl:border-l-0 rtl:border-r border-purple-400/20 flex flex-col h-full animate-slideIn"
+          className="w-full max-w-[88vw] sm:max-w-md bg-gradient-to-b from-purple-900 via-indigo-950 to-purple-950 text-white shadow-2xl border-l rtl:border-l-0 rtl:border-r border-purple-400/20 flex flex-col h-full animate-slideIn"
         >
           {/* Drawer Header */}
           <div className="p-4 sm:p-5 border-b border-purple-500/25 flex items-center justify-between shrink-0 bg-purple-950/60 backdrop-blur-md">
@@ -135,15 +135,6 @@ export default function OptionsDrawer({
                       <div className="font-bold text-sm sm:text-base leading-snug">
                         {t.modeRandom}
                       </div>
-                      <div
-                        className={`text-xs mt-0.5 leading-snug ${
-                          appMode === 'random'
-                            ? 'text-purple-900/80'
-                            : 'text-purple-200/80'
-                        }`}
-                      >
-                        {t.modeRandomDesc}
-                      </div>
                     </div>
                   </div>
                   <div
@@ -185,15 +176,6 @@ export default function OptionsDrawer({
                         <span className="text-[10px] uppercase font-extrabold tracking-wider px-1.5 py-0.5 rounded-full bg-amber-400 text-purple-950 shadow-sm animate-pulse">
                           {t.modeIngredientsBadge || 'NEW'}
                         </span>
-                      </div>
-                      <div
-                        className={`text-xs mt-0.5 leading-snug ${
-                          appMode === 'ingredients'
-                            ? 'text-purple-900/80'
-                            : 'text-purple-200/80'
-                        }`}
-                      >
-                        {t.modeIngredientsDesc}
                       </div>
                     </div>
                   </div>
