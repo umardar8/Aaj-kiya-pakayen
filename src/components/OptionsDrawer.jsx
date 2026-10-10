@@ -82,9 +82,6 @@ export default function OptionsDrawer({
                 <h3 id="drawer-title" className="text-lg sm:text-xl font-bold leading-tight text-white">
                   {t.drawerTitle}
                 </h3>
-                <p className="text-xs text-purple-200/80 mt-0.5 leading-tight">
-                  {t.drawerSubtitle}
-                </p>
               </div>
             </div>
             <button
@@ -101,12 +98,9 @@ export default function OptionsDrawer({
           <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-6 scrollbar-thin">
             {/* Section 1: Cooking Mode Selector */}
             <div>
-              <div className="flex items-center justify-between mb-3">
+              <div className="text-center mb-3">
                 <span className="text-xs uppercase tracking-wider font-extrabold text-amber-300">
                   {t.modeSectionTitle}
-                </span>
-                <span className="text-[11px] font-semibold text-purple-200/70">
-                  {appMode === 'ingredients' ? t.modeIngredients : t.modeRandom}
                 </span>
               </div>
 
@@ -197,15 +191,10 @@ export default function OptionsDrawer({
             {/* Section 2: Meal Time Filter (Active for Daily Meals) */}
             {category === 'daily' && (
               <div>
-                <div className="flex items-center justify-between mb-3">
+                <div className="text-center mb-3">
                   <span className="text-xs uppercase tracking-wider font-extrabold text-amber-300">
                     {t.mealSectionTitle}
                   </span>
-                  {mealType !== 'all' && (
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
-                      {t.activeTag || 'Active'}
-                    </span>
-                  )}
                 </div>
 
                 <div className="grid grid-cols-2 gap-2.5">

@@ -141,20 +141,15 @@ export default function IngredientCookSection({
               <UtensilsCrossed size={20} className="text-amber-300 shrink-0" />
               <span>{t.ingredientsTitle}</span>
             </h2>
-            <div className="flex items-center gap-2">
-              {mealType !== 'all' && (
-                <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-200 border border-amber-400/30">
-                  {mealType === 'breakfast'
-                    ? t.mealBreakfast
-                    : mealType === 'lunch'
-                    ? t.mealLunch
-                    : t.mealDinner}
-                </span>
-              )}
-              <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-500/40 text-purple-100 border border-purple-300/30">
-                {selectedIngredients.length} {t.ingredientsSelected}
+            {mealType !== 'all' && (
+              <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-200 border border-amber-400/30">
+                {mealType === 'breakfast'
+                  ? t.mealBreakfast
+                  : mealType === 'lunch'
+                  ? t.mealLunch
+                  : t.mealDinner}
               </span>
-            </div>
+            )}
           </div>
         </div>
 
@@ -183,7 +178,7 @@ export default function IngredientCookSection({
         </div>
 
         {/* Category Filter Tabs */}
-        <div className="flex overflow-x-auto gap-1.5 pb-1.5 scrollbar-thin touch-pan-x max-w-full">
+        <div className="grid grid-cols-3 gap-1.5 w-full">
           {INGREDIENT_CATEGORIES.map((cat) => {
             const isTabActive = activeCategoryTab === cat.id;
             const count = PREDEFINED_INGREDIENTS.filter(
@@ -197,16 +192,16 @@ export default function IngredientCookSection({
                 key={cat.id}
                 type="button"
                 onClick={() => setActiveCategoryTab(cat.id)}
-                className={`py-2 px-3 rounded-xl text-xs font-semibold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 border shrink-0 ${
+                className={`py-2 px-1 sm:px-2 rounded-xl text-[11px] sm:text-xs font-semibold transition-all cursor-pointer flex items-center justify-center gap-1 border w-full text-center ${
                   isTabActive
                     ? 'bg-white text-purple-950 border-white shadow-md'
                     : 'bg-purple-900/40 text-purple-200 hover:text-white border-purple-400/20 hover:bg-purple-800/40'
                 }`}
               >
-                <span>{cat.name[language] || cat.name.en}</span>
+                <span className="truncate">{cat.name[language] || cat.name.en}</span>
                 {count > 0 && (
                   <span
-                    className={`text-[10px] font-bold px-1.5 py-0.2 rounded-full ${
+                    className={`text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded-full shrink-0 ${
                       isTabActive
                         ? 'bg-purple-800 text-white'
                         : 'bg-amber-400/30 text-amber-200'

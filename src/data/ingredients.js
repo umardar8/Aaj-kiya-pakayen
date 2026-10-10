@@ -1,10 +1,9 @@
 // Predefined ingredients catalog and dish ingredient mappings for Aaj Kiya Pakayen
 
 export const INGREDIENT_CATEGORIES = [
-  { id: 'meat_eggs', name: { en: 'Meats & Eggs', ur: 'گوشت اور انڈے', hi: 'मांस और अंडे' }, icon: 'Drumstick' },
+  { id: 'meat_eggs', name: { en: 'Meat & Dairy', ur: 'گوشت اور ڈیری', hi: 'मांस और डेयरी' }, icon: 'Drumstick' },
   { id: 'vegetables', name: { en: 'Vegetables', ur: 'تازہ سبزیاں', hi: 'ताज़ी सब्ज़ियाँ' }, icon: 'Carrot' },
   { id: 'grains_pulses', name: { en: 'Grains & Pulses', ur: 'اناج اور دالیں', hi: 'अनाज और दालें' }, icon: 'Wheat' },
-  { id: 'dairy_pantry', name: { en: 'Dairy & Essentials', ur: 'دودھ، دہی و دیگر', hi: 'डेयरी और अन्य' }, icon: 'Milk' },
 ];
 
 export const PREDEFINED_INGREDIENTS = [
@@ -175,31 +174,31 @@ export const PREDEFINED_INGREDIENTS = [
     name: { en: 'Vermicelli (Seviyan)', ur: 'سویاں', hi: 'सेवइयां' },
   },
 
-  // --- Dairy & Pantry ---
+  // --- Dairy & Essentials (Merged with Meat & Dairy) ---
   {
     id: 'yogurt',
-    category: 'dairy_pantry',
+    category: 'meat_eggs',
     emoji: '🥛',
     isStaple: true,
     name: { en: 'Yogurt (Dahi)', ur: 'دہی', hi: 'दही' },
   },
   {
     id: 'milk',
-    category: 'dairy_pantry',
+    category: 'meat_eggs',
     emoji: '🥛',
     isStaple: true,
     name: { en: 'Milk (Doodh)', ur: 'دودھ', hi: 'दूध' },
   },
   {
     id: 'sugar',
-    category: 'dairy_pantry',
+    category: 'meat_eggs',
     emoji: '🍬',
     isStaple: true,
     name: { en: 'Sugar / Shakkar (Cheeni)', ur: 'چینی / شکر', hi: 'चीनी / शक्कर' },
   },
   {
     id: 'custard_powder',
-    category: 'dairy_pantry',
+    category: 'meat_eggs',
     emoji: '🍮',
     isStaple: false,
     name: { en: 'Custard Powder', ur: 'کسٹرڈ پاؤڈر', hi: 'कस्टर्ड पाउडर' },
