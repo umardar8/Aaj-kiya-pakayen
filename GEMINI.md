@@ -9,10 +9,12 @@
 ---
 
 ## Current Architecture & Key Modules
-1. **`src/App.jsx`**: Main application component, state machine for dish generation, category filters (Daily Meals vs Desserts), dietary toggle (Veg Only), meal-time filters (Breakfast, Lunch, Dinner), language switching (en, ur, hi), recipe detail modal with dish image display, info modal, feedback prompt, and install banners.
+1. **`src/App.jsx`**: Main application component, state machine for dish generation, category filters (Daily Meals vs Desserts), dietary toggle (Veg Only), side drawer controller for cooking modes and meal times, language switching (en, ur, hi), recipe detail modal with dish image display, info modal, feedback prompt, and install banners.
 2. **`src/data/dishes.js`**: Central catalog of dishes containing IDs, multilingual names, descriptions, meal classifications (`breakfast`, `lunch`, `dinner`), `isVeg`, ingredients list, full recipes, and optional `image` filepaths (`/images/dishes/<id>.jpg`).
 3. **`src/data/translations.jsx`**: Multilingual dictionary for English, Urdu (RTL), and Hindi.
 4. **`src/components/`**:
+   - `OptionsDrawer.jsx`: Slide-over side panel housing cooking mode selection (Random Dish vs Cook by Ingredients) and meal-time filters (Breakfast, Lunch, Dinner, All Meals).
+   - `IngredientCookSection.jsx`: Interactive ingredient picker and matched recipe explorer.
    - `FeedbackModal.jsx`: In-app feedback form + Google Play Store rating prompt.
    - `DesktopAppBanner.jsx`: Floating desktop QR code and app store link.
    - `MobileAppInstallModal.jsx`: Mobile browser prompt promoting Android app download.
@@ -67,6 +69,20 @@ Remaining daily bread and desserts (9 dishes):
 ---
 
 ## Other Completed Work
+- **UI Uncluttering & Side Options Drawer (`src/components/OptionsDrawer.jsx`)**:
+  - Moved **Cooking Mode selector** (Random Dish Suggest vs Cook by Ingredients) and **Meal Time filters** (Breakfast, Lunch, Dinner, All Meals) into an accessible, slide-over side drawer with backdrop blur and escape key handling.
+  - Cleared main screen to be spacious and focused, containing only the Category switcher (Daily Meals vs Desserts), the Veg Only toggle, and the primary action area.
+  - Main screen includes a minimalist status trigger bar (`[ 🎲 Random Dish Suggest / 🥫 Cook by Ingredients ] [ ⚙️ More Options ]`) showing active filter indicators with mobile-first truncation and no-wrap protection.
+  - Replaced bulky standalone horizontal 'Veg Only' filter box with a sleek, pill-style toggle switch neatly embedded at the top-right corner inside the 'Aaj Kiya Pakayen?' action button container.
+- **Cook with Available Ingredients Feature ("گھر کے اجزاء سے پکائیں" / "उपलब्ध सामग्री سے पकाएँ")**:
+  - Implemented smart ingredient selector and matching engine (`src/data/ingredients.js`, `src/components/IngredientCookSection.jsx`).
+  - Predefined categorized ingredients: Meats & Eggs, Fresh Vegetables, Grains & Pulses, Dairy & Pantry essentials (with redundant 'All Items' tab removed for streamlined category navigation).
+  - Ingredient picker redesigned from a multi-column grid into a clean, full-width vertical list with a fixed height across all categories (`h-64 sm:h-72`) and smooth vertical scrolling for overflowing items.
+  - Matches 41 catalog dishes into "Ready to Cook! (100% core ingredients matched)" and "Almost Ready (Missing only 1 ingredient with clear notice)".
+  - Includes instant multilingual search across all ingredients in a dedicated full-width search bar, category tabs, and "Aaj Kiya Pakayen? (From My Ingredients)" random recommendation picker (with separate Select Staples and Clear All buttons removed from the search row for maximum cleanliness and focus).
+  - Seamlessly respects Veg Only, category (Daily Meals vs Desserts), and Meal Time (Breakfast / Lunch / Dinner) filters.
+  - Fully translated in English, Urdu (RTL), and Hindi.
+  - Mobile-first responsiveness optimized across small viewports (320px–420px), including touch-friendly buttons, responsive headers, and bottom sheet sheets for install prompts.
 - Google AdSense script integration into `index.html` head (`ca-pub-5838182687945471`).
 - `public/ads.txt` added to verify domain monetization.
 - **Google Certified CMP (Consent Management Platform) Integration**:
