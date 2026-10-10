@@ -26,14 +26,18 @@ export const translations = {
     noDishesFound: 'No dishes found for the selected filter.',
     footerText: (
       <span>
-        Lovingly crafted by{' '}
-        <a
-          href="https://linkedin.com/in/umarfarooqdar"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          @umarfarooqdar
-        </a>{' '}
+        Lovingly crafted{' '}
+        <span className="hidden sm:inline">
+          by{' '}
+          <a
+            href="https://linkedin.com/in/umarfarooqdar"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-white underline transition-colors"
+          >
+            @umarfarooqdar
+          </a>{' '}
+        </span>
         to solve the eternal question.
         <br />
         Inspired by South Asian kitchens.
