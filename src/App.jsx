@@ -461,27 +461,6 @@ export default function App() {
                 {category === 'dessert' ? t.mainButtonDessert : t.mainButton}
               </button>
             </div>
-
-            {/* Quick Switch Teaser Link to Cook by Ingredients */}
-            <div className="text-center pt-1">
-              <button
-                type="button"
-                onClick={() => {
-                  setAppMode('ingredients');
-                  setSelectedDish(null);
-                }}
-                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-xs sm:text-sm text-purple-200 hover:text-white transition-all cursor-pointer shadow-sm"
-              >
-                <UtensilsCrossed size={14} className="text-amber-300" />
-                <span>
-                  {language === 'ur'
-                    ? 'باورچی خانے کے اجزاء سے کھانا چنیں؟ یہاں کلک کریں'
-                    : language === 'hi'
-                      ? 'रसोई में उपलब्ध सामग्री से व्यंजन चुनें? यहाँ क्लिक करें'
-                      : 'Have ingredients at home? Cook by Ingredients'}
-                </span>
-              </button>
-            </div>
           </>
         )}
       </main>
@@ -601,11 +580,11 @@ export default function App() {
       )}
 
       {/* Footer */}
-      <footer className="text-center mt-6 sm:mt-10 pb-4">
-        <p className="text-purple-200 whitespace-pre-line leading-relaxed text-xs sm:text-sm">
+      <footer className="text-center mt-6 sm:mt-10 pb-4 px-2">
+        <div className="inline-block px-4 py-2 sm:px-5 sm:py-2.5 rounded-2xl bg-purple-950/40 backdrop-blur-md border border-purple-300/20 text-purple-200 text-xs sm:text-sm leading-relaxed shadow-md max-w-full">
           {t.footerText}
-        </p>
-        <p className="text-purple-300 text-xs sm:text-sm mt-2 flex items-center justify-center gap-2 flex-wrap">
+        </div>
+        <p className="text-purple-300 text-xs sm:text-sm mt-3 hidden sm:flex items-center justify-center gap-2 flex-wrap">
           <button
             onClick={() => {
               setIsPageOpen(true);
